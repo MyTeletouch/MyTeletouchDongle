@@ -1,0 +1,2017 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000           _commandId::
+ 0000 0000              .word 0
+ 0002                   .dbfile D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\main.c
+ 0002                   .dbsym e commandId _commandId I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\main.c
+ 0000           _commandGuid::
+ 0000 0000              .word 0
+ 0002                   .dbsym e commandGuid _commandGuid I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\main.c
+ 0000           _commandReady::
+ 0000 00                .byte 0
+ 0001                   .dbsym e commandReady _commandReady c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\main.c
+ 0000           _Keyboard_Data:
+ 0000 0000              .byte 0,0
+ 0002 0000              .byte 0,0
+ 0004 0000              .byte 0,0
+ 0006 0000              .byte 0,0
+ 0008                   .dbsym s Keyboard_Data _Keyboard_Data A[8:8]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\main.c
+ 0000           _Mouse_Data:
+ 0000 0000              .byte 0,0
+ 0002 00                .byte 0
+ 0003                   .dbsym s Mouse_Data _Mouse_Data A[3:3]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\main.c
+ 0000           _Gamepad_Data:
+ 0000 0000              .byte 0,0
+ 0002 00                .byte 0
+ 0003                   .dbsym s Gamepad_Data _Gamepad_Data A[3:3]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000                   .dbline 57
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; // C main line
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; 
+ 0000           ; #include <m8c.h>        // part specific constants and macros
+ 0000           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0000           ; #include <stdlib.h>
+ 0000           ; #include <string.h>
+ 0000           ; #include <stdio.h>
+ 0000           ; 
+ 0000           ; int commandId = 0;
+ 0000           ; int commandGuid = 0;
+ 0000           ; BOOL commandReady = FALSE;
+ 0000           ; BYTE sh;
+ 0000           ; BOOL bDeviceEnumerated;
+ 0000           ; unsigned char bCtr;
+ 0000           ; //int dataIndex = -1;
+ 0000           ; 
+ 0000           ; /* Array of Keycode information to send to PC */ 
+ 0000           ; static BYTE Keyboard_Data[8] = {0, 0, 0, 0, 0, 0, 0, 0};  
+ 0000           ; 
+ 0000           ; /*Mouse Data to send to PC */
+ 0000           ; static BYTE Mouse_Data[3] = {0, 0, 0}; /* [0] = Buttons, [1] = X-Axis, [2] = Y-Axis */
+ 0000           ; 
+ 0000           ; /*Gamepad Data to send to PC */
+ 0000           ; static BYTE Gamepad_Data[3] = {0, 0, 0}; /*[0] = X-Axis, [1] = Y-Axis, [2] = Buttons */
+ 0000           ; 
+ 0000           ; #define GAMEPAD_DATA_LENGTH     3
+ 0000           ; #define MOUSE_DATA_LENGTH       3
+ 0000           ; #define KEYBOARD_DATA_LENGTH    8
+ 0000           ; 
+ 0000           ; //#define DEBUG
+ 0000           ; //#define DEBUG_INFO
+ 0000           ; 
+ 0000           ; //void ProcessByte(BYTE b);
+ 0000           ; void EnumerateDevice(void);
+ 0000           ; void CheckCommand(void);
+ 0000           ; void CheckKeyboardCommand(void);
+ 0000           ; void CheckMouseCommand(void);
+ 0000           ; void CheckGamepadCommand(void);
+ 0000           ; void CheckRenameCommand(void);
+ 0000           ; void WriteCommandResponse(void);
+ 0000           ; int hex2data(char *data, char *hexstring);
+ 0000           ; 
+ 0000           ; #ifdef DEBUG  
+ 0000           ; 
+ 0000           ; void DebugWriteKeyboard(void);
+ 0000           ; void DebugWriteMouse(void);
+ 0000           ; void DebugWriteGamepad(void);
+ 0000           ; void DebugWriteUNKNOWN(void);
+ 0000           ; void DebugWriteRx(BYTE b);
+ 0000           ; void DebugWriteParam(char* s);
+ 0000           ; 
+ 0000           ; #endif 
+ 0000           ; 
+ 0000           ; void main(void)
+ 0000           ; {
+ 0000                   .dbline 58
+ 0000           ;       UART_Start(UART_PARITY_NONE);
+ 0000 10                push X
+ 0001 5000              mov A,0
+ 0003 7C0000            xcall _UART_Start
+ 0006                   .dbline 59
+ 0006           ;     UART_EnableInt();
+ 0006 7C0000            xcall _UART_EnableInt
+ 0009                   .dbline 60
+ 0009           ;       UART_IntCntl(UART_ENABLE_RX_INT);
+ 0009 5001              mov A,1
+ 000B 7C0000            xcall _UART_IntCntl
+ 000E 20                pop X
+ 000F                   .dbline 62
+ 000F           ; 
+ 000F           ;       M8C_EnableGInt ;
+ 000F 7101                      or  F, 01h
+ 0011           
+ 0011                   .dbline 63
+ 0011           ;       INT_MSK2 |= 0x02;                               //Enable SOF interrupts and Sleep interrupts
+ 0011 43DF02            or REG[0xdf],2
+ 0014                   .dbline 64
+ 0014           ;       INT_MSK0 |= 0x40;       
+ 0014 43E040            or REG[0xe0],64
+ 0017                   .dbline 66
+ 0017           ; 
+ 0017           ;     USBFS_Start(0, USB_5V_OPERATION);
+ 0017 10                push X
+ 0018 5703              mov X,3
+ 001A 5000              mov A,0
+ 001C 7C0000            xcall _USBFS_Start
+ 001F 20                pop X
+ 0020                   .dbline 67
+ 0020           ;       bDeviceEnumerated = FALSE;
+ 0020 62D000            mov REG[0xd0],>_bDeviceEnumerated
+ 0023 550000            mov [_bDeviceEnumerated],0
+ 0026                   .dbline 68
+ 0026           ;       EnumerateDevice();
+ 0026 9155              xcall _EnumerateDevice
+ 0028                   .dbline 70
+ 0028           ; 
+ 0028           ;       UART_CmdReset();
+ 0028 10                push X
+ 0029 7C0000            xcall _UART_CmdReset
+ 002C                   .dbline 73
+ 002C           ;       
+ 002C           ;       //Set device name on start
+ 002C           ;       UART_CPutString("AT+NAMEMyTeletouch\r\n");
+ 002C 5011              mov A,>L3
+ 002E 08                push A
+ 002F 5011              mov A,<L3
+ 0031 5C                mov X,A
+ 0032 18                pop A
+ 0033 7C0000            xcall _UART_CPutString
+ 0036                   .dbline 75
+ 0036           ;       
+ 0036           ;       UART_CmdReset();
+ 0036 7C0000            xcall _UART_CmdReset
+ 0039 20                pop X
+ 003A 8111              xjmp L5
+ 003C           L4:
+ 003C                   .dbline 78
+ 003C           ;       
+ 003C           ;       while (1)
+ 003C           ;       {
+ 003C                   .dbline 79
+ 003C           ;               EnumerateDevice();
+ 003C 913F              xcall _EnumerateDevice
+ 003E                   .dbline 82
+ 003E           ;               
+ 003E           ;               //ProcessByte(UART_cReadChar());
+ 003E           ;               CheckCommand();
+ 003E 920B              xcall _CheckCommand
+ 0040                   .dbline 84
+ 0040           ;               
+ 0040           ;               if (commandReady)
+ 0040 62D000            mov REG[0xd0],>_commandReady
+ 0043 3C0000            cmp [_commandReady],0
+ 0046 A105              jz L7
+ 0048                   .dbline 86
+ 0048           ;               {
+ 0048           ;                       commandReady = FALSE;
+ 0048                   .dbline 86
+ 0048 550000            mov [_commandReady],0
+ 004B                   .dbline 88
+ 004B           ;                       
+ 004B           ;                       switch (commandId)
+ 004B 62D000            mov REG[0xd0],>_commandId
+ 004E 3C0000            cmp [_commandId],0
+ 0051 B006              jnz X1
+ 0053 3C0101            cmp [_commandId+1],1
+ 0056 A039              jz L11
+ 0058           X1:
+ 0058 62D000            mov REG[0xd0],>_commandId
+ 005B 3C0000            cmp [_commandId],0
+ 005E B006              jnz X2
+ 0060 3C0102            cmp [_commandId+1],2
+ 0063 A060              jz L15
+ 0065           X2:
+ 0065 62D000            mov REG[0xd0],>_commandId
+ 0068 3C0000            cmp [_commandId],0
+ 006B B006              jnz X3
+ 006D 3C0103            cmp [_commandId+1],3
+ 0070 A087              jz L19
+ 0072           X3:
+ 0072 62D000            mov REG[0xd0],>_commandId
+ 0075 5101              mov A,[_commandId+1]
+ 0077 1101              sub A,1
+ 0079 5100              mov A,[_commandId]
+ 007B 3180              xor A,-128
+ 007D 1980              sbb A,(0 ^ 0x80)
+ 007F C0C3              jc L9
+ 0081           X4:
+ 0081           L24:
+ 0081 62D000            mov REG[0xd0],>_commandId
+ 0084 3C0000            cmp [_commandId],0
+ 0087 B006              jnz X5
+ 0089 3C010D            cmp [_commandId+1],13
+ 008C A09F              jz L23
+ 008E           X5:
+ 008E 80B4              xjmp L9
+ 0090           L11:
+ 0090                   .dbline 94
+ 0090           ;                       {
+ 0090           ;                               case 1://Keyboard
+ 0090           ; #ifdef DEBUG  
+ 0090           ;                                       DebugWriteKeyboard();
+ 0090           ; #endif 
+ 0090           ;                                       commandId = 0;
+ 0090 62D000            mov REG[0xd0],>_commandId
+ 0093 550100            mov [_commandId+1],0
+ 0096 550000            mov [_commandId],0
+ 0099           L12:
+ 0099                   .dbline 97
+ 0099           ; 
+ 0099           ;                                       //while(!USBFS_bGetEPAckState(1)); /* Wait for ACK before loading data */
+ 0099           ;                                       while(USBFS_bGetEPState(1) != IN_BUFFER_EMPTY); /* Wait for ACK before loading data */
+ 0099           L13:
+ 0099                   .dbline 97
+ 0099 10                push X
+ 009A 5001              mov A,1
+ 009C 7C0000            xcall _USBFS_bGetEPState
+ 009F 20                pop X
+ 00A0 62D000            mov REG[0xd0],>__r0
+ 00A3 3901              cmp A,1
+ 00A5 BFF3              jnz L12
+ 00A7                   .dbline 98
+ 00A7           ;                           USBFS_LoadInEP(1, Keyboard_Data, KEYBOARD_DATA_LENGTH, USB_TOGGLE);     
+ 00A7 10                push X
+ 00A8 5001              mov A,1
+ 00AA 08                push A
+ 00AB 5000              mov A,0
+ 00AD 08                push A
+ 00AE 5008              mov A,8
+ 00B0 08                push A
+ 00B1 5000              mov A,>_Keyboard_Data
+ 00B3 08                push A
+ 00B4 5000              mov A,<_Keyboard_Data
+ 00B6 08                push A
+ 00B7 5001              mov A,1
+ 00B9 08                push A
+ 00BA 7C0000            xcall _USBFS_LoadInEP
+ 00BD 38FA              add SP,-6
+ 00BF 20                pop X
+ 00C0                   .dbline 100
+ 00C0           ; 
+ 00C0           ;                                       WriteCommandResponse();                                 
+ 00C0 9148              xcall _WriteCommandResponse
+ 00C2                   .dbline 101
+ 00C2           ;                                       break;
+ 00C2 8089              xjmp L10
+ 00C4           L15:
+ 00C4                   .dbline 106
+ 00C4           ;                               case 2://Mouse
+ 00C4           ; #ifdef DEBUG  
+ 00C4           ;                                       DebugWriteMouse();
+ 00C4           ; #endif
+ 00C4           ;                                       commandId = 0;
+ 00C4 62D000            mov REG[0xd0],>_commandId
+ 00C7 550100            mov [_commandId+1],0
+ 00CA 550000            mov [_commandId],0
+ 00CD           L16:
+ 00CD                   .dbline 109
+ 00CD           ;               
+ 00CD           ;                                       //while(!USBFS_bGetEPAckState(2)); /* Wait for ACK before loading data */
+ 00CD           ;                                       while(USBFS_bGetEPState(2) != IN_BUFFER_EMPTY); /* Wait for ACK before loading data */
+ 00CD           L17:
+ 00CD                   .dbline 109
+ 00CD 10                push X
+ 00CE 5002              mov A,2
+ 00D0 7C0000            xcall _USBFS_bGetEPState
+ 00D3 20                pop X
+ 00D4 62D000            mov REG[0xd0],>__r0
+ 00D7 3901              cmp A,1
+ 00D9 BFF3              jnz L16
+ 00DB                   .dbline 110
+ 00DB           ;                           USBFS_LoadInEP(2, Mouse_Data, MOUSE_DATA_LENGTH, USB_TOGGLE); 
+ 00DB 10                push X
+ 00DC 5001              mov A,1
+ 00DE 08                push A
+ 00DF 5000              mov A,0
+ 00E1 08                push A
+ 00E2 5003              mov A,3
+ 00E4 08                push A
+ 00E5 5000              mov A,>_Mouse_Data
+ 00E7 08                push A
+ 00E8 5000              mov A,<_Mouse_Data
+ 00EA 08                push A
+ 00EB 5002              mov A,2
+ 00ED 08                push A
+ 00EE 7C0000            xcall _USBFS_LoadInEP
+ 00F1 38FA              add SP,-6
+ 00F3 20                pop X
+ 00F4                   .dbline 112
+ 00F4           ; 
+ 00F4           ;                                       WriteCommandResponse();                                 
+ 00F4 9114              xcall _WriteCommandResponse
+ 00F6                   .dbline 113
+ 00F6           ;                                       break;
+ 00F6 8055              xjmp L10
+ 00F8           L19:
+ 00F8                   .dbline 119
+ 00F8           ; 
+ 00F8           ;                               case 3://Gamepad
+ 00F8           ; #ifdef DEBUG  
+ 00F8           ;                                       DebugWriteGamepad();
+ 00F8           ; #endif
+ 00F8           ;                                       commandId = 0;
+ 00F8 62D000            mov REG[0xd0],>_commandId
+ 00FB 550100            mov [_commandId+1],0
+ 00FE 550000            mov [_commandId],0
+ 0101           L20:
+ 0101                   .dbline 122
+ 0101           ;               
+ 0101           ;                                       //while(!USBFS_bGetEPAckState(3)); /* Wait for ACK before loading data */
+ 0101           ;                                       while(USBFS_bGetEPState(3) != IN_BUFFER_EMPTY); /* Wait for ACK before loading data */
+ 0101           L21:
+ 0101                   .dbline 122
+ 0101 10                push X
+ 0102 5003              mov A,3
+ 0104 7C0000            xcall _USBFS_bGetEPState
+ 0107 20                pop X
+ 0108 62D000            mov REG[0xd0],>__r0
+ 010B 3901              cmp A,1
+ 010D BFF3              jnz L20
+ 010F                   .dbline 123
+ 010F           ;                           USBFS_LoadInEP(3, Gamepad_Data, GAMEPAD_DATA_LENGTH, USB_TOGGLE);     
+ 010F 10                push X
+ 0110 5001              mov A,1
+ 0112 08                push A
+ 0113 5000              mov A,0
+ 0115 08                push A
+ 0116 5003              mov A,3
+ 0118 08                push A
+ 0119 5000              mov A,>_Gamepad_Data
+ 011B 08                push A
+ 011C 5000              mov A,<_Gamepad_Data
+ 011E 08                push A
+ 011F 5003              mov A,3
+ 0121 08                push A
+ 0122 7C0000            xcall _USBFS_LoadInEP
+ 0125 38FA              add SP,-6
+ 0127 20                pop X
+ 0128                   .dbline 125
+ 0128           ; 
+ 0128           ;                                       WriteCommandResponse();                                 
+ 0128 90E0              xcall _WriteCommandResponse
+ 012A                   .dbline 126
+ 012A           ;                                       break;
+ 012A 8021              xjmp L10
+ 012C           L23:
+ 012C                   .dbline 128
+ 012C           ;                               case 13://Rename
+ 012C           ;                                       commandId = 0;
+ 012C 62D000            mov REG[0xd0],>_commandId
+ 012F 550100            mov [_commandId+1],0
+ 0132 550000            mov [_commandId],0
+ 0135                   .dbline 129
+ 0135           ;                                       UART_CPutString("AT+NAMEMyTeletouch\r\n");
+ 0135 10                push X
+ 0136 5011              mov A,>L3
+ 0138 08                push A
+ 0139 5011              mov A,<L3
+ 013B 5C                mov X,A
+ 013C 18                pop A
+ 013D 7C0000            xcall _UART_CPutString
+ 0140 20                pop X
+ 0141                   .dbline 130
+ 0141           ;                                       break;
+ 0141 800A              xjmp L10
+ 0143           L9:
+ 0143                   .dbline 132
+ 0143           ;                               default:
+ 0143           ;                                       commandId = 0;
+ 0143 62D000            mov REG[0xd0],>_commandId
+ 0146 550100            mov [_commandId+1],0
+ 0149 550000            mov [_commandId],0
+ 014C                   .dbline 136
+ 014C           ; #ifdef DEBUG  
+ 014C           ;                                       DebugWriteUNKNOWN();
+ 014C           ; #endif
+ 014C           ;                                       break;
+ 014C           L10:
+ 014C                   .dbline 138
+ 014C           ;                       }
+ 014C           ;               }
+ 014C           L7:
+ 014C                   .dbline 139
+ 014C           ;       }
+ 014C           L5:
+ 014C                   .dbline 77
+ 014C 8EEF              xjmp L4
+ 014E           X0:
+ 014E                   .dbline -2
+ 014E           L2:
+ 014E                   .dbline 0 ; func end
+ 014E 8FFF              jmp .
+ 0150                   .dbend
+ 0150                   .dbfunc e Interrupt _Interrupt fV
+ 0150           _Interrupt::
+ 0150                   .dbline -1
+ 0150 71C0              or F,-64
+ 0152 08                push A
+ 0153 5DD0              mov A,REG[0xd0]
+ 0155 08                push A
+ 0156                   .dbline 144
+ 0156           ; }
+ 0156           ; 
+ 0156           ; #pragma interrupt_handler Interrupt
+ 0156           ; void Interrupt(void)
+ 0156           ; {
+ 0156                   .dbline 145
+ 0156           ;       bCtr++;
+ 0156 62D000            mov REG[0xd0],>_bCtr
+ 0159 7600              inc [_bCtr]
+ 015B                   .dbline 147
+ 015B           ;       
+ 015B           ;       if(bCtr >2)
+ 015B 5002              mov A,2
+ 015D 3A00              cmp A,[_bCtr]
+ 015F D007              jnc L26
+ 0161           X6:
+ 0161                   .dbline 149
+ 0161           ;       {
+ 0161           ;               bDeviceEnumerated = FALSE;
+ 0161                   .dbline 149
+ 0161 62D000            mov REG[0xd0],>_bDeviceEnumerated
+ 0164 550000            mov [_bDeviceEnumerated],0
+ 0167                   .dbline 150
+ 0167           ;       }
+ 0167           L26:
+ 0167                   .dbline -2
+ 0167           L25:
+ 0167 18                pop A
+ 0168 60D0              mov REG[208],A
+ 016A 18                pop A
+ 016B                   .dbline 0 ; func end
+ 016B 7E                reti
+ 016C                   .dbend
+ 016C                   .dbfunc e SOF_ISR _SOF_ISR fV
+ 016C           _SOF_ISR::
+ 016C                   .dbline -1
+ 016C 71C0              or F,-64
+ 016E 08                push A
+ 016F 5DD0              mov A,REG[0xd0]
+ 0171 08                push A
+ 0172                   .dbline 155
+ 0172           ; }
+ 0172           ; 
+ 0172           ; #pragma interrupt_handler SOF_ISR
+ 0172           ; void SOF_ISR(void)
+ 0172           ; {
+ 0172                   .dbline 156
+ 0172           ;       bCtr = 0; //clear the monitoring counter on every SOF packet
+ 0172 62D000            mov REG[0xd0],>_bCtr
+ 0175 550000            mov [_bCtr],0
+ 0178                   .dbline -2
+ 0178           L28:
+ 0178 18                pop A
+ 0179 60D0              mov REG[208],A
+ 017B 18                pop A
+ 017C                   .dbline 0 ; func end
+ 017C 7E                reti
+ 017D                   .dbend
+ 017D                   .dbfunc e EnumerateDevice _EnumerateDevice fV
+ 017D           _EnumerateDevice::
+ 017D                   .dbline -1
+ 017D                   .dbline 161
+ 017D           ; 
+ 017D           ; }
+ 017D           ; 
+ 017D           ; void EnumerateDevice(void)
+ 017D           ; {
+ 017D                   .dbline 162
+ 017D           ;       if (!bDeviceEnumerated)
+ 017D 62D000            mov REG[0xd0],>_bDeviceEnumerated
+ 0180 3C0000            cmp [_bDeviceEnumerated],0
+ 0183 B085              jnz L30
+ 0185                   .dbline 164
+ 0185           ;       {
+ 0185           ;               bDeviceEnumerated = TRUE;
+ 0185                   .dbline 164
+ 0185 550001            mov [_bDeviceEnumerated],1
+ 0188           L32:
+ 0188                   .dbline 166
+ 0188           ; 
+ 0188           ;               while(!USBFS_bGetConfiguration());
+ 0188           L33:
+ 0188                   .dbline 166
+ 0188 10                push X
+ 0189 7C0000            xcall _USBFS_bGetConfiguration
+ 018C 20                pop X
+ 018D 62D000            mov REG[0xd0],>__r0
+ 0190 3900              cmp A,0
+ 0192 AFF5              jz L32
+ 0194           L35:
+ 0194                   .dbline 168
+ 0194           ; 
+ 0194           ;               while(USBFS_bGetEPState(1) != IN_BUFFER_EMPTY); /* Wait for ACK before loading data */
+ 0194           L36:
+ 0194                   .dbline 168
+ 0194 10                push X
+ 0195 5001              mov A,1
+ 0197 7C0000            xcall _USBFS_bGetEPState
+ 019A 20                pop X
+ 019B 62D000            mov REG[0xd0],>__r0
+ 019E 3901              cmp A,1
+ 01A0 BFF3              jnz L35
+ 01A2                   .dbline 170
+ 01A2           ;           /*Begins Keyboard USB Traffic*/ 
+ 01A2           ;           USBFS_LoadInEP(1, Keyboard_Data, KEYBOARD_DATA_LENGTH, USB_NO_TOGGLE);     
+ 01A2 10                push X
+ 01A3 5000              mov A,0
+ 01A5 08                push A
+ 01A6 08                push A
+ 01A7 5008              mov A,8
+ 01A9 08                push A
+ 01AA 5000              mov A,>_Keyboard_Data
+ 01AC 08                push A
+ 01AD 5000              mov A,<_Keyboard_Data
+ 01AF 08                push A
+ 01B0 5001              mov A,1
+ 01B2 08                push A
+ 01B3 7C0000            xcall _USBFS_LoadInEP
+ 01B6 38FA              add SP,-6
+ 01B8 20                pop X
+ 01B9           L38:
+ 01B9                   .dbline 172
+ 01B9           ; 
+ 01B9           ;               while(USBFS_bGetEPState(2) != IN_BUFFER_EMPTY); /* Wait for ACK before loading data */
+ 01B9           L39:
+ 01B9                   .dbline 172
+ 01B9 10                push X
+ 01BA 5002              mov A,2
+ 01BC 7C0000            xcall _USBFS_bGetEPState
+ 01BF 20                pop X
+ 01C0 62D000            mov REG[0xd0],>__r0
+ 01C3 3901              cmp A,1
+ 01C5 BFF3              jnz L38
+ 01C7                   .dbline 174
+ 01C7           ;           /*Begins Mouse USB Traffic*/ 
+ 01C7           ;           USBFS_LoadInEP(2, Mouse_Data, MOUSE_DATA_LENGTH, USB_NO_TOGGLE); 
+ 01C7 10                push X
+ 01C8 5000              mov A,0
+ 01CA 08                push A
+ 01CB 08                push A
+ 01CC 5003              mov A,3
+ 01CE 08                push A
+ 01CF 5000              mov A,>_Mouse_Data
+ 01D1 08                push A
+ 01D2 5000              mov A,<_Mouse_Data
+ 01D4 08                push A
+ 01D5 5002              mov A,2
+ 01D7 08                push A
+ 01D8 7C0000            xcall _USBFS_LoadInEP
+ 01DB 38FA              add SP,-6
+ 01DD 20                pop X
+ 01DE           L41:
+ 01DE                   .dbline 176
+ 01DE           ;           
+ 01DE           ;               while(USBFS_bGetEPState(3) != IN_BUFFER_EMPTY); /* Wait for ACK before loading data */
+ 01DE           L42:
+ 01DE                   .dbline 176
+ 01DE 10                push X
+ 01DF 5003              mov A,3
+ 01E1 7C0000            xcall _USBFS_bGetEPState
+ 01E4 20                pop X
+ 01E5 62D000            mov REG[0xd0],>__r0
+ 01E8 3901              cmp A,1
+ 01EA BFF3              jnz L41
+ 01EC                   .dbline 178
+ 01EC           ;           /*Begins Gamepad USB Traffic*/ 
+ 01EC           ;           USBFS_LoadInEP(3, Gamepad_Data, GAMEPAD_DATA_LENGTH, USB_NO_TOGGLE);
+ 01EC 10                push X
+ 01ED 5000              mov A,0
+ 01EF 08                push A
+ 01F0 08                push A
+ 01F1 5003              mov A,3
+ 01F3 08                push A
+ 01F4 5000              mov A,>_Gamepad_Data
+ 01F6 08                push A
+ 01F7 5000              mov A,<_Gamepad_Data
+ 01F9 08                push A
+ 01FA 5003              mov A,3
+ 01FC 08                push A
+ 01FD 7C0000            xcall _USBFS_LoadInEP
+ 0200 38FA              add SP,-6
+ 0202 20                pop X
+ 0203                   .dbline 180
+ 0203           ;               
+ 0203           ;               bDeviceEnumerated = TRUE;
+ 0203 62D000            mov REG[0xd0],>_bDeviceEnumerated
+ 0206 550001            mov [_bDeviceEnumerated],1
+ 0209                   .dbline 181
+ 0209           ;       }
+ 0209           L30:
+ 0209                   .dbline -2
+ 0209           L29:
+ 0209                   .dbline 0 ; func end
+ 0209 7F                ret
+ 020A                   .dbend
+ 020A                   .dbfunc e WriteCommandResponse _WriteCommandResponse fV
+ 020A           ;            len -> X+16
+ 020A           ;            str -> X+0
+ 020A           _WriteCommandResponse::
+ 020A                   .dbline -1
+ 020A 10                push X
+ 020B 4F                mov X,SP
+ 020C 3812              add SP,18
+ 020E                   .dbline 185
+ 020E           ; }
+ 020E           ; 
+ 020E           ; void WriteCommandResponse(void)
+ 020E           ; {
+ 020E                   .dbline 187
+ 020E           ;       char str[16];
+ 020E           ;       int len = csprintf(str, "4|%d|1]", commandGuid);
+ 020E 62D000            mov REG[0xd0],>_commandGuid
+ 0211 5100              mov A,[_commandGuid]
+ 0213 08                push A
+ 0214 5101              mov A,[_commandGuid+1]
+ 0216 08                push A
+ 0217 5009              mov A,>L45
+ 0219 08                push A
+ 021A 5009              mov A,<L45
+ 021C 08                push A
+ 021D 62D000            mov REG[0xd0],>__r0
+ 0220 5003              mov A,3
+ 0222 08                push A
+ 0223 10                push X
+ 0224 7C0000            xcall _csprintf
+ 0227 38FA              add SP,-6
+ 0229 62D000            mov REG[0xd0],>__r0
+ 022C 5100              mov A,[__r1]
+ 022E 5411              mov [X+17],A
+ 0230 5100              mov A,[__r0]
+ 0232 5410              mov [X+16],A
+ 0234                   .dbline 188
+ 0234           ;       UART_PutChar(len);
+ 0234 5211              mov A,[X+17]
+ 0236 10                push X
+ 0237 7C0000            xcall _UART_PutChar
+ 023A 20                pop X
+ 023B                   .dbline 189
+ 023B           ;       UART_PutString(str);
+ 023B 62D000            mov REG[0xd0],>__r0
+ 023E 10                push X
+ 023F 5003              mov A,3
+ 0241 08                push A
+ 0242 18                pop A
+ 0243 7C0000            xcall _UART_PutString
+ 0246 20                pop X
+ 0247                   .dbline -2
+ 0247           L44:
+ 0247 38EE              add SP,-18
+ 0249 20                pop X
+ 024A                   .dbline 0 ; func end
+ 024A 7F                ret
+ 024B                   .dbsym l len 16 I
+ 024B                   .dbsym l str 0 A[16:16]c
+ 024B                   .dbend
+ 024B                   .dbfunc e CheckCommand _CheckCommand fV
+ 024B           ;           pCmd -> X+0
+ 024B           _CheckCommand::
+ 024B                   .dbline -1
+ 024B 10                push X
+ 024C 4F                mov X,SP
+ 024D 3802              add SP,2
+ 024F                   .dbline 193
+ 024F           ; }
+ 024F           ; 
+ 024F           ; void CheckCommand(void)
+ 024F           ; {
+ 024F                   .dbline 196
+ 024F           ;       char *pCmd;
+ 024F           ;       
+ 024F           ;       if (UART_bCmdCheck() != 0)
+ 024F 10                push X
+ 0250 7C0000            xcall _UART_bCmdCheck
+ 0253 20                pop X
+ 0254 62D000            mov REG[0xd0],>__r0
+ 0257 3900              cmp A,0
+ 0259 A0A9              jz L47
+ 025B                   .dbline 198
+ 025B           ;       {       
+ 025B           ;               pCmd = UART_szGetParam();
+ 025B                   .dbline 198
+ 025B 10                push X
+ 025C 7C0000            xcall _UART_szGetParam
+ 025F 62D000            mov REG[0xd0],>__r0
+ 0262 5300              mov [__r0],A
+ 0264 5A00              mov [__r1],X
+ 0266 20                pop X
+ 0267 5100              mov A,[__r1]
+ 0269 5401              mov [X+1],A
+ 026B 5100              mov A,[__r0]
+ 026D 5400              mov [X+0],A
+ 026F                   .dbline 199
+ 026F           ;               commandId = 0;
+ 026F 62D000            mov REG[0xd0],>_commandId
+ 0272 550100            mov [_commandId+1],0
+ 0275 550000            mov [_commandId],0
+ 0278                   .dbline 205
+ 0278           ; 
+ 0278           ; #ifdef DEBUG_INFO
+ 0278           ;               DebugWriteParam(pCmd);
+ 0278           ; #endif
+ 0278           ;               
+ 0278           ;               if (cstrcmp("1", pCmd) == 0)
+ 0278 5200              mov A,[X+0]
+ 027A 08                push A
+ 027B 5201              mov A,[X+1]
+ 027D 08                push A
+ 027E 5007              mov A,>L51
+ 0280 08                push A
+ 0281 5007              mov A,<L51
+ 0283 08                push A
+ 0284 7C0000            xcall _cstrcmpLMM
+ 0287 38FC              add SP,-4
+ 0289 62D000            mov REG[0xd0],>__r0
+ 028C 3C0000            cmp [__r0],0
+ 028F B00A              jnz L49
+ 0291 3C0000            cmp [__r1],0
+ 0294 B005              jnz L49
+ 0296           X7:
+ 0296                   .dbline 207
+ 0296           ;               {
+ 0296           ;                       CheckKeyboardCommand();
+ 0296                   .dbline 207
+ 0296 913F              xcall _CheckKeyboardCommand
+ 0298                   .dbline 208
+ 0298           ;               }
+ 0298 8065              xjmp L50
+ 029A           L49:
+ 029A                   .dbline 209
+ 029A           ;               else if (cstrcmp("2", pCmd) == 0)
+ 029A 5200              mov A,[X+0]
+ 029C 08                push A
+ 029D 5201              mov A,[X+1]
+ 029F 08                push A
+ 02A0 5005              mov A,>L54
+ 02A2 08                push A
+ 02A3 5005              mov A,<L54
+ 02A5 08                push A
+ 02A6 7C0000            xcall _cstrcmpLMM
+ 02A9 38FC              add SP,-4
+ 02AB 62D000            mov REG[0xd0],>__r0
+ 02AE 3C0000            cmp [__r0],0
+ 02B1 B00A              jnz L52
+ 02B3 3C0000            cmp [__r1],0
+ 02B6 B005              jnz L52
+ 02B8           X8:
+ 02B8                   .dbline 211
+ 02B8           ;               {
+ 02B8           ;                       CheckMouseCommand();
+ 02B8                   .dbline 211
+ 02B8 9299              xcall _CheckMouseCommand
+ 02BA                   .dbline 212
+ 02BA           ;               }
+ 02BA 8043              xjmp L53
+ 02BC           L52:
+ 02BC                   .dbline 213
+ 02BC           ;               else if (cstrcmp("3", pCmd) == 0)
+ 02BC 5200              mov A,[X+0]
+ 02BE 08                push A
+ 02BF 5201              mov A,[X+1]
+ 02C1 08                push A
+ 02C2 5003              mov A,>L57
+ 02C4 08                push A
+ 02C5 5003              mov A,<L57
+ 02C7 08                push A
+ 02C8 7C0000            xcall _cstrcmpLMM
+ 02CB 38FC              add SP,-4
+ 02CD 62D000            mov REG[0xd0],>__r0
+ 02D0 3C0000            cmp [__r0],0
+ 02D3 B00A              jnz L55
+ 02D5 3C0000            cmp [__r1],0
+ 02D8 B005              jnz L55
+ 02DA           X9:
+ 02DA                   .dbline 215
+ 02DA           ;               {       
+ 02DA           ;                       CheckGamepadCommand();
+ 02DA                   .dbline 215
+ 02DA 93AB              xcall _CheckGamepadCommand
+ 02DC                   .dbline 216
+ 02DC           ;               }
+ 02DC 8021              xjmp L56
+ 02DE           L55:
+ 02DE                   .dbline 217
+ 02DE           ;               else if (cstrcmp("13", pCmd) == 0)
+ 02DE 5200              mov A,[X+0]
+ 02E0 08                push A
+ 02E1 5201              mov A,[X+1]
+ 02E3 08                push A
+ 02E4 5000              mov A,>L60
+ 02E6 08                push A
+ 02E7 5000              mov A,<L60
+ 02E9 08                push A
+ 02EA 7C0000            xcall _cstrcmpLMM
+ 02ED 38FC              add SP,-4
+ 02EF 62D000            mov REG[0xd0],>__r0
+ 02F2 3C0000            cmp [__r0],0
+ 02F5 B008              jnz L58
+ 02F7 3C0000            cmp [__r1],0
+ 02FA B003              jnz L58
+ 02FC           X10:
+ 02FC                   .dbline 219
+ 02FC           ;               {       
+ 02FC           ;                       CheckRenameCommand();
+ 02FC                   .dbline 219
+ 02FC 9009              xcall _CheckRenameCommand
+ 02FE                   .dbline 220
+ 02FE           ;               }
+ 02FE           L58:
+ 02FE           L56:
+ 02FE           L53:
+ 02FE           L50:
+ 02FE                   .dbline 222
+ 02FE           ;               
+ 02FE           ;               UART_CmdReset();
+ 02FE 10                push X
+ 02FF 7C0000            xcall _UART_CmdReset
+ 0302 20                pop X
+ 0303                   .dbline 223
+ 0303           ;       }
+ 0303           L47:
+ 0303                   .dbline -2
+ 0303           L46:
+ 0303 38FE              add SP,-2
+ 0305 20                pop X
+ 0306                   .dbline 0 ; func end
+ 0306 7F                ret
+ 0307                   .dbsym l pCmd 0 pc
+ 0307                   .dbend
+ 0307                   .dbfunc e CheckRenameCommand _CheckRenameCommand fV
+ 0307           ;              i -> X+4
+ 0307           ; endCommandGuid -> X+2
+ 0307           ;           pArg -> X+0
+ 0307           _CheckRenameCommand::
+ 0307                   .dbline -1
+ 0307 10                push X
+ 0308 4F                mov X,SP
+ 0309 3808              add SP,8
+ 030B                   .dbline 227
+ 030B           ; }
+ 030B           ; 
+ 030B           ; void CheckRenameCommand(void)
+ 030B           ; {
+ 030B                   .dbline 229
+ 030B           ;       char *pArg;
+ 030B           ;       int i = 0;
+ 030B 560500            mov [X+5],0
+ 030E 560400            mov [X+4],0
+ 0311                   .dbline 230
+ 0311           ;       int endCommandGuid = 0;
+ 0311 560300            mov [X+3],0
+ 0314 560200            mov [X+2],0
+ 0317                   .dbline 232
+ 0317           ; 
+ 0317           ;       commandId = 13;
+ 0317 62D000            mov REG[0xd0],>_commandId
+ 031A 55010D            mov [_commandId+1],13
+ 031D 550000            mov [_commandId],0
+ 0320                   .dbline 234
+ 0320           ;       
+ 0320           ;       pArg = UART_szGetParam();
+ 0320 10                push X
+ 0321 7C0000            xcall _UART_szGetParam
+ 0324 62D000            mov REG[0xd0],>__r0
+ 0327 5300              mov [__r0],A
+ 0329 5A00              mov [__r1],X
+ 032B 20                pop X
+ 032C 5100              mov A,[__r1]
+ 032E 5401              mov [X+1],A
+ 0330 5100              mov A,[__r0]
+ 0332 5400              mov [X+0],A
+ 0334                   .dbline 238
+ 0334           ; #ifdef DEBUG_INFO
+ 0334           ;       DebugWriteParam(pArg);
+ 0334           ; #endif
+ 0334           ;       if (pArg != NULL)
+ 0334 3D0000            cmp [X+0],0
+ 0337 B006              jnz X11
+ 0339 3D0100            cmp [X+1],0
+ 033C A01E              jz L62
+ 033E           X11:
+ 033E                   .dbline 239
+ 033E           ;           commandGuid = atoi(pArg);
+ 033E 5200              mov A,[X+0]
+ 0340 08                push A
+ 0341 5201              mov A,[X+1]
+ 0343 08                push A
+ 0344 7C0000            xcall _atoi
+ 0347 38FE              add SP,-2
+ 0349 62D000            mov REG[0xd0],>__r0
+ 034C 5100              mov A,[__r1]
+ 034E 08                push A
+ 034F 5100              mov A,[__r0]
+ 0351 62D000            mov REG[0xd0],>_commandGuid
+ 0354 5300              mov [_commandGuid],A
+ 0356 18                pop A
+ 0357 5301              mov [_commandGuid+1],A
+ 0359 800A              xjmp L63
+ 035B           L62:
+ 035B                   .dbline 241
+ 035B           ;       else 
+ 035B           ;               commandGuid = -1;
+ 035B 62D000            mov REG[0xd0],>_commandGuid
+ 035E 5501FF            mov [_commandGuid+1],-1
+ 0361 5500FF            mov [_commandGuid],-1
+ 0364           L63:
+ 0364                   .dbline 243
+ 0364           ;       
+ 0364           ;       pArg = UART_szGetParam();
+ 0364 10                push X
+ 0365 7C0000            xcall _UART_szGetParam
+ 0368 62D000            mov REG[0xd0],>__r0
+ 036B 5300              mov [__r0],A
+ 036D 5A00              mov [__r1],X
+ 036F 20                pop X
+ 0370 5100              mov A,[__r1]
+ 0372 5401              mov [X+1],A
+ 0374 5100              mov A,[__r0]
+ 0376 5400              mov [X+0],A
+ 0378                   .dbline 247
+ 0378           ; #ifdef DEBUG_INFO
+ 0378           ;       DebugWriteParam(pArg);
+ 0378           ; #endif
+ 0378           ;       if (pArg != NULL)
+ 0378 3D0000            cmp [X+0],0
+ 037B B006              jnz X12
+ 037D 3D0100            cmp [X+1],0
+ 0380 A019              jz L64
+ 0382           X12:
+ 0382                   .dbline 248
+ 0382           ;           endCommandGuid = atoi(pArg);
+ 0382 5200              mov A,[X+0]
+ 0384 08                push A
+ 0385 5201              mov A,[X+1]
+ 0387 08                push A
+ 0388 7C0000            xcall _atoi
+ 038B 38FE              add SP,-2
+ 038D 62D000            mov REG[0xd0],>__r0
+ 0390 5100              mov A,[__r1]
+ 0392 5403              mov [X+3],A
+ 0394 5100              mov A,[__r0]
+ 0396 5402              mov [X+2],A
+ 0398 8007              xjmp L65
+ 039A           L64:
+ 039A                   .dbline 250
+ 039A           ;       else 
+ 039A           ;               endCommandGuid = -1;
+ 039A 5603FF            mov [X+3],-1
+ 039D 5602FF            mov [X+2],-1
+ 03A0           L65:
+ 03A0                   .dbline 252
+ 03A0           ; 
+ 03A0           ;       commandReady = commandGuid == endCommandGuid && commandGuid >= 0;
+ 03A0 62D000            mov REG[0xd0],>_commandGuid
+ 03A3 5100              mov A,[_commandGuid]
+ 03A5 3B02              cmp A,[X+2]
+ 03A7 B01E              jnz L67
+ 03A9 5101              mov A,[_commandGuid+1]
+ 03AB 3B03              cmp A,[X+3]
+ 03AD B018              jnz L67
+ 03AF           X13:
+ 03AF 62D000            mov REG[0xd0],>_commandGuid
+ 03B2 5101              mov A,[_commandGuid+1]
+ 03B4 1100              sub A,0
+ 03B6 5100              mov A,[_commandGuid]
+ 03B8 3180              xor A,-128
+ 03BA 1980              sbb A,(0 ^ 0x80)
+ 03BC C009              jc L67
+ 03BE           X14:
+ 03BE 560701            mov [X+7],1
+ 03C1 560600            mov [X+6],0
+ 03C4 8007              xjmp L68
+ 03C6           L67:
+ 03C6 560700            mov [X+7],0
+ 03C9 560600            mov [X+6],0
+ 03CC           L68:
+ 03CC 5207              mov A,[X+7]
+ 03CE 62D000            mov REG[0xd0],>_commandReady
+ 03D1 5300              mov [_commandReady],A
+ 03D3                   .dbline -2
+ 03D3           L61:
+ 03D3 38F8              add SP,-8
+ 03D5 20                pop X
+ 03D6                   .dbline 0 ; func end
+ 03D6 7F                ret
+ 03D7                   .dbsym l i 4 I
+ 03D7                   .dbsym l endCommandGuid 2 I
+ 03D7                   .dbsym l pArg 0 pc
+ 03D7                   .dbend
+ 03D7                   .dbfunc e CheckKeyboardCommand _CheckKeyboardCommand fV
+ 03D7           ; isEndCommandSet -> X+8
+ 03D7           ; endCommandGuid -> X+6
+ 03D7           ;       pPrevArg -> X+4
+ 03D7           ;              i -> X+2
+ 03D7           ;           pArg -> X+0
+ 03D7           _CheckKeyboardCommand::
+ 03D7                   .dbline -1
+ 03D7 10                push X
+ 03D8 4F                mov X,SP
+ 03D9 380B              add SP,11
+ 03DB                   .dbline 256
+ 03DB           ; }
+ 03DB           ; 
+ 03DB           ; void CheckKeyboardCommand(void)
+ 03DB           ; {
+ 03DB                   .dbline 259
+ 03DB           ;       char *pPrevArg;
+ 03DB           ;       char *pArg;
+ 03DB           ;       int i = 0;
+ 03DB 560300            mov [X+3],0
+ 03DE 560200            mov [X+2],0
+ 03E1                   .dbline 260
+ 03E1           ;       int endCommandGuid = 0;
+ 03E1 560700            mov [X+7],0
+ 03E4 560600            mov [X+6],0
+ 03E7                   .dbline 261
+ 03E7           ;       BOOL isEndCommandSet = FALSE;
+ 03E7 560800            mov [X+8],0
+ 03EA                   .dbline 263
+ 03EA           ;       
+ 03EA           ;       commandId = 1;
+ 03EA 62D000            mov REG[0xd0],>_commandId
+ 03ED 550101            mov [_commandId+1],1
+ 03F0 550000            mov [_commandId],0
+ 03F3                   .dbline 265
+ 03F3           ;       
+ 03F3           ;       pArg = UART_szGetParam();
+ 03F3 10                push X
+ 03F4 7C0000            xcall _UART_szGetParam
+ 03F7 62D000            mov REG[0xd0],>__r0
+ 03FA 5300              mov [__r0],A
+ 03FC 5A00              mov [__r1],X
+ 03FE 20                pop X
+ 03FF 5100              mov A,[__r1]
+ 0401 5401              mov [X+1],A
+ 0403 5100              mov A,[__r0]
+ 0405 5400              mov [X+0],A
+ 0407                   .dbline 269
+ 0407           ; #ifdef DEBUG_INFO     
+ 0407           ;       DebugWriteParam(pArg);
+ 0407           ; #endif
+ 0407           ;       if (pArg != NULL)
+ 0407 3D0000            cmp [X+0],0
+ 040A B006              jnz X15
+ 040C 3D0100            cmp [X+1],0
+ 040F A01E              jz L70
+ 0411           X15:
+ 0411                   .dbline 270
+ 0411           ;           commandGuid = atoi(pArg);
+ 0411 5200              mov A,[X+0]
+ 0413 08                push A
+ 0414 5201              mov A,[X+1]
+ 0416 08                push A
+ 0417 7C0000            xcall _atoi
+ 041A 38FE              add SP,-2
+ 041C 62D000            mov REG[0xd0],>__r0
+ 041F 5100              mov A,[__r1]
+ 0421 08                push A
+ 0422 5100              mov A,[__r0]
+ 0424 62D000            mov REG[0xd0],>_commandGuid
+ 0427 5300              mov [_commandGuid],A
+ 0429 18                pop A
+ 042A 5301              mov [_commandGuid+1],A
+ 042C 800A              xjmp L71
+ 042E           L70:
+ 042E                   .dbline 272
+ 042E           ;       else 
+ 042E           ;               commandGuid = -1;
+ 042E 62D000            mov REG[0xd0],>_commandGuid
+ 0431 5501FF            mov [_commandGuid+1],-1
+ 0434 5500FF            mov [_commandGuid],-1
+ 0437           L71:
+ 0437                   .dbline 274
+ 0437           ;       
+ 0437           ;       for (i = 0; i < KEYBOARD_DATA_LENGTH; i++)
+ 0437 560300            mov [X+3],0
+ 043A 560200            mov [X+2],0
+ 043D           L72:
+ 043D                   .dbline 275
+ 043D           ;       {
+ 043D                   .dbline 276
+ 043D           ;               pArg = UART_szGetParam();
+ 043D 10                push X
+ 043E 7C0000            xcall _UART_szGetParam
+ 0441 62D000            mov REG[0xd0],>__r0
+ 0444 5300              mov [__r0],A
+ 0446 5A00              mov [__r1],X
+ 0448 20                pop X
+ 0449 5100              mov A,[__r1]
+ 044B 5401              mov [X+1],A
+ 044D 5100              mov A,[__r0]
+ 044F 5400              mov [X+0],A
+ 0451                   .dbline 280
+ 0451           ; #ifdef DEBUG_INFO
+ 0451           ;               DebugWriteParam(pArg);
+ 0451           ; #endif
+ 0451           ;               sh = 0;
+ 0451 62D000            mov REG[0xd0],>_sh
+ 0454 550000            mov [_sh],0
+ 0457                   .dbline 281
+ 0457           ;               if (pArg != NULL)
+ 0457 3D0000            cmp [X+0],0
+ 045A B006              jnz X16
+ 045C 3D0100            cmp [X+1],0
+ 045F A013              jz L76
+ 0461           X16:
+ 0461                   .dbline 282
+ 0461           ;                   hex2data(&sh, pArg);
+ 0461 5200              mov A,[X+0]
+ 0463 08                push A
+ 0464 5201              mov A,[X+1]
+ 0466 08                push A
+ 0467 5000              mov A,>_sh
+ 0469 08                push A
+ 046A 5000              mov A,<_sh
+ 046C 08                push A
+ 046D 934C              xcall _hex2data
+ 046F 38FC              add SP,-4
+ 0471 8037              xjmp L77
+ 0473           L76:
+ 0473                   .dbline 283
+ 0473           ;               else if (pPrevArg != NULL)
+ 0473 3D0400            cmp [X+4],0
+ 0476 B006              jnz X17
+ 0478 3D0500            cmp [X+5],0
+ 047B A02D              jz L78
+ 047D           X17:
+ 047D                   .dbline 285
+ 047D           ;               {
+ 047D           ;                       Keyboard_Data[i - 1] = 0;
+ 047D                   .dbline 285
+ 047D 62D000            mov REG[0xd0],>__r0
+ 0480 5203              mov A,[X+3]
+ 0482 01FF              add A,<_Keyboard_Data-1
+ 0484 5300              mov [__r1],A
+ 0486 5202              mov A,[X+2]
+ 0488 09FF              adc A,>_Keyboard_Data-1
+ 048A 60D5              mov REG[0xd5],A
+ 048C 5000              mov A,0
+ 048E 3F00              mvi [__r1],A
+ 0490                   .dbline 286
+ 0490           ;                       isEndCommandSet = TRUE;
+ 0490 560801            mov [X+8],1
+ 0493                   .dbline 287
+ 0493           ;                   endCommandGuid = atoi(pPrevArg);
+ 0493 5204              mov A,[X+4]
+ 0495 08                push A
+ 0496 5205              mov A,[X+5]
+ 0498 08                push A
+ 0499 7C0000            xcall _atoi
+ 049C 38FE              add SP,-2
+ 049E 62D000            mov REG[0xd0],>__r0
+ 04A1 5100              mov A,[__r1]
+ 04A3 5407              mov [X+7],A
+ 04A5 5100              mov A,[__r0]
+ 04A7 5406              mov [X+6],A
+ 04A9                   .dbline 288
+ 04A9           ;               }
+ 04A9           L78:
+ 04A9           L77:
+ 04A9                   .dbline 290
+ 04A9           ; 
+ 04A9           ;               Keyboard_Data[i] = sh;
+ 04A9 62D000            mov REG[0xd0],>__r0
+ 04AC 5203              mov A,[X+3]
+ 04AE 0100              add A,<_Keyboard_Data
+ 04B0 5300              mov [__r1],A
+ 04B2 5202              mov A,[X+2]
+ 04B4 0900              adc A,>_Keyboard_Data
+ 04B6 60D5              mov REG[0xd5],A
+ 04B8 62D000            mov REG[0xd0],>_sh
+ 04BB 5100              mov A,[_sh]
+ 04BD 62D000            mov REG[0xd0],>__r0
+ 04C0 3F00              mvi [__r1],A
+ 04C2                   .dbline 294
+ 04C2           ; #ifdef DEBUG_INFO
+ 04C2           ;               DebugWriteRx(sh);
+ 04C2           ; #endif
+ 04C2           ;               pPrevArg = pArg;
+ 04C2 5201              mov A,[X+1]
+ 04C4 5405              mov [X+5],A
+ 04C6 5200              mov A,[X+0]
+ 04C8 5404              mov [X+4],A
+ 04CA                   .dbline 295
+ 04CA           ;       }
+ 04CA           L73:
+ 04CA                   .dbline 274
+ 04CA 7703              inc [X+3]
+ 04CC 0F0200            adc [X+2],0
+ 04CF                   .dbline 274
+ 04CF 5203              mov A,[X+3]
+ 04D1 1108              sub A,8
+ 04D3 5202              mov A,[X+2]
+ 04D5 3180              xor A,-128
+ 04D7 1980              sbb A,(0 ^ 0x80)
+ 04D9 CF63              jc L72
+ 04DB           X18:
+ 04DB                   .dbline 297
+ 04DB           ;       
+ 04DB           ;       if (!isEndCommandSet)
+ 04DB 3D0800            cmp [X+8],0
+ 04DE B03D              jnz L81
+ 04E0                   .dbline 299
+ 04E0           ;       {
+ 04E0           ;               pArg = UART_szGetParam();
+ 04E0                   .dbline 299
+ 04E0 10                push X
+ 04E1 7C0000            xcall _UART_szGetParam
+ 04E4 62D000            mov REG[0xd0],>__r0
+ 04E7 5300              mov [__r0],A
+ 04E9 5A00              mov [__r1],X
+ 04EB 20                pop X
+ 04EC 5100              mov A,[__r1]
+ 04EE 5401              mov [X+1],A
+ 04F0 5100              mov A,[__r0]
+ 04F2 5400              mov [X+0],A
+ 04F4                   .dbline 303
+ 04F4           ; #ifdef DEBUG_INFO
+ 04F4           ;               DebugWriteParam(pArg);
+ 04F4           ; #endif
+ 04F4           ;               if (pArg != NULL)
+ 04F4 3D0000            cmp [X+0],0
+ 04F7 B006              jnz X19
+ 04F9 3D0100            cmp [X+1],0
+ 04FC A019              jz L83
+ 04FE           X19:
+ 04FE                   .dbline 304
+ 04FE           ;                   endCommandGuid = atoi(pArg);
+ 04FE 5200              mov A,[X+0]
+ 0500 08                push A
+ 0501 5201              mov A,[X+1]
+ 0503 08                push A
+ 0504 7C0000            xcall _atoi
+ 0507 38FE              add SP,-2
+ 0509 62D000            mov REG[0xd0],>__r0
+ 050C 5100              mov A,[__r1]
+ 050E 5407              mov [X+7],A
+ 0510 5100              mov A,[__r0]
+ 0512 5406              mov [X+6],A
+ 0514 8007              xjmp L84
+ 0516           L83:
+ 0516                   .dbline 306
+ 0516           ;               else 
+ 0516           ;                       endCommandGuid = -1;
+ 0516 5607FF            mov [X+7],-1
+ 0519 5606FF            mov [X+6],-1
+ 051C           L84:
+ 051C                   .dbline 307
+ 051C           ;       }
+ 051C           L81:
+ 051C                   .dbline 309
+ 051C           ;       
+ 051C           ;       commandReady = commandGuid == endCommandGuid && commandGuid >= 0;
+ 051C 62D000            mov REG[0xd0],>_commandGuid
+ 051F 5100              mov A,[_commandGuid]
+ 0521 3B06              cmp A,[X+6]
+ 0523 B01E              jnz L86
+ 0525 5101              mov A,[_commandGuid+1]
+ 0527 3B07              cmp A,[X+7]
+ 0529 B018              jnz L86
+ 052B           X20:
+ 052B 62D000            mov REG[0xd0],>_commandGuid
+ 052E 5101              mov A,[_commandGuid+1]
+ 0530 1100              sub A,0
+ 0532 5100              mov A,[_commandGuid]
+ 0534 3180              xor A,-128
+ 0536 1980              sbb A,(0 ^ 0x80)
+ 0538 C009              jc L86
+ 053A           X21:
+ 053A 560A01            mov [X+10],1
+ 053D 560900            mov [X+9],0
+ 0540 8007              xjmp L87
+ 0542           L86:
+ 0542 560A00            mov [X+10],0
+ 0545 560900            mov [X+9],0
+ 0548           L87:
+ 0548 520A              mov A,[X+10]
+ 054A 62D000            mov REG[0xd0],>_commandReady
+ 054D 5300              mov [_commandReady],A
+ 054F                   .dbline -2
+ 054F           L69:
+ 054F 38F5              add SP,-11
+ 0551 20                pop X
+ 0552                   .dbline 0 ; func end
+ 0552 7F                ret
+ 0553                   .dbsym l isEndCommandSet 8 c
+ 0553                   .dbsym l endCommandGuid 6 I
+ 0553                   .dbsym l pPrevArg 4 pc
+ 0553                   .dbsym l i 2 I
+ 0553                   .dbsym l pArg 0 pc
+ 0553                   .dbend
+ 0553                   .dbfunc e CheckMouseCommand _CheckMouseCommand fV
+ 0553           ; endCommandGuid -> X+4
+ 0553           ;           pArg -> X+2
+ 0553           ;              i -> X+0
+ 0553           _CheckMouseCommand::
+ 0553                   .dbline -1
+ 0553 10                push X
+ 0554 4F                mov X,SP
+ 0555 3808              add SP,8
+ 0557                   .dbline 313
+ 0557           ; }
+ 0557           ; 
+ 0557           ; void CheckMouseCommand(void)
+ 0557           ; {
+ 0557                   .dbline 315
+ 0557           ;       char *pArg;
+ 0557           ;       int i = 0;
+ 0557 560100            mov [X+1],0
+ 055A 560000            mov [X+0],0
+ 055D                   .dbline 316
+ 055D           ;       int endCommandGuid = 0;
+ 055D 560500            mov [X+5],0
+ 0560 560400            mov [X+4],0
+ 0563                   .dbline 318
+ 0563           ; 
+ 0563           ;       commandId = 2;
+ 0563 62D000            mov REG[0xd0],>_commandId
+ 0566 550102            mov [_commandId+1],2
+ 0569 550000            mov [_commandId],0
+ 056C                   .dbline 320
+ 056C           ;       
+ 056C           ;       pArg = UART_szGetParam();
+ 056C 10                push X
+ 056D 7C0000            xcall _UART_szGetParam
+ 0570 62D000            mov REG[0xd0],>__r0
+ 0573 5300              mov [__r0],A
+ 0575 5A00              mov [__r1],X
+ 0577 20                pop X
+ 0578 5100              mov A,[__r1]
+ 057A 5403              mov [X+3],A
+ 057C 5100              mov A,[__r0]
+ 057E 5402              mov [X+2],A
+ 0580                   .dbline 324
+ 0580           ; #ifdef DEBUG_INFO
+ 0580           ;       DebugWriteParam(pArg);
+ 0580           ; #endif
+ 0580           ;       if (pArg != NULL)
+ 0580 3D0200            cmp [X+2],0
+ 0583 B006              jnz X22
+ 0585 3D0300            cmp [X+3],0
+ 0588 A01E              jz L89
+ 058A           X22:
+ 058A                   .dbline 325
+ 058A           ;           commandGuid = atoi(pArg);
+ 058A 5202              mov A,[X+2]
+ 058C 08                push A
+ 058D 5203              mov A,[X+3]
+ 058F 08                push A
+ 0590 7C0000            xcall _atoi
+ 0593 38FE              add SP,-2
+ 0595 62D000            mov REG[0xd0],>__r0
+ 0598 5100              mov A,[__r1]
+ 059A 08                push A
+ 059B 5100              mov A,[__r0]
+ 059D 62D000            mov REG[0xd0],>_commandGuid
+ 05A0 5300              mov [_commandGuid],A
+ 05A2 18                pop A
+ 05A3 5301              mov [_commandGuid+1],A
+ 05A5 800A              xjmp L90
+ 05A7           L89:
+ 05A7                   .dbline 327
+ 05A7           ;       else 
+ 05A7           ;               commandGuid = -1;
+ 05A7 62D000            mov REG[0xd0],>_commandGuid
+ 05AA 5501FF            mov [_commandGuid+1],-1
+ 05AD 5500FF            mov [_commandGuid],-1
+ 05B0           L90:
+ 05B0                   .dbline 329
+ 05B0           ;       
+ 05B0           ;       for (i = 0; i < MOUSE_DATA_LENGTH; i++)
+ 05B0 560100            mov [X+1],0
+ 05B3 560000            mov [X+0],0
+ 05B6           L91:
+ 05B6                   .dbline 330
+ 05B6           ;       {
+ 05B6                   .dbline 331
+ 05B6           ;               pArg = UART_szGetParam();
+ 05B6 10                push X
+ 05B7 7C0000            xcall _UART_szGetParam
+ 05BA 62D000            mov REG[0xd0],>__r0
+ 05BD 5300              mov [__r0],A
+ 05BF 5A00              mov [__r1],X
+ 05C1 20                pop X
+ 05C2 5100              mov A,[__r1]
+ 05C4 5403              mov [X+3],A
+ 05C6 5100              mov A,[__r0]
+ 05C8 5402              mov [X+2],A
+ 05CA                   .dbline 335
+ 05CA           ; #ifdef DEBUG_INFO
+ 05CA           ;               DebugWriteParam(pArg);
+ 05CA           ; #endif
+ 05CA           ;               sh = 0;
+ 05CA 62D000            mov REG[0xd0],>_sh
+ 05CD 550000            mov [_sh],0
+ 05D0                   .dbline 336
+ 05D0           ;               if (pArg != NULL)
+ 05D0 3D0200            cmp [X+2],0
+ 05D3 B006              jnz X23
+ 05D5 3D0300            cmp [X+3],0
+ 05D8 A011              jz L95
+ 05DA           X23:
+ 05DA                   .dbline 337
+ 05DA           ;                   hex2data(&sh, pArg);
+ 05DA 5202              mov A,[X+2]
+ 05DC 08                push A
+ 05DD 5203              mov A,[X+3]
+ 05DF 08                push A
+ 05E0 5000              mov A,>_sh
+ 05E2 08                push A
+ 05E3 5000              mov A,<_sh
+ 05E5 08                push A
+ 05E6 91D3              xcall _hex2data
+ 05E8 38FC              add SP,-4
+ 05EA           L95:
+ 05EA                   .dbline 338
+ 05EA           ;               Mouse_Data[i] = sh;
+ 05EA 62D000            mov REG[0xd0],>__r0
+ 05ED 5201              mov A,[X+1]
+ 05EF 0100              add A,<_Mouse_Data
+ 05F1 5300              mov [__r1],A
+ 05F3 5200              mov A,[X+0]
+ 05F5 0900              adc A,>_Mouse_Data
+ 05F7 60D5              mov REG[0xd5],A
+ 05F9 62D000            mov REG[0xd0],>_sh
+ 05FC 5100              mov A,[_sh]
+ 05FE 62D000            mov REG[0xd0],>__r0
+ 0601 3F00              mvi [__r1],A
+ 0603                   .dbline 342
+ 0603           ; #ifdef DEBUG_INFO
+ 0603           ;               DebugWriteRx(sh);
+ 0603           ; #endif
+ 0603           ;       }
+ 0603           L92:
+ 0603                   .dbline 329
+ 0603 7701              inc [X+1]
+ 0605 0F0000            adc [X+0],0
+ 0608                   .dbline 329
+ 0608 5201              mov A,[X+1]
+ 060A 1103              sub A,3
+ 060C 5200              mov A,[X+0]
+ 060E 3180              xor A,-128
+ 0610 1980              sbb A,(0 ^ 0x80)
+ 0612 CFA3              jc L91
+ 0614           X24:
+ 0614                   .dbline 344
+ 0614           ;       
+ 0614           ;       pArg = UART_szGetParam();
+ 0614 10                push X
+ 0615 7C0000            xcall _UART_szGetParam
+ 0618 62D000            mov REG[0xd0],>__r0
+ 061B 5300              mov [__r0],A
+ 061D 5A00              mov [__r1],X
+ 061F 20                pop X
+ 0620 5100              mov A,[__r1]
+ 0622 5403              mov [X+3],A
+ 0624 5100              mov A,[__r0]
+ 0626 5402              mov [X+2],A
+ 0628                   .dbline 348
+ 0628           ; #ifdef DEBUG_INFO
+ 0628           ;       DebugWriteParam(pArg);
+ 0628           ; #endif
+ 0628           ;       if (pArg != NULL)
+ 0628 3D0200            cmp [X+2],0
+ 062B B006              jnz X25
+ 062D 3D0300            cmp [X+3],0
+ 0630 A019              jz L97
+ 0632           X25:
+ 0632                   .dbline 349
+ 0632           ;           endCommandGuid = atoi(pArg);
+ 0632 5202              mov A,[X+2]
+ 0634 08                push A
+ 0635 5203              mov A,[X+3]
+ 0637 08                push A
+ 0638 7C0000            xcall _atoi
+ 063B 38FE              add SP,-2
+ 063D 62D000            mov REG[0xd0],>__r0
+ 0640 5100              mov A,[__r1]
+ 0642 5405              mov [X+5],A
+ 0644 5100              mov A,[__r0]
+ 0646 5404              mov [X+4],A
+ 0648 8007              xjmp L98
+ 064A           L97:
+ 064A                   .dbline 351
+ 064A           ;       else 
+ 064A           ;               endCommandGuid = -1;
+ 064A 5605FF            mov [X+5],-1
+ 064D 5604FF            mov [X+4],-1
+ 0650           L98:
+ 0650                   .dbline 353
+ 0650           ; 
+ 0650           ;       commandReady = commandGuid == endCommandGuid && commandGuid >= 0;
+ 0650 62D000            mov REG[0xd0],>_commandGuid
+ 0653 5100              mov A,[_commandGuid]
+ 0655 3B04              cmp A,[X+4]
+ 0657 B01E              jnz L100
+ 0659 5101              mov A,[_commandGuid+1]
+ 065B 3B05              cmp A,[X+5]
+ 065D B018              jnz L100
+ 065F           X26:
+ 065F 62D000            mov REG[0xd0],>_commandGuid
+ 0662 5101              mov A,[_commandGuid+1]
+ 0664 1100              sub A,0
+ 0666 5100              mov A,[_commandGuid]
+ 0668 3180              xor A,-128
+ 066A 1980              sbb A,(0 ^ 0x80)
+ 066C C009              jc L100
+ 066E           X27:
+ 066E 560701            mov [X+7],1
+ 0671 560600            mov [X+6],0
+ 0674 8007              xjmp L101
+ 0676           L100:
+ 0676 560700            mov [X+7],0
+ 0679 560600            mov [X+6],0
+ 067C           L101:
+ 067C 5207              mov A,[X+7]
+ 067E 62D000            mov REG[0xd0],>_commandReady
+ 0681 5300              mov [_commandReady],A
+ 0683                   .dbline -2
+ 0683           L88:
+ 0683 38F8              add SP,-8
+ 0685 20                pop X
+ 0686                   .dbline 0 ; func end
+ 0686 7F                ret
+ 0687                   .dbsym l endCommandGuid 4 I
+ 0687                   .dbsym l pArg 2 pc
+ 0687                   .dbsym l i 0 I
+ 0687                   .dbend
+ 0687                   .dbfunc e CheckGamepadCommand _CheckGamepadCommand fV
+ 0687           ; endCommandGuid -> X+4
+ 0687           ;           pArg -> X+2
+ 0687           ;              i -> X+0
+ 0687           _CheckGamepadCommand::
+ 0687                   .dbline -1
+ 0687 10                push X
+ 0688 4F                mov X,SP
+ 0689 3808              add SP,8
+ 068B                   .dbline 357
+ 068B           ; }
+ 068B           ; 
+ 068B           ; void CheckGamepadCommand(void)
+ 068B           ; {
+ 068B                   .dbline 359
+ 068B           ;       char *pArg;
+ 068B           ;       int i = 0;
+ 068B 560100            mov [X+1],0
+ 068E 560000            mov [X+0],0
+ 0691                   .dbline 360
+ 0691           ;       int endCommandGuid = 0;
+ 0691 560500            mov [X+5],0
+ 0694 560400            mov [X+4],0
+ 0697                   .dbline 362
+ 0697           ; 
+ 0697           ;       commandId = 3;
+ 0697 62D000            mov REG[0xd0],>_commandId
+ 069A 550103            mov [_commandId+1],3
+ 069D 550000            mov [_commandId],0
+ 06A0                   .dbline 364
+ 06A0           ;       
+ 06A0           ;       pArg = UART_szGetParam();
+ 06A0 10                push X
+ 06A1 7C0000            xcall _UART_szGetParam
+ 06A4 62D000            mov REG[0xd0],>__r0
+ 06A7 5300              mov [__r0],A
+ 06A9 5A00              mov [__r1],X
+ 06AB 20                pop X
+ 06AC 5100              mov A,[__r1]
+ 06AE 5403              mov [X+3],A
+ 06B0 5100              mov A,[__r0]
+ 06B2 5402              mov [X+2],A
+ 06B4                   .dbline 368
+ 06B4           ; #ifdef DEBUG_INFO
+ 06B4           ;       DebugWriteParam(pArg);
+ 06B4           ; #endif
+ 06B4           ;       if (pArg != NULL)
+ 06B4 3D0200            cmp [X+2],0
+ 06B7 B006              jnz X28
+ 06B9 3D0300            cmp [X+3],0
+ 06BC A01E              jz L103
+ 06BE           X28:
+ 06BE                   .dbline 369
+ 06BE           ;           commandGuid = atoi(pArg);
+ 06BE 5202              mov A,[X+2]
+ 06C0 08                push A
+ 06C1 5203              mov A,[X+3]
+ 06C3 08                push A
+ 06C4 7C0000            xcall _atoi
+ 06C7 38FE              add SP,-2
+ 06C9 62D000            mov REG[0xd0],>__r0
+ 06CC 5100              mov A,[__r1]
+ 06CE 08                push A
+ 06CF 5100              mov A,[__r0]
+ 06D1 62D000            mov REG[0xd0],>_commandGuid
+ 06D4 5300              mov [_commandGuid],A
+ 06D6 18                pop A
+ 06D7 5301              mov [_commandGuid+1],A
+ 06D9 800A              xjmp L104
+ 06DB           L103:
+ 06DB                   .dbline 371
+ 06DB           ;       else 
+ 06DB           ;               commandGuid = -1;
+ 06DB 62D000            mov REG[0xd0],>_commandGuid
+ 06DE 5501FF            mov [_commandGuid+1],-1
+ 06E1 5500FF            mov [_commandGuid],-1
+ 06E4           L104:
+ 06E4                   .dbline 373
+ 06E4           ;       
+ 06E4           ;       for (i = 0; i < GAMEPAD_DATA_LENGTH; i++)
+ 06E4 560100            mov [X+1],0
+ 06E7 560000            mov [X+0],0
+ 06EA           L105:
+ 06EA                   .dbline 374
+ 06EA           ;       {
+ 06EA                   .dbline 375
+ 06EA           ;               pArg = UART_szGetParam();
+ 06EA 10                push X
+ 06EB 7C0000            xcall _UART_szGetParam
+ 06EE 62D000            mov REG[0xd0],>__r0
+ 06F1 5300              mov [__r0],A
+ 06F3 5A00              mov [__r1],X
+ 06F5 20                pop X
+ 06F6 5100              mov A,[__r1]
+ 06F8 5403              mov [X+3],A
+ 06FA 5100              mov A,[__r0]
+ 06FC 5402              mov [X+2],A
+ 06FE                   .dbline 379
+ 06FE           ; #ifdef DEBUG_INFO
+ 06FE           ;               DebugWriteParam(pArg);
+ 06FE           ; #endif
+ 06FE           ;               sh = 0;
+ 06FE 62D000            mov REG[0xd0],>_sh
+ 0701 550000            mov [_sh],0
+ 0704                   .dbline 380
+ 0704           ;               if (pArg != NULL)
+ 0704 3D0200            cmp [X+2],0
+ 0707 B006              jnz X29
+ 0709 3D0300            cmp [X+3],0
+ 070C A011              jz L109
+ 070E           X29:
+ 070E                   .dbline 381
+ 070E           ;                   hex2data(&sh, pArg);
+ 070E 5202              mov A,[X+2]
+ 0710 08                push A
+ 0711 5203              mov A,[X+3]
+ 0713 08                push A
+ 0714 5000              mov A,>_sh
+ 0716 08                push A
+ 0717 5000              mov A,<_sh
+ 0719 08                push A
+ 071A 909F              xcall _hex2data
+ 071C 38FC              add SP,-4
+ 071E           L109:
+ 071E                   .dbline 382
+ 071E           ;               Gamepad_Data[i] = sh;
+ 071E 62D000            mov REG[0xd0],>__r0
+ 0721 5201              mov A,[X+1]
+ 0723 0100              add A,<_Gamepad_Data
+ 0725 5300              mov [__r1],A
+ 0727 5200              mov A,[X+0]
+ 0729 0900              adc A,>_Gamepad_Data
+ 072B 60D5              mov REG[0xd5],A
+ 072D 62D000            mov REG[0xd0],>_sh
+ 0730 5100              mov A,[_sh]
+ 0732 62D000            mov REG[0xd0],>__r0
+ 0735 3F00              mvi [__r1],A
+ 0737                   .dbline 386
+ 0737           ; #ifdef DEBUG_INFO
+ 0737           ;               DebugWriteRx(sh);
+ 0737           ; #endif
+ 0737           ;       }
+ 0737           L106:
+ 0737                   .dbline 373
+ 0737 7701              inc [X+1]
+ 0739 0F0000            adc [X+0],0
+ 073C                   .dbline 373
+ 073C 5201              mov A,[X+1]
+ 073E 1103              sub A,3
+ 0740 5200              mov A,[X+0]
+ 0742 3180              xor A,-128
+ 0744 1980              sbb A,(0 ^ 0x80)
+ 0746 CFA3              jc L105
+ 0748           X30:
+ 0748                   .dbline 388
+ 0748           ;       
+ 0748           ;       pArg = UART_szGetParam();
+ 0748 10                push X
+ 0749 7C0000            xcall _UART_szGetParam
+ 074C 62D000            mov REG[0xd0],>__r0
+ 074F 5300              mov [__r0],A
+ 0751 5A00              mov [__r1],X
+ 0753 20                pop X
+ 0754 5100              mov A,[__r1]
+ 0756 5403              mov [X+3],A
+ 0758 5100              mov A,[__r0]
+ 075A 5402              mov [X+2],A
+ 075C                   .dbline 392
+ 075C           ; #ifdef DEBUG_INFO
+ 075C           ;       DebugWriteParam(pArg);
+ 075C           ; #endif
+ 075C           ;       if (pArg != NULL)
+ 075C 3D0200            cmp [X+2],0
+ 075F B006              jnz X31
+ 0761 3D0300            cmp [X+3],0
+ 0764 A019              jz L111
+ 0766           X31:
+ 0766                   .dbline 393
+ 0766           ;           endCommandGuid = atoi(pArg);
+ 0766 5202              mov A,[X+2]
+ 0768 08                push A
+ 0769 5203              mov A,[X+3]
+ 076B 08                push A
+ 076C 7C0000            xcall _atoi
+ 076F 38FE              add SP,-2
+ 0771 62D000            mov REG[0xd0],>__r0
+ 0774 5100              mov A,[__r1]
+ 0776 5405              mov [X+5],A
+ 0778 5100              mov A,[__r0]
+ 077A 5404              mov [X+4],A
+ 077C 8007              xjmp L112
+ 077E           L111:
+ 077E                   .dbline 395
+ 077E           ;       else 
+ 077E           ;               endCommandGuid = -1;
+ 077E 5605FF            mov [X+5],-1
+ 0781 5604FF            mov [X+4],-1
+ 0784           L112:
+ 0784                   .dbline 397
+ 0784           ; 
+ 0784           ;       commandReady = commandGuid == endCommandGuid && commandGuid >= 0;
+ 0784 62D000            mov REG[0xd0],>_commandGuid
+ 0787 5100              mov A,[_commandGuid]
+ 0789 3B04              cmp A,[X+4]
+ 078B B01E              jnz L114
+ 078D 5101              mov A,[_commandGuid+1]
+ 078F 3B05              cmp A,[X+5]
+ 0791 B018              jnz L114
+ 0793           X32:
+ 0793 62D000            mov REG[0xd0],>_commandGuid
+ 0796 5101              mov A,[_commandGuid+1]
+ 0798 1100              sub A,0
+ 079A 5100              mov A,[_commandGuid]
+ 079C 3180              xor A,-128
+ 079E 1980              sbb A,(0 ^ 0x80)
+ 07A0 C009              jc L114
+ 07A2           X33:
+ 07A2 560701            mov [X+7],1
+ 07A5 560600            mov [X+6],0
+ 07A8 8007              xjmp L115
+ 07AA           L114:
+ 07AA 560700            mov [X+7],0
+ 07AD 560600            mov [X+6],0
+ 07B0           L115:
+ 07B0 5207              mov A,[X+7]
+ 07B2 62D000            mov REG[0xd0],>_commandReady
+ 07B5 5300              mov [_commandReady],A
+ 07B7                   .dbline -2
+ 07B7           L102:
+ 07B7 38F8              add SP,-8
+ 07B9 20                pop X
+ 07BA                   .dbline 0 ; func end
+ 07BA 7F                ret
+ 07BB                   .dbsym l endCommandGuid 4 I
+ 07BB                   .dbsym l pArg 2 pc
+ 07BB                   .dbsym l i 0 I
+ 07BB                   .dbend
+ 07BB                   .dbfunc e hex2data _hex2data fI
+ 07BB           ;         endptr -> X+5
+ 07BB           ;            buf -> X+0
+ 07BB           ;      hexstring -> X-7
+ 07BB           ;           data -> X-5
+ 07BB           _hex2data::
+ 07BB                   .dbline -1
+ 07BB 10                push X
+ 07BC 4F                mov X,SP
+ 07BD 3807              add SP,7
+ 07BF                   .dbline 405
+ 07BF           ; }
+ 07BF           ; 
+ 07BF           ; //convert hexstring to len bytes of data
+ 07BF           ; //returns 0 on success, -1 on error
+ 07BF           ; //data is a buffer of two bytes
+ 07BF           ; //hexstring is upper or lower case hexadecimal, NOT prepended with "0x"
+ 07BF           ; int hex2data(char *data, char *hexstring)
+ 07BF           ; {
+ 07BF                   .dbline 409
+ 07BF           ;     char *endptr;
+ 07BF           ;       char buf[5];
+ 07BF           ; 
+ 07BF           ;     if ((hexstring[0] == '\0') || (strlen(hexstring) % 2)) {
+ 07BF 62D000            mov REG[0xd0],>__r0
+ 07C2 52FA              mov A,[X-6]
+ 07C4 5300              mov [__r1],A
+ 07C6 52F9              mov A,[X-7]
+ 07C8 60D4              mov REG[0xd4],A
+ 07CA 3E00              mvi A,[__r1]
+ 07CC 3900              cmp A,0
+ 07CE A01C              jz L119
+ 07D0 52F9              mov A,[X-7]
+ 07D2 08                push A
+ 07D3 52FA              mov A,[X-6]
+ 07D5 08                push A
+ 07D6 7C0000            xcall _strlenLMM
+ 07D9 38FE              add SP,-2
+ 07DB 62D000            mov REG[0xd0],>__r0
+ 07DE 260001            and [__r1],1
+ 07E1 260000            and [__r0],0
+ 07E4 B006              jnz X34
+ 07E6 3C0000            cmp [__r1],0
+ 07E9 A00C              jz L117
+ 07EB           X34:
+ 07EB           L119:
+ 07EB                   .dbline 412
+ 07EB           ;         //hexstring contains no data
+ 07EB           ;         //or hexstring has an odd length
+ 07EB           ;         return -1;
+ 07EB                   .dbline 412
+ 07EB 62D000            mov REG[0xd0],>__r0
+ 07EE 5500FF            mov [__r1],-1
+ 07F1 5500FF            mov [__r0],-1
+ 07F4 80AA              xjmp L116
+ 07F6           L117:
+ 07F6                   .dbline 415
+ 07F6           ;     }
+ 07F6           ; 
+ 07F6           ;     if ((hexstring[0] == '0') && (hexstring[1] == '0')) {
+ 07F6 62D000            mov REG[0xd0],>__r0
+ 07F9 52FA              mov A,[X-6]
+ 07FB 5300              mov [__r1],A
+ 07FD 52F9              mov A,[X-7]
+ 07FF 60D4              mov REG[0xd4],A
+ 0801 3E00              mvi A,[__r1]
+ 0803 3930              cmp A,48
+ 0805 B027              jnz L120
+ 0807 52FA              mov A,[X-6]
+ 0809 0101              add A,1
+ 080B 5300              mov [__r1],A
+ 080D 52F9              mov A,[X-7]
+ 080F 0900              adc A,0
+ 0811 60D4              mov REG[0xd4],A
+ 0813 3E00              mvi A,[__r1]
+ 0815 3930              cmp A,48
+ 0817 B015              jnz L120
+ 0819                   .dbline 416
+ 0819           ;               *data = '0';
+ 0819                   .dbline 416
+ 0819 52FC              mov A,[X-4]
+ 081B 5300              mov [__r1],A
+ 081D 52FB              mov A,[X-5]
+ 081F 60D5              mov REG[0xd5],A
+ 0821 5030              mov A,48
+ 0823 3F00              mvi [__r1],A
+ 0825                   .dbline 417
+ 0825           ;           return 0;
+ 0825 550000            mov [__r1],0
+ 0828 550000            mov [__r0],0
+ 082B 8073              xjmp L116
+ 082D           L120:
+ 082D                   .dbline 420
+ 082D           ;       }
+ 082D           ;       
+ 082D           ;     buf[0] = '0';
+ 082D 560030            mov [X+0],48
+ 0830                   .dbline 421
+ 0830           ;       buf[1] = 'x';
+ 0830 560178            mov [X+1],120
+ 0833                   .dbline 422
+ 0833           ;       buf[2] = hexstring[0];
+ 0833 62D000            mov REG[0xd0],>__r0
+ 0836 52FA              mov A,[X-6]
+ 0838 5300              mov [__r1],A
+ 083A 52F9              mov A,[X-7]
+ 083C 60D4              mov REG[0xd4],A
+ 083E 3E00              mvi A,[__r1]
+ 0840 5402              mov [X+2],A
+ 0842                   .dbline 423
+ 0842           ;       buf[3] = hexstring[1];
+ 0842 52FA              mov A,[X-6]
+ 0844 0101              add A,1
+ 0846 5300              mov [__r1],A
+ 0848 52F9              mov A,[X-7]
+ 084A 0900              adc A,0
+ 084C 60D4              mov REG[0xd4],A
+ 084E 3E00              mvi A,[__r1]
+ 0850 5403              mov [X+3],A
+ 0852                   .dbline 424
+ 0852           ;       buf[4] = 0;
+ 0852 560400            mov [X+4],0
+ 0855                   .dbline 425
+ 0855           ;     data[0] = strtol(buf, &endptr, 0);
+ 0855 5000              mov A,0
+ 0857 08                push A
+ 0858 08                push A
+ 0859 5A00              mov [__r1],X
+ 085B 060005            add [__r1],5
+ 085E 5003              mov A,3
+ 0860 08                push A
+ 0861 5100              mov A,[__r1]
+ 0863 08                push A
+ 0864 5003              mov A,3
+ 0866 08                push A
+ 0867 10                push X
+ 0868 7C0000            xcall _strtol
+ 086B 38FA              add SP,-6
+ 086D 62D000            mov REG[0xd0],>__r0
+ 0870 5100              mov A,[__r3]
+ 0872 5300              mov [__r0],A
+ 0874 52FC              mov A,[X-4]
+ 0876 5300              mov [__r3],A
+ 0878 52FB              mov A,[X-5]
+ 087A 60D5              mov REG[0xd5],A
+ 087C 5100              mov A,[__r0]
+ 087E 3F00              mvi [__r3],A
+ 0880                   .dbline 427
+ 0880           ; 
+ 0880           ;     if (endptr[0] != '\0') {
+ 0880 5206              mov A,[X+6]
+ 0882 5300              mov [__r1],A
+ 0884 5205              mov A,[X+5]
+ 0886 60D4              mov REG[0xd4],A
+ 0888 3E00              mvi A,[__r1]
+ 088A 3900              cmp A,0
+ 088C A009              jz L126
+ 088E                   .dbline 429
+ 088E           ;         //non-hexadecimal character encountered
+ 088E           ;         return -1;
+ 088E                   .dbline 429
+ 088E 5500FF            mov [__r1],-1
+ 0891 5500FF            mov [__r0],-1
+ 0894 800A              xjmp L116
+ 0896           L126:
+ 0896                   .dbline 432
+ 0896           ;     }
+ 0896           ; 
+ 0896           ;     return 0;
+ 0896 62D000            mov REG[0xd0],>__r0
+ 0899 550000            mov [__r1],0
+ 089C 550000            mov [__r0],0
+ 089F                   .dbline -2
+ 089F           L116:
+ 089F 38F9              add SP,-7
+ 08A1 20                pop X
+ 08A2                   .dbline 0 ; func end
+ 08A2 7F                ret
+ 08A3                   .dbsym l endptr 5 pc
+ 08A3                   .dbsym l buf 0 A[5:5]c
+ 08A3                   .dbsym l hexstring -7 pc
+ 08A3                   .dbsym l data -5 pc
+ 08A3                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\main.c
+ 0000           _bCtr::
+ 0000 00                .byte 0
+ 0001                   .dbsym e bCtr _bCtr c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\main.c
+ 0000           _bDeviceEnumerated::
+ 0000 00                .byte 0
+ 0001                   .dbsym e bDeviceEnumerated _bDeviceEnumerated c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\main.c
+ 0000           _sh::
+ 0000 00                .byte 0
+ 0001                   .dbsym e sh _sh c
+                        .area lit(rom, con, rel, lit)
+ 0000           L60:
+ 0000 313300            .byte 49,51,0
+ 0003           L57:
+ 0003 3300              .byte 51,0
+ 0005           L54:
+ 0005 3200              .byte 50,0
+ 0007           L51:
+ 0007 3100              .byte 49,0
+ 0009           L45:
+ 0009 347C25647C315D00  .byte 52,124,37,'d,124,49,93,0
+ 0011           L3:
+ 0011 41542B4E414D454D7954656C65746F75  .byte 'A,'T,43,'N,'A,'M,'E,'M,'y,'T,'e,'l,'e,'t,'o,'u
+ 0021 63680D0A00        .byte 'c,'h,13,10,0

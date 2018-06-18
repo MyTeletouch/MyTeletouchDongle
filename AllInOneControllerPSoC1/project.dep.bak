@@ -1,0 +1,42 @@
+# DO NOT DELETE
+./obj/boot.o : \
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY7C64~1/m8c.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY7C64~1/m8ssc.inc\
+   D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\lib\GlobalParams.inc\
+   D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\memory.inc
+./obj/main.o :  ./lib/PSoCAPI.h ./lib/UART.h ./lib/USBFS.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY7C64~1/m8c.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/_const.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/limits.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/stdarg.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/stdio.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/stdlib.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/string.h
+./lib/obj/psocconfig.o :  ./lib/GlobalParams.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY7C64~1/m8c.inc\
+   D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\memory.inc
+./lib/obj/psocconfigtbl.o : \
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY7C64~1/m8c.inc
+./lib/obj/uart.o :  ./lib/UART.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY7C64~1/m8c.inc\
+   D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\memory.inc
+./lib/obj/uartint.o :  ./lib/UART.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY7C64~1/m8c.inc\
+   D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\memory.inc
+./lib/obj/uartplus.o : 
+./lib/obj/usbfs.o :  ./lib/USBFS.inc ./lib/USBFS_macros.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY7C64~1/m8c.inc\
+   D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\memory.inc
+./lib/obj/usbfs_cls_hid.o :  ./lib/USBFS.inc ./lib/USBFS_macros.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY7C64~1/m8c.inc\
+   D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\memory.inc
+./lib/obj/usbfs_descr.o :  ./lib/USBFS.inc ./lib/USBFS_macros.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY7C64~1/m8c.inc
+./lib/obj/usbfs_drv.o :  ./lib/USBFS.inc ./lib/USBFS_macros.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY7C64~1/m8c.inc\
+   D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\memory.inc
+./lib/obj/usbfs_std.o :  ./lib/USBFS.inc ./lib/USBFS_macros.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY7C64~1/m8c.inc
+./lib/obj/usbfsint.o :  ./lib/USBFS.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY7C64~1/m8c.inc\
+   D:\work\PocketHID\AllInOneControllerPSoC1\AllInOneControllerPSoC1\memory.inc

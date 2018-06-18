@@ -1,0 +1,7 @@
+flash 2DD9 SRAM   81:
+ 00 25 bytes
+flash 2DDD SRAM   A5:
+ 00 25 bytes
+flash 2DE1 SRAM   BF:
+ <size at next line>   0
+  [size:] 1 bytes

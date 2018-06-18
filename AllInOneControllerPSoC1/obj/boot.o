@@ -1,0 +1,271 @@
+XH
+H B areas 17 global symbols
+M boot.asm
+S _main Ref0000
+S _USBFS_RESET_ISR Ref0000
+S __text_end Ref0000
+S _USBFS_EP0_ISR Ref0000
+S _USBFS_EP1_ISR Ref0000
+S _USBFS_EP2_ISR Ref0000
+S _USBFS_EP3_ISR Ref0000
+S _USBFS_EP4_ISR Ref0000
+S _USBFS_WAKEUP_ISR Ref0000
+S __r0 Ref0000
+S __r1 Ref0000
+S LoadConfigInit Ref0000
+S _USBFS_SOF_ISR Ref0000
+S _UART_RX_ISR Ref0000
+S _UART_TX_ISR Ref0000
+A TOP size 13B flags C
+dbfile ./boot.asm
+dbfunc 0 ? 0 I
+dbline 64 0
+dbline 6C 4
+dbline 70 8
+dbline 74 C
+dbline 78 18
+dbline 7C 1C
+dbline 80 20
+dbline 84 24
+dbline 87 28
+dbline 88 2B
+dbline 8B 2C
+dbline 8C 2F
+dbline 8F 40
+dbline 90 43
+dbline 93 44
+dbline 94 47
+dbline 97 48
+dbline 98 4B
+dbline 9B 4C
+dbline 9C 4F
+dbline 9F 50
+dbline A0 53
+dbline A3 54
+dbline A4 57
+dbline A7 58
+dbline A8 5B
+dbline AB 5C
+dbline AC 5F
+dbline B0 60
+dbline B4 64
+dbline 2 68
+dbline CD 6A
+dbline CE 6D
+dbline 2 70
+dbline D2 72
+dbline D3 74
+dbline 2 75
+dbline DB 78
+dbline E4 7B
+dbline E5 7D
+dbline 2 7E
+dbline FF 81
+dbline 100 84
+dbline 2 87
+dbline 108 89
+dbline 2 8C
+dbline 2 8E
+dbline 3 91
+dbline 131 94
+dbline 132 96
+dbline 3 97
+dbline 3 9A
+dbline 3 9D
+dbline 3 A0
+dbline 139 A3
+dbline 155 A5
+dbline 2 A8
+dbline 157 AA
+dbline 158 AD
+dbline 2 B0
+dbline 178 B2
+dbline 17F B5
+dbline 180 B7
+dbline 181 B9
+dbline 182 BA
+dbline 183 BB
+dbline 184 BD
+dbline 185 BE
+dbline 186 BF
+dbline 187 C1
+dbline 188 C2
+dbline 189 C3
+dbline 18B C5
+dbline 19D C7
+dbline 19E C8
+dbline 2 CA
+dbline 1A4 CD
+dbline 1A5 CE
+dbline 1A6 CF
+dbline 1A7 D1
+dbline 1A8 D2
+dbline 1A9 D4
+dbline 1AA D5
+dbline 1AB D6
+dbline 1AC D8
+dbline 1AD D9
+dbline 1AE DA
+dbline 1AF DC
+dbline 1B0 DD
+dbline 1B1 DE
+dbline 1B2 E0
+dbline 1B3 E1
+dbline 1B4 E2
+dbline 1B5 E4
+dbline 1B6 E6
+dbline 1BE E7
+dbline 1BF E8
+dbline 1C0 EA
+dbline 1C1 EB
+dbline 1C2 EC
+dbline 1C3 EE
+dbline 1C4 F1
+dbline 1C5 F3
+dbline 1C6 F5
+dbline 1C7 F6
+dbline 1C9 F8
+dbline 1CA F9
+dbline 1CB FB
+dbline 1CC FD
+dbline 1CF FF
+dbline 1D0 100
+dbline 1D1 101
+dbline 1D2 103
+dbline 1D3 104
+dbline 1D4 105
+dbline 1D5 107
+dbline 1DB 109
+dbline 1DC 10B
+dbline 1DD 10E
+dbline 1DE 110
+dbline 1DF 112
+dbline 1E0 113
+dbline 1E1 115
+dbline 1E3 117
+dbline 1E4 119
+dbline 1E5 11B
+dbline 1E6 11C
+dbline 1E9 11E
+dbline 2 11F
+dbline 201 121
+dbline 2 124
+dbline 210 126
+dbline 2 129
+dbline 215 12B
+dbline 2 12E
+dbline 21C 130
+dbline 224 133
+dbline 226 136
+dbline 233 138
+dbline 234 13A
+S bGetPowerSetting Def0138
+S _bGetPowerSetting Def0138
+S __Start Def0068
+A lit size 0 flags 1
+A idata size 0 flags 1
+S __idata_start Def0000
+A func_lit size 2 flags 2
+S __func_lit_start Def0000
+A psoc_config size 0 flags 0
+A UserModules size 0 flags 0
+A text size 0 flags 0
+S __text_start Def0000
+A data size 0 flags 20
+S __data_start Def0000
+A virtual_registers size 0 flags 20
+A InterruptRAM size 0 flags 20
+A bss size 0 flags 20
+dbfile ./boot.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile ./boot.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY7C64~1/m8ssc.inc
+dbfunc 0 ? 0 I
+dbfile ./boot.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY7C64~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./boot.asm
+dbfunc 0 ? 0 I
+dbfile .\lib\GlobalParams.inc
+dbfunc 0 ? 0 I
+S __bss_start Def0000
+T 00 00 80 67
+R 00 00 00 00
+T 00 04 30
+R 00 00 00 00
+T 00 08 7E
+R 00 00 00 00
+T 00 0C 7E
+R 00 00 00 00
+T 00 18 7E
+R 00 00 00 00
+T 00 1C 7E
+R 00 00 00 00
+T 00 20 7E
+R 00 00 00 00
+T 00 24 7E
+R 00 00 00 00
+T 00 28 7D 00 00 7E
+R 00 00 00 00 02 03 00 0E
+T 00 2C 7D 00 00 7E
+R 00 00 00 00 02 03 00 0D
+T 00 40 7D 00 00 7E
+R 00 00 00 00 02 03 00 01
+T 00 44 7D 00 00 7E
+R 00 00 00 00 02 03 00 0C
+T 00 48 7D 00 00 7E
+R 00 00 00 00 02 03 00 03
+T 00 4C 7D 00 00 7E
+R 00 00 00 00 02 03 00 04
+T 00 50 7D 00 00 7E
+R 00 00 00 00 02 03 00 05
+T 00 54 7D 00 00 7E
+R 00 00 00 00 02 03 00 06
+T 00 58 7D 00 00 7E
+R 00 00 00 00 02 03 00 07
+T 00 5C 7D 00 00 7E
+R 00 00 00 00 02 03 00 08
+T 00 60 7E
+R 00 00 00 00
+T 00 64 7E
+R 00 00 00 00
+T 00 68 71 10 62 FA 00 62 E3 07 70 EF 50 20 28 62
+R 00 00 00 00
+T 00 76 E3 38 41 FE FB 50 80 4E 62 E3 38 55 F8 00
+R 00 00 00 00
+T 00 84 55 F9 00 71 10 62 E0 02 70 EF 62 E3 38 62
+R 00 00 00 00
+T 00 92 D1 03 50 00 4E 62 D3 03 62 D0 00 62 D5 00
+R 00 00 00 00
+T 00 A0 62 D4 00 71 C0 7C 00 00 71 10 41 E7 3F 43
+R 00 00 00 00 02 08 00 0B
+T 00 AE E7 80 70 EF 62 D0 00 00 50 00 00 57 00 00
+R 00 00 00 00 43 08 00 09 41 0B 00 03 01 0E 00 03
+T 00 B9 08 28 53 00 00 18 75 09 00 28 4B 51 00 00
+R 00 00 00 00 03 05 00 09 03 0E 00 09
+T 00 C5 80 04 75 09 00 62 E3 00 08 28 60 D5 74 A0
+R 00 00 00 00
+T 00 D3 4B 18 75 09 00 08 28 53 00 00 18 75 09 00
+R 00 00 00 00 03 0A 00 09
+T 00 E0 08 28 A0 1C 53 00 00 18 75 09 00 08 28 3F
+R 00 00 00 00 03 07 00 0A
+T 00 ED 00 00 47 00 00 FF B0 06 5D D5 74 60 D5 18
+R 00 00 00 00 03 02 00 09 03 05 00 09
+T 00 F9 7A 00 00 BF EB 8F C9 18 75 09 00 08 28 53
+R 00 00 00 00 03 03 00 0A
+T 01 06 00 00 50 00 3F 00 00 47 00 00 FF B0 08 5D
+R 00 00 00 00 03 02 00 0A 03 07 00 09 03 0A 00 09
+T 01 11 D5 74 60 D5 50 00 7A 00 00 BF EF 18 8F AA
+R 00 00 00 00 03 09 00 0A
+T 01 1E 18 71 10 43 E3 00 70 EF 62 E0 00 71 10 62
+R 00 00 00 00
+T 01 2C E0 00 70 EF 62 E2 00 7C 00 00 8F FF 50 10
+R 00 00 00 00 02 0A 00 00
+T 01 3A 7F
+R 00 00 00 00
+T 00 00 00 00
+R 00 00 00 03 02 02 00 02

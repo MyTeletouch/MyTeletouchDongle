@@ -1,0 +1,72 @@
+Starting MAKE...
+creating project.mk 
+
+lib/psocconfig.asm
+
+lib/psocconfigtbl.asm
+
+lib/uart.asm
+
+lib/uartint.asm
+
+lib/uartplus.asm
+
+lib/usbfs.asm
+
+lib/usbfs_cls_hid.asm
+
+lib/usbfs_descr.asm
+
+lib/usbfs_drv.asm
+
+lib/usbfs_std.asm
+
+lib/usbfsint.asm
+
+./boot.asm
+
+Linking..
+
+LMM info: area 'InterruptRAM' uses 129 bytes in SRAM bank 0
+
+LMM info: area 'data' item of 25 bytes allocated in SRAM page 0
+
+LMM info: area 'virtual_registers' uses 11 bytes in SRAM page 0
+
+LMM info: area 'data' item of 8 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 3 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 3 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
+
+LMM info: area 'UART_RAM' item of 1 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 1 bytes allocated in SRAM page 0
+
+LMM info: area 'UART_RAM' item of 127 bytes allocated in SRAM page 1
+
+idata dump at output/AllInOneControllerPSoC1.idata
+
+  ROM 70% full. 11321 out of 16384 bytes used (does not include absolute areas).
+
+  RAM 42% full. 319 bytes used (does not include stack usage).
+
+Built with ICCM8C STD V7.05.00
+
+ 
+AllInOneControllerPSoC1 - 0 error(s) 0 warning(s) 15:07:58
+

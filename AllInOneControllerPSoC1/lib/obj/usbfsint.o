@@ -1,0 +1,117 @@
+XH
+H 2 areas 12 global symbols
+M usbfsint.asm
+S _USBFS_Start Ref0000
+S USBFS_EPDataToggle Ref0000
+S USBFS_bCurrentDevice Ref0000
+S USBFS_EndpointAPIStatus Ref0000
+A text size 6D flags 0
+dbfile lib/usbfsint.asm
+dbfunc 0 ? 0 I
+dbline 6F 0
+dbline 70 1
+dbline 2 4
+dbline 72 6
+dbline 2 8
+dbline 74 A
+dbline 75 D
+dbline 76 E
+dbline 93 F
+dbline 94 10
+dbline 2 13
+dbline 96 15
+dbline 2 17
+dbline 98 19
+dbline 99 1C
+dbline 9A 1D
+dbline B6 1E
+dbline B7 1F
+dbline 2 22
+dbline B9 24
+dbline 2 26
+dbline BB 28
+dbline BC 2B
+dbline BD 2C
+dbline D9 2D
+dbline DA 2E
+dbline 2 31
+dbline DC 33
+dbline 2 35
+dbline DE 37
+dbline DF 3A
+dbline E0 3B
+dbline 110 3C
+dbline 111 3D
+dbline 2 3E
+dbline 3 40
+dbline 2 41
+dbline 3 43
+dbline 2 44
+dbline 3 46
+dbline 2 47
+dbline 3 49
+dbline 2 4A
+dbline 114 4C
+dbline 2 4E
+dbline 116 50
+dbline 117 52
+dbline 118 53
+dbline 3 55
+dbline 4 57
+dbline 11A 59
+dbline 2 5C
+dbline 3 5D
+dbline 2 5F
+dbline 3 60
+dbline 2 62
+dbline 3 63
+dbline 2 65
+dbline 3 66
+dbline 11C 68
+dbline 11D 69
+dbline 121 6A
+dbline 142 6B
+dbline 161 6C
+dbfile ./lib/USBFS.inc
+dbfunc 0 ? 0 I
+dbfile lib/usbfsint.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/usbfsint.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY7C64~1/m8c.inc
+dbfunc 0 ? 0 I
+S _USBFS_RESET_ISR Def003C
+S USBFS_SOF_ISR Def006B
+S _USBFS_EP1_ISR Def0000
+S _USBFS_EP2_ISR Def000F
+S _USBFS_EP3_ISR Def001E
+S _USBFS_EP4_ISR Def002D
+S _USBFS_WAKEUP_ISR Def006C
+S _USBFS_SOF_ISR Def006B
+S USBFS_RESET_ISR Def003C
+S USBFS_EP1_ISR Def0000
+S USBFS_EP2_ISR Def000F
+S USBFS_EP3_ISR Def001E
+S USBFS_EP4_ISR Def002D
+S USBFS_WAKEUP_ISR Def006C
+A InterruptRAM size 0 flags 20
+T 00 00 08 36 00 00 02 71 10 5D C4 70 EF 55 00 01
+R 00 00 00 00 03 04 00 01 03 0E 00 03
+T 00 0C 01 18 7E 08 36 00 00 04 71 10 5D C5 70 EF
+R 00 00 00 00 03 07 00 01
+T 00 19 55 00 02 01 18 7E 08 36 00 00 08 71 10 5D
+R 00 00 00 00 03 03 00 03 03 0A 00 01
+T 00 25 C6 70 EF 55 00 03 01 18 7E 08 36 00 00 10
+R 00 00 00 00 03 06 00 03 03 0D 00 01
+T 00 31 71 10 5D C7 70 EF 55 00 04 01 18 7E 08 10
+R 00 00 00 00 03 09 00 03
+T 00 3E 5D D0 08 5D D3 08 5D D4 08 5D D5 08 71 10
+R 00 00 00 00
+T 00 4C 5D C1 70 EF 21 03 5C 51 00 00 70 3F 71 C0
+R 00 00 00 00 03 0A 00 02
+T 00 59 7C 00 00 18 60 D5 18 60 D4 18 60 D3 18 60
+R 00 00 00 00 02 03 00 00
+T 00 67 D0 20 18 7E 7E 7E
+R 00 00 00 00

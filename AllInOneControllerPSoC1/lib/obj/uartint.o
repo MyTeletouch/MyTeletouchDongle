@@ -1,0 +1,104 @@
+XH
+H 4 areas 8 global symbols
+M uartint.asm
+A text size 0 flags 0
+dbfile lib/uartint.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY7C64~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile lib/uartint.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/uartint.asm
+dbfunc 0 ? 0 I
+dbfile ./lib/UART.inc
+dbfunc 0 ? 0 I
+A InterruptRAM size 2 flags 20
+S _UART_bRxCnt Def0001
+S UART_fStatus Def0000
+S _UART_fStatus Def0000
+S UART_bRxCnt Def0001
+A UART_RAM size 7F flags 20
+S UART_aRxBuffer Def0000
+S _UART_aRxBuffer Def0000
+A UserModules size 71 flags 0
+dbfile lib/uartint.asm
+dbfunc 0 ? 0 I
+dbline 73 0
+dbline B4 1
+dbline B5 2
+dbline 2 3
+dbline 3 5
+dbline BB 6
+dbline BC 8
+dbline BD A
+dbline BF B
+dbline C0 D
+dbline C1 F
+dbline C2 10
+dbline C5 12
+dbline C8 13
+dbline C9 15
+dbline CB 17
+dbline CC 19
+dbline CD 1C
+dbline CE 1E
+dbline D2 20
+dbline D3 23
+dbline D4 26
+dbline D8 28
+dbline DB 2A
+dbline DC 2D
+dbline DE 2F
+dbline DF 31
+dbline E0 33
+dbline 3 36
+dbline 3 39
+dbline 4 3B
+dbline E6 3D
+dbline 3 40
+dbline 4 42
+dbline E8 44
+dbline 3 46
+dbline FD 49
+dbline FE 4C
+dbline 3 4E
+dbline 4 50
+dbline 100 52
+dbline 3 55
+dbline 4 57
+dbline 102 59
+dbline 103 5C
+dbline 3 5E
+dbline 4 60
+dbline 108 62
+dbline 3 64
+dbline 4 66
+dbline 10A 68
+dbline 10B 69
+dbline 2 6B
+dbline 3 6C
+dbline 113 6E
+dbline 114 6F
+dbline 119 70
+S _UART_RX_ISR Def0001
+S _UART_TX_ISR Def0000
+T 00 00 7E 08 10 5D D3 08 58 00 01 5D 2F 08 21 08
+R 00 00 00 03 01 09 00 01
+T 00 0D B0 04 18 80 5A 18 21 E0 A0 12 2C 00 00 49
+R 00 00 00 03 01 0D 00 01
+T 00 1A 2E 00 21 20 A0 4C 41 2F FE 43 2F 01 80 44
+R 00 00 00 03
+T 00 28 5D 2E 47 00 00 01 B0 3D 39 5D B0 14 2E
+R 00 00 00 03 01 05 00 01
+T 00 34 00 00 01 62 D3 00 00 70 3F 71 80 56 00 00
+R 00 00 00 03 01 02 00 01 41 07 00 02 01 0E 00 02
+T 00 3F 00 70 3F 71 00 80 26 62 D3 00 00 3C 00 01
+R 00 00 00 03 41 0B 00 02 01 0E 00 01
+T 00 4B 7E C0 11 70 3F 71 80 56 00 00 00 70 3F 71
+R 00 00 00 03 01 0A 00 02
+T 00 58 00 2E 00 00 10 80 0E 70 3F 71 80 54 00 00
+R 00 00 00 03 01 04 00 01 01 0E 00 02
+T 00 64 70 3F 71 00 75 5A 00 01 18 60 D3 20 18 7E
+R 00 00 00 03 01 08 00 01

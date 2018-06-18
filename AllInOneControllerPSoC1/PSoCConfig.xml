@@ -1,0 +1,1300 @@
+<PSOC_DEVICE_DB>
+	<PSOC_CONFIG_LIST>
+		<PSOC_CONFIG NAME="allinonecontrollerpsoc1" BASE_DEVICE="CY7C64215-28PVXC" SOURCE_GEN_TIME="1477138071" CONFIG_SAVE_TIME="1477138071" CONFIG_SAVE_DATE="Sat Oct 22 15:07:51 2016
+" VERSION="4.0" DESCRIPTION="" PACKAGE_TYPE="SSOP" PACKAGE_SHAPE="2" LOOP_CONFIG_INIT="Enable" UM_INT_GEN_CONTROL="Disable" CONFIG_NAME_PREPEND="Enable" DESIGN_VERSION="" DOC_FILENAME="" DEVICE_DISPLAY_NAME="CY7C64215-28PVXC" PSOC_EXPRESS_PROJECT="FALSE">
+			<DESIGN_FILE_LIST/>
+			<USER_MODULE_LIST>
+				<USER_MODULE NAME="UART" INSTANCE_NAME="UART" VERSION="5.3">
+					<SHAPE SHAPE_TYPE="BLOCKLIST" COLOR_INDEX="2" NAME="UART2224" LOCKED="FALSE">
+						<BLOCK_LIST>
+							<BLOCK NAME="TX" TYPE="DIGITAL_COMM" LOCATION="2">
+								<REGISTER_LIST>
+									<REGISTER NAME="CONTROL_0" ADDR="2b" VALUE="0" DATASHEET_NAME="DCB02CR0"/>
+									<REGISTER NAME="DATA_0" ADDR="28" VALUE="0" DATASHEET_NAME="DCB02DR0"/>
+									<REGISTER NAME="DATA_1" ADDR="29" VALUE="0" DATASHEET_NAME="DCB02DR1"/>
+									<REGISTER NAME="DATA_2" ADDR="2a" VALUE="0" DATASHEET_NAME="DCB02DR2"/>
+									<REGISTER NAME="DIG_BasicFunction" ADDR="128" VALUE="1d" DATASHEET_NAME="DCB02FN"/>
+									<REGISTER NAME="DIG_Input" ADDR="129" VALUE="1" DATASHEET_NAME="DCB02IN"/>
+									<REGISTER NAME="DIG_Output" ADDR="12a" VALUE="45" DATASHEET_NAME="DCB02OU"/>
+								</REGISTER_LIST>
+								<INPUT_LIST/>
+							</BLOCK>
+							<BLOCK NAME="RX" TYPE="DIGITAL_COMM" LOCATION="3">
+								<REGISTER_LIST>
+									<REGISTER NAME="CONTROL_0" ADDR="2f" VALUE="0" DATASHEET_NAME="DCB03CR0"/>
+									<REGISTER NAME="DATA_0" ADDR="2c" VALUE="0" DATASHEET_NAME="DCB03DR0"/>
+									<REGISTER NAME="DATA_1" ADDR="2d" VALUE="0" DATASHEET_NAME="DCB03DR1"/>
+									<REGISTER NAME="DATA_2" ADDR="2e" VALUE="0" DATASHEET_NAME="DCB03DR2"/>
+									<REGISTER NAME="DIG_BasicFunction" ADDR="12c" VALUE="5" DATASHEET_NAME="DCB03FN"/>
+									<REGISTER NAME="DIG_Input" ADDR="12d" VALUE="c1" DATASHEET_NAME="DCB03IN"/>
+									<REGISTER NAME="DIG_Output" ADDR="12e" VALUE="40" DATASHEET_NAME="DCB03OU"/>
+								</REGISTER_LIST>
+								<INPUT_LIST/>
+							</BLOCK>
+						</BLOCK_LIST>
+						<RESOURCE_LIST/>
+					</SHAPE>
+					<PARAMETER_LIST>
+						<PARAMETER NAME="Clock" VALUE="VC3"/>
+						<PARAMETER NAME="ClockSync" VALUE="Sync to SysClk"/>
+						<PARAMETER NAME="CommandTerminator" VALUE="93"/>
+						<PARAMETER NAME="Enable_BackSpace" VALUE="Disable"/>
+						<PARAMETER NAME="IgnoreCharsBelow" VALUE="0"/>
+						<PARAMETER NAME="IntDispatchMode" VALUE="ActiveStatus"/>
+						<PARAMETER NAME="InterruptAPI" VALUE="Enable"/>
+						<PARAMETER NAME="InvertRX Input" VALUE="Normal"/>
+						<PARAMETER NAME="Param_Delimiter" VALUE="124"/>
+						<PARAMETER NAME="RX Clock Out" VALUE="None"/>
+						<PARAMETER NAME="RX Input" VALUE="Row_0_Input_0"/>
+						<PARAMETER NAME="RX Output" VALUE="None"/>
+						<PARAMETER NAME="RxBufferSize" VALUE="127"/>
+						<PARAMETER NAME="RxCmdBuffer" VALUE="Enable"/>
+						<PARAMETER NAME="TX Clock Out" VALUE="None"/>
+						<PARAMETER NAME="TX Interrupt Mode" VALUE="TXComplete"/>
+						<PARAMETER NAME="TX Output" VALUE="Row_0_Output_1"/>
+					</PARAMETER_LIST>
+				</USER_MODULE>
+				<USER_MODULE NAME="USBFS" INSTANCE_NAME="USBFS" VERSION="2.10">
+					<SHAPE SHAPE_TYPE="BLOCKLIST" COLOR_INDEX="1" NAME="USBHIDCY8C24090" LOCKED="FALSE">
+						<RESOURCE_LIST>
+							<RESOURCE NAME="EP0" TYPE="USB_EP0" DEVICE_RESOURCE_NAME="EPT0"/>
+							<RESOURCE NAME="EP1" TYPE="USB_EP1" DEVICE_RESOURCE_NAME="EPT1"/>
+							<RESOURCE NAME="EP2" TYPE="USB_EP2" DEVICE_RESOURCE_NAME="EPT2"/>
+							<RESOURCE NAME="EP3" TYPE="USB_EP3" DEVICE_RESOURCE_NAME="EPT3"/>
+							<RESOURCE NAME="EP4" TYPE="USB_EP4" DEVICE_RESOURCE_NAME="EPT4"/>
+							<RESOURCE NAME="RESET" TYPE="USB_BUS_RESET" DEVICE_RESOURCE_NAME="BusReset"/>
+							<RESOURCE NAME="SOF" TYPE="USB_SOF" DEVICE_RESOURCE_NAME="SOF"/>
+							<RESOURCE NAME="WAKEUP" TYPE="USB_WAKEUP" DEVICE_RESOURCE_NAME="WakeUp"/>
+						</RESOURCE_LIST>
+					</SHAPE>
+					<PARAMETER_LIST>
+						<PARAMETER NAME="DSHID_Class" VALUE="HID"/>
+						<PARAMETER NAME="DSHID_NumDataEndpoints" VALUE="4"/>
+						<PARAMETER NAME="DSHID_SupportsBULK" VALUE="Enabled"/>
+						<PARAMETER NAME="DSHID_SupportsINT" VALUE="Enabled"/>
+						<PARAMETER NAME="DSHID_SupportsISOC" VALUE="Enabled"/>
+						<PARAMETER NAME="DSHID_bNumDevices" VALUE="1"/>
+						<PARAMETER NAME="DSHID_bNumHIDReports" VALUE="3"/>
+						<PARAMETER NAME="DSHID_bNumInterfaces" VALUE="3"/>
+						<PARAMETER NAME="DSHID_bNumStringDescrs" VALUE="5"/>
+						<PARAMETER NAME="DSHID_bWizardRan" VALUE="1"/>
+						<PARAMETER NAME="DSHID_hASMHeaderCode" VALUE=""/>
+						<PARAMETER NAME="DSHID_hCHeaderCode" VALUE=""/>
+						<PARAMETER NAME="DSHID_hfDescriptors" VALUE="AREA  lit     (ROM,REL,CON)
+;----------------------------------------------------------------------
+; Descriptor Dispatch Tables
+;   The following tables provide the dispatching pointers and
+;   descriptor lengths necessary for the request handler to
+;   respond to USB requests.
+;----------------------------------------------------------------------
+
+;----------------------------------------------------------------------
+; Device Dispatch Table
+;   for User Module: (USBFS)
+;----------------------------------------------------------------------
+AREA  lit     (ROM,REL,CON)
+EXPORT USBFS_DEVICE_LOOKUP
+.LITERAL
+USBFS_DEVICE_LOOKUP:                             ;
+  LT_START    1                                  ; Number of devices defined for USBFS
+  LT_ENTRY    USBFS_D0_CONFIG_LOOKUP, USBFS_D0_CONFIG_DESCR_TABLE
+.ENDLITERAL
+
+;----------------------------------------------------------------------
+; Configuration Dispatch Table
+;   for Device: (USBFS_D0)
+;----------------------------------------------------------------------
+AREA  lit     (ROM,REL,CON)
+EXPORT USBFS_D0_CONFIG_LOOKUP
+.LITERAL
+USBFS_D0_CONFIG_LOOKUP:                          ;
+  LT_START    1                                  ; Number of configurations
+  LT_ENTRY    USBFS_D0_C1_EP_SETUP, USBFS_D0_C1_INTERFACE_LOOKUP
+.ENDLITERAL
+
+;----------------------------------------------------------------------
+; Interface Look Up Table
+; 
+; This look up table points to three tables.  Each of those tables is
+; indexed by the selected interface number provided by the request.
+;
+; Item 0: HID Report GET_REPORT/SET_REPORT Lookup Table
+; Item 1: HID Report Descriptor Transfer Descriptor Table
+; Item 2: HID Class Descriptor Transfer Descriptor Table
+;----------------------------------------------------------------------
+AREA  lit     (ROM,REL,CON)
+EXPORT USBFS_D0_C1_INTERFACE_LOOKUP
+.LITERAL
+USBFS_D0_C1_INTERFACE_LOOKUP:                    ;
+  DW    USBFS_D0_C1_INTERFACE_RPT_LOOKUP         ; Interface GET_REPORT/SET_REPORT Lookup Table
+  DW    USBFS_D0_C1_HID_RPT_DESCR_TABLE          ; HID Report Descriptor Transfer Descriptor Table
+  DW    USBFS_D0_C1_HID_CLASS_DESCR_TABLE        ; HID Class Descriptor Transfer Descriptor Table
+.ENDLITERAL
+
+;----------------------------------------------------------------------
+; Endpoint Setup Table
+; 
+; This table provides the data to configure the endpoint mode registers
+; for IN/OUT direction.
+;----------------------------------------------------------------------
+AREA  lit     (ROM,REL,CON)
+.LITERAL
+USBFS_D0_C1_EP_SETUP:                            ;
+  DB    USB_DIR_IN                               ; Endpoint EP1(IN)
+  DB    USB_DIR_IN                               ; Endpoint EP2(IN)
+  DB    USB_DIR_IN                               ; Endpoint EP3(IN)
+  DB    USB_DIR_UNUSED                           ; Endpoint EP4 not used for this configuration
+.ENDLITERAL
+
+;----------------------------------------------------------------------
+; Interface Lookup Table
+; 
+; This table is indexed by interface number.
+;
+;----------------------------------------------------------------------
+EXPORT USBFS_D0_C1_INTERFACE_RPT_LOOKUP
+.LITERAL
+USBFS_D0_C1_INTERFACE_RPT_LOOKUP:                ;
+  DW    USBFS_D0_C1_I0_HID_RPT_LOOKUP            
+  DW    USBFS_D0_C1_I1_HID_RPT_LOOKUP            
+  DW    USBFS_D0_C1_I2_HID_RPT_LOOKUP            
+.ENDLITERAL
+
+;----------------------------------------------------------------------
+; HID Class Descriptor transfer descriptor table
+;----------------------------------------------------------------------
+AREA  lit     (ROM,REL,CON)
+EXPORT USBFS_D0_C1_HID_CLASS_DESCR_TABLE
+.LITERAL
+USBFS_D0_C1_HID_CLASS_DESCR_TABLE:               ;
+  TD_START_TABLE 3                               ; Number of interfaces/HID Class Descriptors
+  TD_ENTRY       USB_DS_ROM, DESCR_SIZE_HID_CLASS, USBFS_D0_C1_I0_HID_DESCR_START, NULL_PTR
+  TD_ENTRY       USB_DS_ROM, DESCR_SIZE_HID_CLASS, USBFS_D0_C1_I1_HID_DESCR_START, NULL_PTR
+  TD_ENTRY       USB_DS_ROM, DESCR_SIZE_HID_CLASS, USBFS_D0_C1_I2_HID_DESCR_START, NULL_PTR
+.ENDLITERAL
+
+;----------------------------------------------------------------------
+; HID Report Descriptor transfer descriptor table
+;----------------------------------------------------------------------
+AREA  lit     (ROM,REL,CON)
+EXPORT USBFS_D0_C1_HID_RPT_DESCR_TABLE
+.LITERAL
+USBFS_D0_C1_HID_RPT_DESCR_TABLE:                 ;
+  TD_START_TABLE 3                               ; Number of interfaces/HID Report Descriptors
+  TD_ENTRY       USB_DS_ROM, USBFS_HID_REPORT_2_DESCR_SIZE, USBFS_HID_REPORT_2_DESCR_START, NULL_PTR
+  TD_ENTRY       USB_DS_ROM, USBFS_HID_REPORT_1_DESCR_SIZE, USBFS_HID_REPORT_1_DESCR_START, NULL_PTR
+  TD_ENTRY       USB_DS_ROM, USBFS_HID_REPORT_3_DESCR_SIZE, USBFS_HID_REPORT_3_DESCR_START, NULL_PTR
+.ENDLITERAL
+;----------------------------------------------------------------------
+; HID Report Lookup Table for (USBFS_D0_C1_I0)
+;----------------------------------------------------------------------
+AREA  lit     (ROM,REL,CON)
+.LITERAL
+USBFS_D0_C1_I0_HID_RPT_LOOKUP:                   
+  LT_START    4                                  ; 4 Entries
+  LT_ENTRY    USBFS_D0_C1_I0_IN_RPTS, NULL_PTR   ; IN Reports
+  LT_ENTRY    USBFS_D0_C1_I0_OUT_RPTS, NULL_PTR  ; OUT Reports
+  LT_ENTRY    USBFS_D0_C1_I0_FEATURE_RPTS, NULL_PTR; FEATURE Reports
+.ENDLITERAL
+;----------------------------------------------------------------------
+; HID IN Report Transfer Descriptor Table for ()
+;----------------------------------------------------------------------
+IF WIZARD_DEFINED_REPORT_STORAGE
+AREA  lit     (ROM,REL,CON)
+.LITERAL
+USBFS_D0_C1_I0_IN_RPTS:                          
+  TD_START_TABLE 1                               ; Only 1 Transfer Descriptor
+  TD_ENTRY       USB_DS_RAM, USBFS_HID_RPT_2_IN_RPT_SIZE, USBFS_INTERFACE_0_IN_RPT_DATA, NULL_PTR
+.ENDLITERAL
+ENDIF ; WIZARD_DEFINED_REPORT_STORAGE
+;----------------------------------------------------------------------
+; HID OUT Report Transfer Descriptor Table for ()
+;----------------------------------------------------------------------
+IF WIZARD_DEFINED_REPORT_STORAGE
+AREA  lit     (ROM,REL,CON)
+.LITERAL
+USBFS_D0_C1_I0_OUT_RPTS:                         
+  TD_START_TABLE 1                               ; Only 1 Transfer Descriptor
+  TD_ENTRY       USB_DS_RAM, USBFS_HID_RPT_2_OUT_RPT_SIZE, USBFS_INTERFACE_0_OUT_RPT_DATA, NULL_PTR
+.ENDLITERAL
+ENDIF ; WIZARD_DEFINED_REPORT_STORAGE
+;----------------------------------------------------------------------
+; HID FEATURE Report Transfer Descriptor Table for ()
+;----------------------------------------------------------------------
+IF WIZARD_DEFINED_REPORT_STORAGE
+AREA  lit     (ROM,REL,CON)
+.LITERAL
+USBFS_D0_C1_I0_FEATURE_RPTS:                     
+  TD_START_TABLE 1                               ; Only 1 Transfer Descriptor
+  TD_ENTRY       USB_DS_RAM, USBFS_HID_RPT_2_FEATURE_RPT_SIZE, USBFS_INTERFACE_0_FEATURE_RPT_DATA, NULL_PTR
+.ENDLITERAL
+ENDIF ; WIZARD_DEFINED_REPORT_STORAGE
+;----------------------------------------------------------------------
+;----------------------------------------------------------------------
+; HID Report Lookup Table for (USBFS_D0_C1_I1)
+;----------------------------------------------------------------------
+AREA  lit     (ROM,REL,CON)
+.LITERAL
+USBFS_D0_C1_I1_HID_RPT_LOOKUP:                   
+  LT_START    4                                  ; 4 Entries
+  LT_ENTRY    USBFS_D0_C1_I1_IN_RPTS, NULL_PTR   ; IN Reports
+  LT_ENTRY    USBFS_D0_C1_I1_OUT_RPTS, NULL_PTR  ; OUT Reports
+  LT_ENTRY    USBFS_D0_C1_I1_FEATURE_RPTS, NULL_PTR; FEATURE Reports
+.ENDLITERAL
+;----------------------------------------------------------------------
+; HID IN Report Transfer Descriptor Table for ()
+;----------------------------------------------------------------------
+IF WIZARD_DEFINED_REPORT_STORAGE
+AREA  lit     (ROM,REL,CON)
+.LITERAL
+USBFS_D0_C1_I1_IN_RPTS:                          
+  TD_START_TABLE 1                               ; Only 1 Transfer Descriptor
+  TD_ENTRY       USB_DS_RAM, USBFS_HID_RPT_1_IN_RPT_SIZE, USBFS_INTERFACE_1_IN_RPT_DATA, NULL_PTR
+.ENDLITERAL
+ENDIF ; WIZARD_DEFINED_REPORT_STORAGE
+;----------------------------------------------------------------------
+; HID OUT Report Transfer Descriptor Table for ()
+;----------------------------------------------------------------------
+IF WIZARD_DEFINED_REPORT_STORAGE
+AREA  lit     (ROM,REL,CON)
+.LITERAL
+USBFS_D0_C1_I1_OUT_RPTS:                         
+  TD_START_TABLE 1                               ; Only 1 Transfer Descriptor
+  TD_ENTRY       USB_DS_RAM, USBFS_HID_RPT_1_OUT_RPT_SIZE, USBFS_INTERFACE_1_OUT_RPT_DATA, NULL_PTR
+.ENDLITERAL
+ENDIF ; WIZARD_DEFINED_REPORT_STORAGE
+;----------------------------------------------------------------------
+; HID FEATURE Report Transfer Descriptor Table for ()
+;----------------------------------------------------------------------
+IF WIZARD_DEFINED_REPORT_STORAGE
+AREA  lit     (ROM,REL,CON)
+.LITERAL
+USBFS_D0_C1_I1_FEATURE_RPTS:                     
+  TD_START_TABLE 1                               ; Only 1 Transfer Descriptor
+  TD_ENTRY       USB_DS_RAM, USBFS_HID_RPT_1_FEATURE_RPT_SIZE, USBFS_INTERFACE_1_FEATURE_RPT_DATA, NULL_PTR
+.ENDLITERAL
+ENDIF ; WIZARD_DEFINED_REPORT_STORAGE
+;----------------------------------------------------------------------
+;----------------------------------------------------------------------
+; HID Report Lookup Table for (USBFS_D0_C1_I2)
+;----------------------------------------------------------------------
+AREA  lit     (ROM,REL,CON)
+.LITERAL
+USBFS_D0_C1_I2_HID_RPT_LOOKUP:                   
+  LT_START    4                                  ; 4 Entries
+  LT_ENTRY    USBFS_D0_C1_I2_IN_RPTS, NULL_PTR   ; IN Reports
+  LT_ENTRY    USBFS_D0_C1_I2_OUT_RPTS, NULL_PTR  ; OUT Reports
+  LT_ENTRY    USBFS_D0_C1_I2_FEATURE_RPTS, NULL_PTR; FEATURE Reports
+.ENDLITERAL
+;----------------------------------------------------------------------
+; HID IN Report Transfer Descriptor Table for ()
+;----------------------------------------------------------------------
+IF WIZARD_DEFINED_REPORT_STORAGE
+AREA  lit     (ROM,REL,CON)
+.LITERAL
+USBFS_D0_C1_I2_IN_RPTS:                          
+  TD_START_TABLE 1                               ; Only 1 Transfer Descriptor
+  TD_ENTRY       USB_DS_RAM, USBFS_HID_RPT_3_IN_RPT_SIZE, USBFS_INTERFACE_2_IN_RPT_DATA, NULL_PTR
+.ENDLITERAL
+ENDIF ; WIZARD_DEFINED_REPORT_STORAGE
+;----------------------------------------------------------------------
+; HID OUT Report Transfer Descriptor Table for ()
+;----------------------------------------------------------------------
+IF WIZARD_DEFINED_REPORT_STORAGE
+AREA  lit     (ROM,REL,CON)
+.LITERAL
+USBFS_D0_C1_I2_OUT_RPTS:                         
+  TD_START_TABLE 1                               ; Only 1 Transfer Descriptor
+  TD_ENTRY       USB_DS_RAM, USBFS_HID_RPT_3_OUT_RPT_SIZE, USBFS_INTERFACE_2_OUT_RPT_DATA, NULL_PTR
+.ENDLITERAL
+ENDIF ; WIZARD_DEFINED_REPORT_STORAGE
+;----------------------------------------------------------------------
+; HID FEATURE Report Transfer Descriptor Table for ()
+;----------------------------------------------------------------------
+IF WIZARD_DEFINED_REPORT_STORAGE
+AREA  lit     (ROM,REL,CON)
+.LITERAL
+USBFS_D0_C1_I2_FEATURE_RPTS:                     
+  TD_START_TABLE 1                               ; Only 1 Transfer Descriptor
+  TD_ENTRY       USB_DS_RAM, USBFS_HID_RPT_3_FEATURE_RPT_SIZE, USBFS_INTERFACE_2_FEATURE_RPT_DATA, NULL_PTR
+.ENDLITERAL
+ENDIF ; WIZARD_DEFINED_REPORT_STORAGE
+;----------------------------------------------------------------------
+
+;----------------------------------------------------------------------
+; Configuration Descriptor Table
+;  for (USBFS_D0)
+;
+;	This table provides transfer descriptors for each USB Configuration
+; Descriptor
+;----------------------------------------------------------------------
+AREA  lit     (ROM,REL,CON)
+.LITERAL
+USBFS_D0_CONFIG_DESCR_TABLE:                     ;
+  TD_START_TABLE 1                               ; Number of configurations
+  TD_ENTRY       USB_DS_ROM, USBFS_D0_C1_DESCR_SIZE, USBFS_D0_C1_DESCR_START, NULL_PTR
+.ENDLITERAL
+
+;----------------------------------------------------------------------
+; Device Descriptor Table
+;
+;	This table provides transfer descriptors for each USB Device Descriptor
+;----------------------------------------------------------------------
+AREA  lit     (ROM,REL,CON)
+EXPORT USBFS_DEVICE_DESCR_TABLE
+.LITERAL
+USBFS_DEVICE_DESCR_TABLE:                        
+  TD_START_TABLE 1                               ; Number of devices
+  TD_ENTRY       USB_DS_ROM, USBFS_D0_DESCR_SIZE, USBFS_D0_DESCR_START, NULL_PTR
+.ENDLITERAL
+;----------------------------------------------------------------------
+;----------------------------------------------------------------------
+; Interface 0 RAM Allocation (Reused across configurations)
+;----------------------------------------------------------------------
+IF WIZARD_DEFINED_REPORT_STORAGE
+AREA  InterruptRAM     (RAM,REL,CON)
+;----------------------------------------------------------------------
+; RAM allocation for IN Reports.
+;----------------------------------------------------------------------
+EXPORT _USBFS_INTERFACE_0_IN_RPT_DATA
+EXPORT USBFS_INTERFACE_0_IN_RPT_DATA
+_USBFS_INTERFACE_0_IN_RPT_DATA:                  
+USBFS_INTERFACE_0_IN_RPT_DATA:                   
+  BLK  8                                         ;
+;----------------------------------------------------------------------
+; RAM allocation for OUT Reports.
+;----------------------------------------------------------------------
+EXPORT _USBFS_INTERFACE_0_OUT_RPT_DATA
+EXPORT USBFS_INTERFACE_0_OUT_RPT_DATA
+_USBFS_INTERFACE_0_OUT_RPT_DATA:                 
+USBFS_INTERFACE_0_OUT_RPT_DATA:                  
+  BLK  8                                         ;
+;----------------------------------------------------------------------
+; RAM allocation for FEATURE Reports.
+;----------------------------------------------------------------------
+EXPORT _USBFS_INTERFACE_0_FEATURE_RPT_DATA
+EXPORT USBFS_INTERFACE_0_FEATURE_RPT_DATA
+_USBFS_INTERFACE_0_FEATURE_RPT_DATA:             
+USBFS_INTERFACE_0_FEATURE_RPT_DATA:              
+  BLK  8                                         ;
+;----------------------------------------------------------------------
+ENDIF  ; WIZARD_DEFINED_REPORT_STORAGE
+;----------------------------------------------------------------------
+; Interface 1 RAM Allocation (Reused across configurations)
+;----------------------------------------------------------------------
+IF WIZARD_DEFINED_REPORT_STORAGE
+AREA  InterruptRAM     (RAM,REL,CON)
+;----------------------------------------------------------------------
+; RAM allocation for IN Reports.
+;----------------------------------------------------------------------
+EXPORT _USBFS_INTERFACE_1_IN_RPT_DATA
+EXPORT USBFS_INTERFACE_1_IN_RPT_DATA
+_USBFS_INTERFACE_1_IN_RPT_DATA:                  
+USBFS_INTERFACE_1_IN_RPT_DATA:                   
+  BLK  8                                         ;
+;----------------------------------------------------------------------
+; RAM allocation for OUT Reports.
+;----------------------------------------------------------------------
+EXPORT _USBFS_INTERFACE_1_OUT_RPT_DATA
+EXPORT USBFS_INTERFACE_1_OUT_RPT_DATA
+_USBFS_INTERFACE_1_OUT_RPT_DATA:                 
+USBFS_INTERFACE_1_OUT_RPT_DATA:                  
+  BLK  8                                         ;
+;----------------------------------------------------------------------
+; RAM allocation for FEATURE Reports.
+;----------------------------------------------------------------------
+EXPORT _USBFS_INTERFACE_1_FEATURE_RPT_DATA
+EXPORT USBFS_INTERFACE_1_FEATURE_RPT_DATA
+_USBFS_INTERFACE_1_FEATURE_RPT_DATA:             
+USBFS_INTERFACE_1_FEATURE_RPT_DATA:              
+  BLK  8                                         ;
+;----------------------------------------------------------------------
+ENDIF  ; WIZARD_DEFINED_REPORT_STORAGE
+;----------------------------------------------------------------------
+; Interface 2 RAM Allocation (Reused across configurations)
+;----------------------------------------------------------------------
+IF WIZARD_DEFINED_REPORT_STORAGE
+AREA  InterruptRAM     (RAM,REL,CON)
+;----------------------------------------------------------------------
+; RAM allocation for IN Reports.
+;----------------------------------------------------------------------
+EXPORT _USBFS_INTERFACE_2_IN_RPT_DATA
+EXPORT USBFS_INTERFACE_2_IN_RPT_DATA
+_USBFS_INTERFACE_2_IN_RPT_DATA:                  
+USBFS_INTERFACE_2_IN_RPT_DATA:                   
+  BLK  8                                         ;
+;----------------------------------------------------------------------
+; RAM allocation for OUT Reports.
+;----------------------------------------------------------------------
+EXPORT _USBFS_INTERFACE_2_OUT_RPT_DATA
+EXPORT USBFS_INTERFACE_2_OUT_RPT_DATA
+_USBFS_INTERFACE_2_OUT_RPT_DATA:                 
+USBFS_INTERFACE_2_OUT_RPT_DATA:                  
+  BLK  8                                         ;
+;----------------------------------------------------------------------
+; RAM allocation for FEATURE Reports.
+;----------------------------------------------------------------------
+EXPORT _USBFS_INTERFACE_2_FEATURE_RPT_DATA
+EXPORT USBFS_INTERFACE_2_FEATURE_RPT_DATA
+_USBFS_INTERFACE_2_FEATURE_RPT_DATA:             
+USBFS_INTERFACE_2_FEATURE_RPT_DATA:              
+  BLK  8                                         ;
+;----------------------------------------------------------------------
+ENDIF  ; WIZARD_DEFINED_REPORT_STORAGE
+;----------------------------------------------------------------------
+; Device Descriptor (USBFS_D0)
+; This marks the beginning of the Device Descriptor.  This descriptor
+; concatenates all of the descriptors in the following format:
+;	Device Descriptor
+;		Configuration Descriptor (1)
+;	  	Interface 1 Descriptor
+;				HID Descriptor 1
+;			  	Endpoint Descriptor(s)
+;			Interface 2 Descriptor
+;				HID Descriptor 2
+;					Endpoint Descriptor(s)
+;		Configuration Descriptor (2)
+;			Interface/HID/Endpoint...
+;----------------------------------------------------------------------
+AREA  lit     (ROM,REL,CON)
+.LITERAL
+USBFS_D0_DESCR_START:                            ;
+  DB    18                                       ; Device Descriptor Length (18)
+  DB    1                                        ; bDescriptorType: DEVICE
+  DWL   0200H                                    ; bcdUSB (ver 2.0)
+  DB    0                                        ; bDeviceClass
+  DB    0                                        ; bDeviceSubClass 
+  DB    0                                        ; bDeviceProtocol 
+  DB    8                                        ; bMaxPacketSize0
+  DWL   4B4H                                     ; idVendor
+  DWL   8052H                                    ; idProduct
+  DWL   0000H                                    ; bcdDevice
+  DB    STR_HASH_2                               ; iManufacturer
+  DB    STR_HASH_3                               ; iProduct
+  DB    STR_HASH_0                               ; iSerialNumber
+  DB    1                                        ; bNumConfigurations
+USBFS_D0_DESCR_END:                              ;
+USBFS_D0_DESCR_SIZE:  EQU    USBFS_D0_DESCR_END - USBFS_D0_DESCR_START
+
+;----------------------------------------------------------------------
+; Configuration Descriptor (USBFS_D0_C1)
+; This marks the beginning of the Configuration Descriptor.  This descriptor
+; concatenates all of the descriptors in the following format:
+; Configuration Descriptor
+;	Interface 1 Descriptor
+;		HID Descriptor 1
+;			Endpoint Descriptor(s)
+;	Interface 2 Descriptor
+;		HID Descriptor 2
+;			Endpoint Descriptor(s)
+;----------------------------------------------------------------------
+USBFS_D0_C1_DESCR_START:                         ;
+  DB    9                                        ; Configuration Descriptor Length (9)
+  DB    2                                        ; bDescriptorType: CONFIGURATION
+  DWL   USBFS_D0_C1_DESCR_SIZE                   ; wTotalLength
+  DB    3                                        ; bNumInterfaces
+  DB    1                                        ; bConfigurationValue
+  DB    STR_HASH_0                               ; iConfiguration
+  DB    80H | (0 &lt;&lt; 6) | (1 &lt;&lt; 5)                ; bmAttributes &gt;
+  DB    50                                       ; bMaxPower
+;----------------------------------------------------------------------
+; Interface Descriptor (USBFS_D0_C1_I0)
+;----------------------------------------------------------------------
+  DB    9                                        ; Interface Descriptor Length (9)
+  DB    4                                        ; bDescriptorType: INTERFACE
+  DB    0                                        ; bInterfaceNumber (zero based)
+  DB    0                                        ; bAlternateSetting
+  DB    1                                        ; bNumEndpoints
+  DB    3                                        ; bInterfaceClass
+  DB    0                                        ; bInterfaceSubClass
+  DB    0                                        ; bInterfaceProtocol
+  DB    STR_HASH_4                               ; iInterface
+;----------------------------------------------------------------------
+; HID Class Descriptor (USBFS_D0_C1_I0)
+;----------------------------------------------------------------------
+USBFS_D0_C1_I0_HID_DESCR_START:                  
+  DB    9                                        ; bLength--HID Class Descriptor Length (9)
+  DB    0x21                                     ; bDescriptorType: HID Class
+  DWL   0x0111                                   ; bcdHID
+  DB    0                                        ; bCountryCode
+  DB    1                                        ; bNumDescriptors
+  DB    34                                       ; bDescriptorType
+  DWL   USBFS_HID_REPORT_2_DESCR_SIZE            ; wDescriptorLength
+;----------------------------------------------------------------------
+; Endpoint Descriptor (USBFS_D0_C1_I0_E0)
+;----------------------------------------------------------------------
+  DB    7                                        ; Endpoint Descriptor Length (7)
+  DB    5                                        ; bDescriptorType: ENDPOINT
+  DB    (EP1 | USB_DIR_IN)                       ; bEndpointAddress
+  DB    3                                        ; bmAttributes
+  DWL   8                                        ; wMaxPacketSize
+  DB    10                                       ; bInterval
+;----------------------------------------------------------------------
+; Interface Descriptor (USBFS_D0_C1_I1)
+;----------------------------------------------------------------------
+  DB    9                                        ; Interface Descriptor Length (9)
+  DB    4                                        ; bDescriptorType: INTERFACE
+  DB    1                                        ; bInterfaceNumber (zero based)
+  DB    0                                        ; bAlternateSetting
+  DB    1                                        ; bNumEndpoints
+  DB    3                                        ; bInterfaceClass
+  DB    0                                        ; bInterfaceSubClass
+  DB    0                                        ; bInterfaceProtocol
+  DB    STR_HASH_5                               ; iInterface
+;----------------------------------------------------------------------
+; HID Class Descriptor (USBFS_D0_C1_I1)
+;----------------------------------------------------------------------
+USBFS_D0_C1_I1_HID_DESCR_START:                  
+  DB    9                                        ; bLength--HID Class Descriptor Length (9)
+  DB    0x21                                     ; bDescriptorType: HID Class
+  DWL   0x0111                                   ; bcdHID
+  DB    0                                        ; bCountryCode
+  DB    1                                        ; bNumDescriptors
+  DB    34                                       ; bDescriptorType
+  DWL   USBFS_HID_REPORT_1_DESCR_SIZE            ; wDescriptorLength
+;----------------------------------------------------------------------
+; Endpoint Descriptor (USBFS_D0_C1_I1_E0)
+;----------------------------------------------------------------------
+  DB    7                                        ; Endpoint Descriptor Length (7)
+  DB    5                                        ; bDescriptorType: ENDPOINT
+  DB    (EP2 | USB_DIR_IN)                       ; bEndpointAddress
+  DB    3                                        ; bmAttributes
+  DWL   8                                        ; wMaxPacketSize
+  DB    10                                       ; bInterval
+;----------------------------------------------------------------------
+; Interface Descriptor (USBFS_D0_C1_I2)
+;----------------------------------------------------------------------
+  DB    9                                        ; Interface Descriptor Length (9)
+  DB    4                                        ; bDescriptorType: INTERFACE
+  DB    2                                        ; bInterfaceNumber (zero based)
+  DB    0                                        ; bAlternateSetting
+  DB    1                                        ; bNumEndpoints
+  DB    3                                        ; bInterfaceClass
+  DB    0                                        ; bInterfaceSubClass
+  DB    0                                        ; bInterfaceProtocol
+  DB    STR_HASH_6                               ; iInterface
+;----------------------------------------------------------------------
+; HID Class Descriptor (USBFS_D0_C1_I2)
+;----------------------------------------------------------------------
+USBFS_D0_C1_I2_HID_DESCR_START:                  
+  DB    9                                        ; bLength--HID Class Descriptor Length (9)
+  DB    0x21                                     ; bDescriptorType: HID Class
+  DWL   0x0111                                   ; bcdHID
+  DB    0                                        ; bCountryCode
+  DB    1                                        ; bNumDescriptors
+  DB    34                                       ; bDescriptorType
+  DWL   USBFS_HID_REPORT_3_DESCR_SIZE            ; wDescriptorLength
+;----------------------------------------------------------------------
+; Endpoint Descriptor (USBFS_D0_C1_I2_E0)
+;----------------------------------------------------------------------
+  DB    7                                        ; Endpoint Descriptor Length (7)
+  DB    5                                        ; bDescriptorType: ENDPOINT
+  DB    (EP3 | USB_DIR_IN)                       ; bEndpointAddress
+  DB    3                                        ; bmAttributes
+  DWL   8                                        ; wMaxPacketSize
+  DB    10                                       ; bInterval
+;----------------------------------------------------------------------
+USBFS_D0_C1_DESCR_END:
+USBFS_D0_C1_DESCR_SIZE:	EQU	(USBFS_D0_C1_DESCR_END - USBFS_D0_C1_DESCR_START)
+.ENDLITERAL
+;----------------------------------------------------------------------
+; HID Class Report Descriptors
+;
+; This section contains the HID Class Report Descriptors generated
+; by the USB User Module Descriptor Generator
+;
+;----------------------------------------------------------------------
+; HID Report Descriptor (HID_RPT_1}
+;----------------------------------------------------------------------
+AREA  lit     (ROM,REL,CON)
+.LITERAL
+USBFS_HID_REPORT_1_DESCR_START:                  ;
+    DB     05H, 01H                              ; Usage Page
+    DB     09H, 02H                              ; Usage
+    DB     A1H, 01H                              ; Collection
+    DB     09H, 01H                              ; Usage
+    DB     A1H, 00H                              ; Collection
+    DB     05H, 09H                              ; Usage Page
+    DB     19H, 01H                              ; Usage Minimum
+    DB     29H, 03H                              ; Usage Maximum
+    DB     15H, 00H                              ; Logical Minimum
+    DB     25H, 01H                              ; Logical Maximum
+    DB     95H, 03H                              ; Report Count
+    DB     75H, 01H                              ; Report Size
+    DB     81H, 02H                              ; Input
+    DB     95H, 01H                              ; Report Count
+    DB     75H, 05H                              ; Report Size
+    DB     81H, 01H                              ; Input
+    DB     05H, 01H                              ; Usage Page
+    DB     09H, 30H                              ; Usage
+    DB     09H, 31H                              ; Usage
+    DB     16H, 80H, FFH                         ; Logical Minimum
+    DB     26H, 80H, 00H                         ; Logical Maximum
+    DB     75H, 08H                              ; Report Size
+    DB     95H, 02H                              ; Report Count
+    DB     81H, 06H                              ; Input
+    DB     C0H                                   ; End Collection
+    DB     C0H                                   ; End Collection
+USBFS_HID_REPORT_1_DESCR_END:                    ;
+USBFS_HID_REPORT_1_DESCR_SIZE:  EQU    (USBFS_HID_REPORT_1_DESCR_END - USBFS_HID_REPORT_1_DESCR_START)
+.ENDLITERAL
+;----------------------------------------------------------------------
+; End HID Report Descriptor (HID_RPT_1}
+;----------------------------------------------------------------------
+; HID Report Descriptor (HID_RPT_2}
+;----------------------------------------------------------------------
+AREA  lit     (ROM,REL,CON)
+.LITERAL
+USBFS_HID_REPORT_2_DESCR_START:                  ;
+    DB     05H, 01H                              ; Usage Page
+    DB     09H, 06H                              ; Usage
+    DB     A1H, 01H                              ; Collection
+    DB     05H, 07H                              ; Usage Page
+    DB     19H, E0H                              ; Usage Minimum
+    DB     29H, E7H                              ; Usage Maximum
+    DB     15H, 00H                              ; Logical Minimum
+    DB     25H, 01H                              ; Logical Maximum
+    DB     75H, 01H                              ; Report Size
+    DB     95H, 08H                              ; Report Count
+    DB     81H, 02H                              ; Input
+    DB     95H, 01H                              ; Report Count
+    DB     75H, 08H                              ; Report Size
+    DB     81H, 01H                              ; Input
+    DB     95H, 05H                              ; Report Count
+    DB     75H, 01H                              ; Report Size
+    DB     05H, 08H                              ; Usage Page
+    DB     19H, 01H                              ; Usage Minimum
+    DB     29H, 05H                              ; Usage Maximum
+    DB     B1H, 02H                              ; Feature
+    DB     95H, 01H                              ; Report Count
+    DB     75H, 03H                              ; Report Size
+    DB     B1H, 01H                              ; Feature
+    DB     95H, 06H                              ; Report Count
+    DB     75H, 08H                              ; Report Size
+    DB     15H, 00H                              ; Logical Minimum
+    DB     25H, 65H                              ; Logical Maximum
+    DB     05H, 07H                              ; Usage Page
+    DB     19H, 00H                              ; Usage Minimum
+    DB     29H, 65H                              ; Usage Maximum
+    DB     81H, 00H                              ; Input
+    DB     C0H                                   ; End Collection
+USBFS_HID_REPORT_2_DESCR_END:                    ;
+USBFS_HID_REPORT_2_DESCR_SIZE:  EQU    (USBFS_HID_REPORT_2_DESCR_END - USBFS_HID_REPORT_2_DESCR_START)
+.ENDLITERAL
+;----------------------------------------------------------------------
+; End HID Report Descriptor (HID_RPT_2}
+;----------------------------------------------------------------------
+; HID Report Descriptor (HID_RPT_3}
+;----------------------------------------------------------------------
+AREA  lit     (ROM,REL,CON)
+.LITERAL
+USBFS_HID_REPORT_3_DESCR_START:                  ;
+    DB     05H, 01H                              ; Usage Page
+    DB     09H, 05H                              ; Usage
+    DB     A1H, 01H                              ; Collection
+    DB     09H, 01H                              ; Usage
+    DB     A1H, 00H                              ; Collection
+    DB     09H, 30H                              ; Usage
+    DB     09H, 31H                              ; Usage
+    DB     15H, 00H                              ; Logical Minimum
+    DB     26H, FFH, 00H                         ; Logical Maximum
+    DB     75H, 08H                              ; Report Size
+    DB     95H, 02H                              ; Report Count
+    DB     81H, 02H                              ; Input
+    DB     C0H                                   ; End Collection
+    DB     05H, 09H                              ; Usage Page
+    DB     19H, 01H                              ; Usage Minimum
+    DB     29H, 05H                              ; Usage Maximum
+    DB     15H, 00H                              ; Logical Minimum
+    DB     25H, 01H                              ; Logical Maximum
+    DB     75H, 01H                              ; Report Size
+    DB     95H, 05H                              ; Report Count
+    DB     81H, 02H                              ; Input
+    DB     95H, 01H                              ; Report Count
+    DB     75H, 03H                              ; Report Size
+    DB     81H, 03H                              ; Input
+    DB     C0H                                   ; End Collection
+USBFS_HID_REPORT_3_DESCR_END:                    ;
+USBFS_HID_REPORT_3_DESCR_SIZE:  EQU    (USBFS_HID_REPORT_3_DESCR_END - USBFS_HID_REPORT_3_DESCR_START)
+.ENDLITERAL
+;----------------------------------------------------------------------
+; End HID Report Descriptor (HID_RPT_3}
+;----------------------------------------------------------------------
+; HID Report Sizes (HID_RPT_1}
+;----------------------------------------------------------------------
+USBFS_HID_RPT_1_IN_RPT_SIZE:  EQU    8           ; TODO: Optimize report size
+;----------------------------------------------------------------------
+USBFS_HID_RPT_1_OUT_RPT_SIZE:  EQU    0          ; No OUT Reports are defined.  Size set to 0.
+;----------------------------------------------------------------------
+USBFS_HID_RPT_1_FEATURE_RPT_SIZE:  EQU    8      ; TODO: Optimize report size
+;----------------------------------------------------------------------
+; HID Report Sizes (HID_RPT_2}
+;----------------------------------------------------------------------
+USBFS_HID_RPT_2_IN_RPT_SIZE:  EQU    8           ; TODO: Optimize report size
+;----------------------------------------------------------------------
+USBFS_HID_RPT_2_OUT_RPT_SIZE:  EQU    0          ; No OUT Reports are defined.  Size set to 0.
+;----------------------------------------------------------------------
+USBFS_HID_RPT_2_FEATURE_RPT_SIZE:  EQU    8      ; TODO: Optimize report size
+;----------------------------------------------------------------------
+; HID Report Sizes (HID_RPT_3}
+;----------------------------------------------------------------------
+USBFS_HID_RPT_3_IN_RPT_SIZE:  EQU    8           ; TODO: Optimize report size
+;----------------------------------------------------------------------
+USBFS_HID_RPT_3_OUT_RPT_SIZE:  EQU    0          ; No OUT Reports are defined.  Size set to 0.
+;----------------------------------------------------------------------
+USBFS_HID_RPT_3_FEATURE_RPT_SIZE:  EQU    8      ; TODO: Optimize report size
+;----------------------------------------------------------------------
+;----------------------------------------------------------------------
+; USB String Descriptors
+;
+; This section contains the USB String Descriptors generated
+; by the USB User Module Descriptor Generator
+;
+; Note:  The string labels are internally generated by the
+; descriptor generator
+;
+; Descriptors that reference string descriptors, use a hashed
+; symbol that is set in an EQU directive with each string
+; descriptor.
+;----------------------------------------------------------------------
+STR_HASH_0:  EQU    0                            ; String Hash for the null string
+AREA  lit     (ROM,REL,CON)
+EXPORT USBFS_StringTable
+.LITERAL
+USBFS_StringTable:                               
+  TD_START_TABLE 6                               ; Number of USB Strings
+  TD_ENTRY       USB_DS_ROM, LANGID_DESCR_SIZE, LANGID_DESCR_START, NULL_PTR
+  TD_ENTRY       USB_DS_ROM, STRING_2_DESCR_SIZE, STRING_2_DESCR_START, NULL_PTR
+  TD_ENTRY       USB_DS_ROM, STRING_3_DESCR_SIZE, STRING_3_DESCR_START, NULL_PTR
+  TD_ENTRY       USB_DS_ROM, STRING_4_DESCR_SIZE, STRING_4_DESCR_START, NULL_PTR
+  TD_ENTRY       USB_DS_ROM, STRING_5_DESCR_SIZE, STRING_5_DESCR_START, NULL_PTR
+  TD_ENTRY       USB_DS_ROM, STRING_6_DESCR_SIZE, STRING_6_DESCR_START, NULL_PTR
+;----------------------------------------------------------------------
+; LANGID Descriptor
+;----------------------------------------------------------------------
+LANGID_DESCR_START:                              
+  DB    ((1 * 2) + 2)                            ; bLength (N+2)
+  DB    3                                        ; bDescriptorType (STRING)
+  DWL   1033                                     ;
+LANGID_DESCR_END:                                
+LANGID_DESCR_SIZE:  EQU    (LANGID_DESCR_END - LANGID_DESCR_START)
+;----------------------------------------------------------------------
+; String Desciptor
+;----------------------------------------------------------------------
+STR_HASH_2:  EQU    1                            ; String Hash
+STRING_2_DESCR_START:                            
+  DB    STRING_2_DESCR_SIZE                      ; bLength
+  DB    3                                        ; bDescriptorType (STRING)
+  DSU   &quot;Julian Made It&quot;                         ;
+STRING_2_DESCR_END:                              
+STRING_2_DESCR_SIZE:  EQU    (STRING_2_DESCR_END - STRING_2_DESCR_START)
+;----------------------------------------------------------------------
+; String Desciptor
+;----------------------------------------------------------------------
+STR_HASH_3:  EQU    2                            ; String Hash
+STRING_3_DESCR_START:                            
+  DB    STRING_3_DESCR_SIZE                      ; bLength
+  DB    3                                        ; bDescriptorType (STRING)
+  DSU   &quot;My Teletouch&quot;                           ;
+STRING_3_DESCR_END:                              
+STRING_3_DESCR_SIZE:  EQU    (STRING_3_DESCR_END - STRING_3_DESCR_START)
+;----------------------------------------------------------------------
+; String Desciptor
+;----------------------------------------------------------------------
+STR_HASH_4:  EQU    3                            ; String Hash
+STRING_4_DESCR_START:                            
+  DB    STRING_4_DESCR_SIZE                      ; bLength
+  DB    3                                        ; bDescriptorType (STRING)
+  DSU   &quot;JMI Keyboard&quot;                           ;
+STRING_4_DESCR_END:                              
+STRING_4_DESCR_SIZE:  EQU    (STRING_4_DESCR_END - STRING_4_DESCR_START)
+;----------------------------------------------------------------------
+; String Desciptor
+;----------------------------------------------------------------------
+STR_HASH_5:  EQU    4                            ; String Hash
+STRING_5_DESCR_START:                            
+  DB    STRING_5_DESCR_SIZE                      ; bLength
+  DB    3                                        ; bDescriptorType (STRING)
+  DSU   &quot;JMI Mouse&quot;                              ;
+STRING_5_DESCR_END:                              
+STRING_5_DESCR_SIZE:  EQU    (STRING_5_DESCR_END - STRING_5_DESCR_START)
+;----------------------------------------------------------------------
+; String Desciptor
+;----------------------------------------------------------------------
+STR_HASH_6:  EQU    5                            ; String Hash
+STRING_6_DESCR_START:                            
+  DB    STRING_6_DESCR_SIZE                      ; bLength
+  DB    3                                        ; bDescriptorType (STRING)
+  DSU   &quot;JMI Gamepad&quot;                            ;
+STRING_6_DESCR_END:                              
+STRING_6_DESCR_SIZE:  EQU    (STRING_6_DESCR_END - STRING_6_DESCR_START)
+.ENDLITERAL
+"/>
+						<PARAMETER NAME="DSHID_xmlDESCR" VALUE="&lt;USB_ROOT NEXT_HASH=&quot;1&quot; INSTANCE_NAME=&quot;USBFS&quot;&gt;&lt;USB_DEVICE NAME=&quot;D0&quot; NUMBER=&quot;0&quot; NEXT_HASH=&quot;1&quot; CLASS=&quot;0&quot; SUBCLASS=&quot;0&quot; PROTOCOL=&quot;0&quot; VENDOR_STRING=&quot;2&quot; PRODUCT_STRING=&quot;3&quot; SN_STRING=&quot;0&quot; MAX_PACKET_SIZE=&quot;8&quot; VENDOR_ID=&quot;4B4&quot; PRODUCT_ID=&quot;8052&quot; DEVICE_RELEASE=&quot;0000&quot;&gt;&lt;USB_CONFIGURATION NAME=&quot;C1&quot; NUMBER=&quot;1&quot; NEXT_HASH=&quot;3&quot; CONFIGURATION_STRING=&quot;0&quot; MAX_POWER=&quot;100&quot; SELF_POWERED=&quot;0&quot; REMOTE_WAKEUP=&quot;1&quot; STRING=&quot;0&quot;&gt;&lt;USB_INTERFACE NAME=&quot;I0&quot; NUMBER=&quot;0&quot; NEXT_HASH=&quot;0&quot; INTERFACE_STRING=&quot;4&quot; CLASS=&quot;3&quot; SUBCLASS=&quot;0&quot; PROTOCOL=&quot;0&quot; STRING=&quot;0&quot;&gt;&lt;USB_HID NUMBER=&quot;DEFAULT&quot; HID_DESCR_TYPE=&quot;34&quot; COUNTRY_CODE=&quot;0&quot; HID_REPORT=&quot;2&quot;/&gt;&lt;USB_ENDPOINT NAME=&quot;E0&quot; NUMBER=&quot;0&quot; ADDRESS=&quot;EP1&quot; MAX_PACKET_SIZE=&quot;8&quot; INTERVAL=&quot;10&quot; DIRECTION=&quot;IN&quot; TRANSFER_TYPE=&quot;3&quot; SYNC_TYPE=&quot;0&quot; USAGE_TYPE=&quot;0&quot;/&gt;&lt;/USB_INTERFACE&gt;&lt;USB_INTERFACE NAME=&quot;I1&quot; NUMBER=&quot;1&quot; NEXT_HASH=&quot;0&quot; INTERFACE_STRING=&quot;5&quot; CLASS=&quot;3&quot; SUBCLASS=&quot;0&quot; PROTOCOL=&quot;0&quot; STRING=&quot;0&quot;&gt;&lt;USB_HID NUMBER=&quot;DEFAULT&quot; HID_DESCR_TYPE=&quot;34&quot; COUNTRY_CODE=&quot;0&quot; HID_REPORT=&quot;1&quot;/&gt;&lt;USB_ENDPOINT NAME=&quot;E0&quot; NUMBER=&quot;0&quot; ADDRESS=&quot;EP2&quot; MAX_PACKET_SIZE=&quot;8&quot; INTERVAL=&quot;10&quot; DIRECTION=&quot;IN&quot; TRANSFER_TYPE=&quot;3&quot; SYNC_TYPE=&quot;0&quot; USAGE_TYPE=&quot;0&quot;/&gt;&lt;/USB_INTERFACE&gt;&lt;USB_INTERFACE NAME=&quot;I2&quot; NUMBER=&quot;2&quot; NEXT_HASH=&quot;0&quot; INTERFACE_STRING=&quot;6&quot; CLASS=&quot;3&quot; SUBCLASS=&quot;0&quot; PROTOCOL=&quot;0&quot; STRING=&quot;0&quot;&gt;&lt;USB_HID NUMBER=&quot;DEFAULT&quot; HID_DESCR_TYPE=&quot;34&quot; COUNTRY_CODE=&quot;0&quot; HID_REPORT=&quot;3&quot;/&gt;&lt;USB_ENDPOINT NAME=&quot;E0&quot; NUMBER=&quot;0&quot; ADDRESS=&quot;EP3&quot; MAX_PACKET_SIZE=&quot;8&quot; INTERVAL=&quot;10&quot; DIRECTION=&quot;IN&quot; TRANSFER_TYPE=&quot;3&quot; SYNC_TYPE=&quot;0&quot; USAGE_TYPE=&quot;0&quot;/&gt;&lt;/USB_INTERFACE&gt;&lt;/USB_CONFIGURATION&gt;&lt;/USB_DEVICE&gt;&lt;/USB_ROOT&gt;
+"/>
+						<PARAMETER NAME="DSHID_xmlHID" VALUE="&lt;HID_REPORT_ROOT NAME=&quot;USBFS&quot; NEXT_HASH=&quot;3&quot;&gt;&lt;HID_REPORT NAME=&quot;3 Button Mouse&quot; HASH=&quot;1&quot;&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage Page&quot; ITEM_CODE=&quot;4&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage&quot; ITEM_CODE=&quot;8&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;02&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Collection&quot; ITEM_CODE=&quot;160&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage&quot; ITEM_CODE=&quot;8&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Collection&quot; ITEM_CODE=&quot;160&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;00&quot; ORDER=&quot;0&quot;/&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage Page&quot; ITEM_CODE=&quot;4&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;09&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage Minimum&quot; ITEM_CODE=&quot;24&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage Maximum&quot; ITEM_CODE=&quot;40&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;03&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Logical Minimum&quot; ITEM_CODE=&quot;20&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;00&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Logical Maximum&quot; ITEM_CODE=&quot;36&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Count&quot; ITEM_CODE=&quot;148&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;03&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Size&quot; ITEM_CODE=&quot;116&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Input&quot; ITEM_CODE=&quot;128&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;02&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Count&quot; ITEM_CODE=&quot;148&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Size&quot; ITEM_CODE=&quot;116&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;05&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Input&quot; ITEM_CODE=&quot;128&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage Page&quot; ITEM_CODE=&quot;4&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage&quot; ITEM_CODE=&quot;8&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;30&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage&quot; ITEM_CODE=&quot;8&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;31&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Logical Minimum&quot; ITEM_CODE=&quot;20&quot; SIZE=&quot;2&quot;&gt;&lt;ITEM_DATA VALUE=&quot;80&quot; ORDER=&quot;0&quot;/&gt;&lt;ITEM_DATA VALUE=&quot;FF&quot; ORDER=&quot;1&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Logical Maximum&quot; ITEM_CODE=&quot;36&quot; SIZE=&quot;2&quot;&gt;&lt;ITEM_DATA VALUE=&quot;80&quot; ORDER=&quot;0&quot;/&gt;&lt;ITEM_DATA VALUE=&quot;00&quot; ORDER=&quot;1&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Size&quot; ITEM_CODE=&quot;116&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;08&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Count&quot; ITEM_CODE=&quot;148&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;02&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Input&quot; ITEM_CODE=&quot;128&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;06&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;End Collection&quot; ITEM_CODE=&quot;192&quot; SIZE=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;End Collection&quot; ITEM_CODE=&quot;192&quot; SIZE=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;/HID_REPORT&gt;&lt;HID_REPORT NAME=&quot;Keyboard w/LED Feature Report&quot; HASH=&quot;2&quot;&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage Page&quot; ITEM_CODE=&quot;4&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage&quot; ITEM_CODE=&quot;8&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;06&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Collection&quot; ITEM_CODE=&quot;160&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage Page&quot; ITEM_CODE=&quot;4&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;07&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage Minimum&quot; ITEM_CODE=&quot;24&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;E0&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage Maximum&quot; ITEM_CODE=&quot;40&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;E7&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Logical Minimum&quot; ITEM_CODE=&quot;20&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;00&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Logical Maximum&quot; ITEM_CODE=&quot;36&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Size&quot; ITEM_CODE=&quot;116&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Count&quot; ITEM_CODE=&quot;148&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;08&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Input&quot; ITEM_CODE=&quot;128&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;02&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Count&quot; ITEM_CODE=&quot;148&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Size&quot; ITEM_CODE=&quot;116&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;08&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Input&quot; ITEM_CODE=&quot;128&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Count&quot; ITEM_CODE=&quot;148&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;05&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Size&quot; ITEM_CODE=&quot;116&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage Page&quot; ITEM_CODE=&quot;4&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;08&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage Minimum&quot; ITEM_CODE=&quot;24&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage Maximum&quot; ITEM_CODE=&quot;40&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;05&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Feature&quot; ITEM_CODE=&quot;176&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;02&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Count&quot; ITEM_CODE=&quot;148&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Size&quot; ITEM_CODE=&quot;116&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;03&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Feature&quot; ITEM_CODE=&quot;176&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Count&quot; ITEM_CODE=&quot;148&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;06&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Size&quot; ITEM_CODE=&quot;116&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;08&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Logical Minimum&quot; ITEM_CODE=&quot;20&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;00&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Logical Maximum&quot; ITEM_CODE=&quot;36&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;65&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage Page&quot; ITEM_CODE=&quot;4&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;07&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage Minimum&quot; ITEM_CODE=&quot;24&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;00&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage Maximum&quot; ITEM_CODE=&quot;40&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;65&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Input&quot; ITEM_CODE=&quot;128&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;00&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;End Collection&quot; ITEM_CODE=&quot;192&quot; SIZE=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;/HID_REPORT&gt;&lt;HID_REPORT NAME=&quot;Gamepad&quot; HASH=&quot;3&quot;&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage Page&quot; ITEM_CODE=&quot;4&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage&quot; ITEM_CODE=&quot;8&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;05&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Collection&quot; ITEM_CODE=&quot;160&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage&quot; ITEM_CODE=&quot;8&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Collection&quot; ITEM_CODE=&quot;160&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;00&quot; ORDER=&quot;0&quot;/&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage&quot; ITEM_CODE=&quot;8&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;30&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage&quot; ITEM_CODE=&quot;8&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;31&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Logical Minimum&quot; ITEM_CODE=&quot;20&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;00&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Logical Maximum&quot; ITEM_CODE=&quot;36&quot; SIZE=&quot;2&quot;&gt;&lt;ITEM_DATA VALUE=&quot;FF&quot; ORDER=&quot;0&quot;/&gt;&lt;ITEM_DATA VALUE=&quot;00&quot; ORDER=&quot;1&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Size&quot; ITEM_CODE=&quot;116&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;08&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Count&quot; ITEM_CODE=&quot;148&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;02&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Input&quot; ITEM_CODE=&quot;128&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;02&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;End Collection&quot; ITEM_CODE=&quot;192&quot; SIZE=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage Page&quot; ITEM_CODE=&quot;4&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;09&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage Minimum&quot; ITEM_CODE=&quot;24&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Usage Maximum&quot; ITEM_CODE=&quot;40&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;05&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Logical Minimum&quot; ITEM_CODE=&quot;20&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;00&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Logical Maximum&quot; ITEM_CODE=&quot;36&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Size&quot; ITEM_CODE=&quot;116&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Count&quot; ITEM_CODE=&quot;148&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;05&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Input&quot; ITEM_CODE=&quot;128&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;02&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Count&quot; ITEM_CODE=&quot;148&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;01&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Report Size&quot; ITEM_CODE=&quot;116&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;03&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;Input&quot; ITEM_CODE=&quot;128&quot; SIZE=&quot;1&quot;&gt;&lt;ITEM_DATA VALUE=&quot;03&quot; ORDER=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;HID_ITEM ITEM_TYPE=&quot;End Collection&quot; ITEM_CODE=&quot;192&quot; SIZE=&quot;0&quot;/&gt;&lt;/HID_ITEM&gt;&lt;/HID_REPORT&gt;&lt;/HID_REPORT_ROOT&gt;
+"/>
+						<PARAMETER NAME="DSHID_xmlSTRING" VALUE="&lt;STRING_ROOT INSTANCE_NAME=&quot;USBFS&quot; NEXT_HASH=&quot;6&quot; DATE_SAVED=&quot;Sat Aug 1 22:50:29 UTC+0300 2015&quot;&gt;&lt;USB_STRING_DESCR STRING_VALUE=&quot;Julian Made It&quot; HASH=&quot;2&quot;/&gt;&lt;USB_STRING_DESCR STRING_VALUE=&quot;My Teletouch&quot; HASH=&quot;3&quot;/&gt;&lt;USB_STRING_DESCR STRING_VALUE=&quot;JMI Keyboard&quot; HASH=&quot;4&quot;/&gt;&lt;USB_STRING_DESCR STRING_VALUE=&quot;JMI Mouse&quot; HASH=&quot;5&quot;/&gt;&lt;USB_STRING_DESCR STRING_VALUE=&quot;JMI Gamepad&quot; HASH=&quot;6&quot;/&gt;&lt;USB_LANGID_DESCR LANGID_VALUE=&quot;1033&quot; HASH=&quot;1&quot;/&gt;&lt;/STRING_ROOT&gt;
+"/>
+						<PARAMETER NAME="FORCE_Port" VALUE="Port_1"/>
+						<PARAMETER NAME="IntDispatchMode" VALUE="ActiveStatus"/>
+						<PARAMETER NAME="InterruptAPI" VALUE="Enable"/>
+						<PARAMETER NAME="USB_CLASS" VALUE="USB_CLASS_HID"/>
+					</PARAMETER_LIST>
+				</USER_MODULE>
+			</USER_MODULE_LIST>
+			<USER_MODULE_GROUP_LIST/>
+			<DEVICE_DATA>
+				<GLOBAL_RESOURCE_LIST>
+					<RESOURCE NAME="AGndBypass" VALUE="Disable"/>
+					<RESOURCE NAME="A_Buff_Power" VALUE="Low"/>
+					<RESOURCE NAME="Analog Power" VALUE="SC On/Ref Low"/>
+					<RESOURCE NAME="CPU_Clock" VALUE="SysClk/8"/>
+					<RESOURCE NAME="LVDThrottleBack" VALUE="Disable"/>
+					<RESOURCE NAME="Op-Amp Bias" VALUE="Low"/>
+					<RESOURCE NAME="Power Setting [ Vcc / SysClk freq ]" VALUE="5.0V / 24MHz"/>
+					<RESOURCE NAME="Ref Mux" VALUE="(Vdd/2)+/-BandGap"/>
+					<RESOURCE NAME="Sleep_Timer" VALUE="512_Hz"/>
+					<RESOURCE NAME="SysClk Source" VALUE="Internal"/>
+					<RESOURCE NAME="SysClk*2 Disable" VALUE="No"/>
+					<RESOURCE NAME="Trip Voltage [LVD]" VALUE="4.81V"/>
+					<RESOURCE NAME="VC1= SysClk/N" VALUE="2"/>
+					<RESOURCE NAME="VC2= VC1/N" VALUE="4"/>
+					<RESOURCE NAME="VC3 Divider" VALUE="39"/>
+					<RESOURCE NAME="VC3 Source" VALUE="VC2"/>
+					<RESOURCE NAME="Watchdog Enable" VALUE="Disable"/>
+				</GLOBAL_RESOURCE_LIST>
+				<RESERVED_RESOURCE_LIST>
+					<RESOURCE NAME="" VALUE="" TYPE=""/>
+					<RESOURCE NAME="24MHz_Global_Drive" VALUE="DriveOff" TYPE="GLOBAL_BUS_OSCILLATOR_DRIVE"/>
+					<RESOURCE NAME="32KHz_Global_Drive" VALUE="DriveOff" TYPE="GLOBAL_BUS_OSCILLATOR_DRIVE"/>
+					<RESOURCE NAME="ASD11-ASC10" VALUE="" TYPE="DIRECT_INPUT"/>
+					<RESOURCE NAME="ASD20-ASC21" VALUE="" TYPE="DIRECT_INPUT"/>
+					<RESOURCE NAME="AnalogClock_0_Select" VALUE="" TYPE="ANALOG_CLOCK_SELECT"/>
+					<RESOURCE NAME="AnalogClock_1_Select" VALUE="" TYPE="ANALOG_CLOCK_SELECT"/>
+					<RESOURCE NAME="AnalogColumnMUXBusSwitch_0" VALUE="AnalogColumn_InputMUX_0" TYPE="ANALOG_COLUMN_MUX_BUS_SWITCH"/>
+					<RESOURCE NAME="AnalogColumnMUXBusSwitch_1" VALUE="AnalogColumn_InputSelect_1" TYPE="ANALOG_COLUMN_MUX_BUS_SWITCH"/>
+					<RESOURCE NAME="AnalogColumn_Clock_0" VALUE="VC1" TYPE="ANALOG_COLUMN_CLOCK_MUX"/>
+					<RESOURCE NAME="AnalogColumn_Clock_1" VALUE="VC1" TYPE="ANALOG_COLUMN_CLOCK_MUX"/>
+					<RESOURCE NAME="AnalogColumn_InputMUX_0" VALUE="Port_0_3" TYPE="COLUMN_INPUT"/>
+					<RESOURCE NAME="AnalogColumn_InputMUX_1" VALUE="Port_0_4" TYPE="COLUMN_INPUT"/>
+					<RESOURCE NAME="AnalogColumn_InputSelect_1" VALUE="AnalogColumn_InputMUX_1" TYPE="COLUMN_INPUT_SELECT"/>
+					<RESOURCE NAME="AnalogColumn_Modulator_0" VALUE="None" TYPE="ANALOG_MODULATOR"/>
+					<RESOURCE NAME="AnalogColumn_Modulator_1" VALUE="None" TYPE="ANALOG_MODULATOR"/>
+					<RESOURCE NAME="AnalogComparatorControl_0" VALUE="" TYPE="ANALOG_COMPARATOR_CONTROL"/>
+					<RESOURCE NAME="AnalogComparatorControl_1" VALUE="" TYPE="ANALOG_COMPARATOR_CONTROL"/>
+					<RESOURCE NAME="AnalogInterruptSource_Col_0" VALUE="" TYPE="ANALOG_INTERRUPT_SOURCE"/>
+					<RESOURCE NAME="AnalogInterruptSource_Col_1" VALUE="" TYPE="ANALOG_INTERRUPT_SOURCE"/>
+					<RESOURCE NAME="AnalogLUT_0" VALUE="A" TYPE="ANALOG_LUT"/>
+					<RESOURCE NAME="AnalogLUT_1" VALUE="A" TYPE="ANALOG_LUT"/>
+					<RESOURCE NAME="AnalogMUXBusInterconnect" VALUE="Not Connected" TYPE="ANALOG_MUX_BUS_INTERCONNECT"/>
+					<RESOURCE NAME="AnalogMUXBus_0" VALUE="" TYPE="ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="AnalogMUXBus_1" VALUE="" TYPE="ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="AnalogMUXClockEnable" VALUE="Disable" TYPE="ANALOG_MUX_CLOCK_ENABLE"/>
+					<RESOURCE NAME="AnalogMUXClockOutputConfig" VALUE="NormalPrecharge" TYPE="ANALOG_MUX_CLOCK_OUTPUT"/>
+					<RESOURCE NAME="AnalogMUXClockSource" VALUE="Off" TYPE="ANALOG_MUX_CLOCK_SOURCE"/>
+					<RESOURCE NAME="AnalogOutBuf_0" VALUE="OFF" TYPE="ANALOG_DRIVER"/>
+					<RESOURCE NAME="AnalogOutBuf_1" VALUE="OFF" TYPE="ANALOG_DRIVER"/>
+					<RESOURCE NAME="AnalogOutBus_0" VALUE="" TYPE="ANALOG_COLUMN_OUTPUT"/>
+					<RESOURCE NAME="AnalogOutBus_1" VALUE="" TYPE="ANALOG_COLUMN_OUTPUT"/>
+					<RESOURCE NAME="AnalogPhiClock_Col_0" VALUE="" TYPE="ANALOG_PHI_CLOCK"/>
+					<RESOURCE NAME="AnalogPhiClock_Col_1" VALUE="" TYPE="ANALOG_PHI_CLOCK"/>
+					<RESOURCE NAME="BusReset" VALUE="" TYPE="USB_BUS_RESET"/>
+					<RESOURCE NAME="ComparatorBus0OutputControl0" VALUE="Disable" TYPE="COMPARATOR_OUTPUT_CONTROL"/>
+					<RESOURCE NAME="ComparatorBus0OutputControl4" VALUE="Disable" TYPE="COMPARATOR_OUTPUT_CONTROL"/>
+					<RESOURCE NAME="ComparatorBus1OutputControl1" VALUE="Disable" TYPE="COMPARATOR_OUTPUT_CONTROL"/>
+					<RESOURCE NAME="ComparatorBus1OutputControl5" VALUE="Disable" TYPE="COMPARATOR_OUTPUT_CONTROL"/>
+					<RESOURCE NAME="ComparatorBus_0" VALUE="" TYPE="ANALOG_COMPARATOR_OUTPUT"/>
+					<RESOURCE NAME="ComparatorBus_1" VALUE="" TYPE="ANALOG_COMPARATOR_OUTPUT"/>
+					<RESOURCE NAME="ComparatorClock" VALUE="" TYPE="COMPARATOR_CLOCK"/>
+					<RESOURCE NAME="ComparatorGate_0" VALUE="None" TYPE="COMPARATOR_ENABLE"/>
+					<RESOURCE NAME="ComparatorGate_1" VALUE="None" TYPE="COMPARATOR_ENABLE"/>
+					<RESOURCE NAME="DBB00-DBB01" VALUE="" TYPE="DIRECT_INPUT"/>
+					<RESOURCE NAME="DBB01-DCB02" VALUE="" TYPE="DIRECT_INPUT"/>
+					<RESOURCE NAME="DCB02-DCB03" VALUE="" TYPE="DIRECT_INPUT"/>
+					<RESOURCE NAME="DecimatorClock" VALUE="" TYPE="DECIMATOR_CLOCK"/>
+					<RESOURCE NAME="DecimatorColumn" VALUE="" TYPE="DECIMATOR_COLUMN"/>
+					<RESOURCE NAME="EPT0" VALUE="" TYPE="USB_EP0"/>
+					<RESOURCE NAME="EPT1" VALUE="" TYPE="USB_EP1"/>
+					<RESOURCE NAME="EPT2" VALUE="" TYPE="USB_EP2"/>
+					<RESOURCE NAME="EPT3" VALUE="" TYPE="USB_EP3"/>
+					<RESOURCE NAME="EPT4" VALUE="" TYPE="USB_EP4"/>
+					<RESOURCE NAME="GlobalEven_0_Interconnect" VALUE="NC" TYPE="GLOBAL_BUS_SHORT"/>
+					<RESOURCE NAME="GlobalEven_1_Interconnect" VALUE="NC" TYPE="GLOBAL_BUS_SHORT"/>
+					<RESOURCE NAME="GlobalEven_2_Interconnect" VALUE="NC" TYPE="GLOBAL_BUS_SHORT"/>
+					<RESOURCE NAME="GlobalEven_3_Interconnect" VALUE="NC" TYPE="GLOBAL_BUS_SHORT"/>
+					<RESOURCE NAME="GlobalEven_4_Interconnect" VALUE="NC" TYPE="GLOBAL_BUS_SHORT"/>
+					<RESOURCE NAME="GlobalEven_5_Interconnect" VALUE="NC" TYPE="GLOBAL_BUS_SHORT"/>
+					<RESOURCE NAME="GlobalEven_6_Interconnect" VALUE="NC" TYPE="GLOBAL_BUS_SHORT"/>
+					<RESOURCE NAME="GlobalEven_7_Interconnect" VALUE="NC" TYPE="GLOBAL_BUS_SHORT"/>
+					<RESOURCE NAME="GlobalInEven_0" VALUE="Port_0_0" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalInEven_1" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalInEven_2" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalInEven_3" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalInEven_4" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalInEven_5" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalInEven_6" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalInEven_7" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalInOdd_0" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalInOdd_1" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalInOdd_2" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalInOdd_3" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalInOdd_4" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalInOdd_5" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalInOdd_6" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalInOdd_7" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalOdd_0_Interconnect" VALUE="NC" TYPE="GLOBAL_BUS_SHORT"/>
+					<RESOURCE NAME="GlobalOdd_1_Interconnect" VALUE="NC" TYPE="GLOBAL_BUS_SHORT"/>
+					<RESOURCE NAME="GlobalOdd_2_Interconnect" VALUE="NC" TYPE="GLOBAL_BUS_SHORT"/>
+					<RESOURCE NAME="GlobalOdd_3_Interconnect" VALUE="NC" TYPE="GLOBAL_BUS_SHORT"/>
+					<RESOURCE NAME="GlobalOdd_4_Interconnect" VALUE="NC" TYPE="GLOBAL_BUS_SHORT"/>
+					<RESOURCE NAME="GlobalOdd_5_Interconnect" VALUE="NC" TYPE="GLOBAL_BUS_SHORT"/>
+					<RESOURCE NAME="GlobalOdd_6_Interconnect" VALUE="NC" TYPE="GLOBAL_BUS_SHORT"/>
+					<RESOURCE NAME="GlobalOdd_7_Interconnect" VALUE="NC" TYPE="GLOBAL_BUS_SHORT"/>
+					<RESOURCE NAME="GlobalOutEven_0" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalOutEven_1" VALUE="Row_0_Output_1_Drive_0" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalOutEven_2" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalOutEven_3" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalOutEven_4" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalOutEven_5" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalOutEven_6" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalOutEven_7" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalOutOdd_0" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalOutOdd_1" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalOutOdd_2" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalOutOdd_3" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalOutOdd_4" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalOutOdd_5" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalOutOdd_6" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="GlobalOutOdd_7" VALUE="" TYPE="GLOBAL_BUS"/>
+					<RESOURCE NAME="I2CController" VALUE="" TYPE="I2C_CONTROLLER"/>
+					<RESOURCE NAME="Port_0_0" VALUE="GlobalInEven_0" TYPE="PIN">
+						<PIN_VALUE_LIST>
+							<PIN_VALUE NAME="GlobalInEven_0"/>
+						</PIN_VALUE_LIST>
+					</RESOURCE>
+					<RESOURCE NAME="Port_0_0_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_0_0_Drive" VALUE="High Z" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_0_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_0_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_1" VALUE="GlobalOutEven_1" TYPE="PIN">
+						<PIN_VALUE_LIST>
+							<PIN_VALUE NAME="GlobalOutEven_1"/>
+						</PIN_VALUE_LIST>
+					</RESOURCE>
+					<RESOURCE NAME="Port_0_1_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_0_1_Drive" VALUE="Strong" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_1_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_1_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_2" VALUE="StdCPU" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_2_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_0_2_Drive" VALUE="High Z Analog" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_2_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_2_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_3" VALUE="StdCPU" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_3_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_0_3_Drive" VALUE="High Z Analog" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_3_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_3_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_4" VALUE="StdCPU" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_4_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_0_4_Drive" VALUE="High Z Analog" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_4_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_4_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_5" VALUE="StdCPU" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_5_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_0_5_Drive" VALUE="High Z Analog" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_5_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_5_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_6" VALUE="StdCPU" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_6_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_0_6_Drive" VALUE="High Z Analog" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_6_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_6_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_7" VALUE="StdCPU" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_7_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_0_7_Drive" VALUE="High Z Analog" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_7_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_0_7_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_0" VALUE="StdCPU" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_0_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_1_0_Drive" VALUE="High Z Analog" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_0_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_0_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_1" VALUE="StdCPU" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_1_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_1_1_Drive" VALUE="High Z Analog" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_1_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_1_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_2" VALUE="StdCPU" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_2_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_1_2_Drive" VALUE="High Z Analog" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_2_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_2_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_3" VALUE="StdCPU" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_3_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_1_3_Drive" VALUE="High Z Analog" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_3_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_3_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_4" VALUE="StdCPU" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_4_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_1_4_Drive" VALUE="High Z Analog" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_4_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_4_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_5" VALUE="StdCPU" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_5_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_1_5_Drive" VALUE="High Z Analog" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_5_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_5_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_6" VALUE="StdCPU" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_6_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_1_6_Drive" VALUE="High Z Analog" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_6_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_6_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_7" VALUE="StdCPU" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_7_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_1_7_Drive" VALUE="High Z Analog" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_7_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_1_7_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_0" VALUE="StdCPU" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_0_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_2_0_Drive" VALUE="High Z Analog" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_0_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_0_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_1" VALUE="StdCPU" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_1_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_2_1_Drive" VALUE="High Z Analog" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_1_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_1_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_2" VALUE="StdCPU" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_2_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_2_2_Drive" VALUE="High Z Analog" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_2_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_2_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_3" VALUE="StdCPU" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_3_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_2_3_Drive" VALUE="High Z Analog" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_3_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_3_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_4" VALUE="StdCPU" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_4_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_2_4_Drive" VALUE="High Z Analog" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_4_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_4_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_5" VALUE="StdCPU" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_5_AnalogMUXBus" VALUE="Normal" TYPE="PIN_ANALOG_MUX_BUS"/>
+					<RESOURCE NAME="Port_2_5_Drive" VALUE="High Z Analog" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_5_InitialValue" VALUE="0" TYPE="PIN"/>
+					<RESOURCE NAME="Port_2_5_Interrupt" VALUE="DisableInt" TYPE="PIN"/>
+					<RESOURCE NAME="Row_0_Broadcast" VALUE="None" TYPE="ROW_BROADCAST"/>
+					<RESOURCE NAME="Row_0_Input_0" VALUE="GlobalInEven_0" TYPE="ROW_BUS"/>
+					<RESOURCE NAME="Row_0_Input_0_Sync" VALUE="SysClk_Sync" TYPE="ROW_INPUT_SYNC"/>
+					<RESOURCE NAME="Row_0_Input_1" VALUE="GlobalInEven_1" TYPE="ROW_BUS"/>
+					<RESOURCE NAME="Row_0_Input_1_Sync" VALUE="SysClk_Sync" TYPE="ROW_INPUT_SYNC"/>
+					<RESOURCE NAME="Row_0_Input_2" VALUE="GlobalInEven_2" TYPE="ROW_BUS"/>
+					<RESOURCE NAME="Row_0_Input_2_Sync" VALUE="SysClk_Sync" TYPE="ROW_INPUT_SYNC"/>
+					<RESOURCE NAME="Row_0_Input_3" VALUE="GlobalInEven_3" TYPE="ROW_BUS"/>
+					<RESOURCE NAME="Row_0_Input_3_Sync" VALUE="SysClk_Sync" TYPE="ROW_INPUT_SYNC"/>
+					<RESOURCE NAME="Row_0_LogicTable_Input_0" VALUE="Row_0_Output_0" TYPE="ROW_LOGIC_TABLE_INPUT_MUX"/>
+					<RESOURCE NAME="Row_0_LogicTable_Input_1" VALUE="Row_0_Output_1" TYPE="ROW_LOGIC_TABLE_INPUT_MUX"/>
+					<RESOURCE NAME="Row_0_LogicTable_Input_2" VALUE="Row_0_Output_2" TYPE="ROW_LOGIC_TABLE_INPUT_MUX"/>
+					<RESOURCE NAME="Row_0_LogicTable_Input_3" VALUE="Row_0_Output_3" TYPE="ROW_LOGIC_TABLE_INPUT_MUX"/>
+					<RESOURCE NAME="Row_0_LogicTable_Select_0" VALUE="A" TYPE="ROW_LOGIC_TABLE_SELECT"/>
+					<RESOURCE NAME="Row_0_LogicTable_Select_1" VALUE="A" TYPE="ROW_LOGIC_TABLE_SELECT"/>
+					<RESOURCE NAME="Row_0_LogicTable_Select_2" VALUE="A" TYPE="ROW_LOGIC_TABLE_SELECT"/>
+					<RESOURCE NAME="Row_0_LogicTable_Select_3" VALUE="A" TYPE="ROW_LOGIC_TABLE_SELECT"/>
+					<RESOURCE NAME="Row_0_Output_0" VALUE="" TYPE="ROW_BUS"/>
+					<RESOURCE NAME="Row_0_Output_0_Drive_0" VALUE="Off" TYPE="ROW_OUTPUT_DRIVE"/>
+					<RESOURCE NAME="Row_0_Output_0_Drive_1" VALUE="Off" TYPE="ROW_OUTPUT_DRIVE"/>
+					<RESOURCE NAME="Row_0_Output_0_Drive_2" VALUE="Off" TYPE="ROW_OUTPUT_DRIVE"/>
+					<RESOURCE NAME="Row_0_Output_0_Drive_3" VALUE="Off" TYPE="ROW_OUTPUT_DRIVE"/>
+					<RESOURCE NAME="Row_0_Output_1" VALUE="DCB02" TYPE="ROW_BUS"/>
+					<RESOURCE NAME="Row_0_Output_1_Drive_0" VALUE="GlobalOutEven_1" TYPE="ROW_OUTPUT_DRIVE"/>
+					<RESOURCE NAME="Row_0_Output_1_Drive_1" VALUE="Off" TYPE="ROW_OUTPUT_DRIVE"/>
+					<RESOURCE NAME="Row_0_Output_1_Drive_2" VALUE="Off" TYPE="ROW_OUTPUT_DRIVE"/>
+					<RESOURCE NAME="Row_0_Output_1_Drive_3" VALUE="Off" TYPE="ROW_OUTPUT_DRIVE"/>
+					<RESOURCE NAME="Row_0_Output_2" VALUE="" TYPE="ROW_BUS"/>
+					<RESOURCE NAME="Row_0_Output_2_Drive_0" VALUE="Off" TYPE="ROW_OUTPUT_DRIVE"/>
+					<RESOURCE NAME="Row_0_Output_2_Drive_1" VALUE="Off" TYPE="ROW_OUTPUT_DRIVE"/>
+					<RESOURCE NAME="Row_0_Output_2_Drive_2" VALUE="Off" TYPE="ROW_OUTPUT_DRIVE"/>
+					<RESOURCE NAME="Row_0_Output_2_Drive_3" VALUE="Off" TYPE="ROW_OUTPUT_DRIVE"/>
+					<RESOURCE NAME="Row_0_Output_3" VALUE="" TYPE="ROW_BUS"/>
+					<RESOURCE NAME="Row_0_Output_3_Drive_0" VALUE="Off" TYPE="ROW_OUTPUT_DRIVE"/>
+					<RESOURCE NAME="Row_0_Output_3_Drive_1" VALUE="Off" TYPE="ROW_OUTPUT_DRIVE"/>
+					<RESOURCE NAME="Row_0_Output_3_Drive_2" VALUE="Off" TYPE="ROW_OUTPUT_DRIVE"/>
+					<RESOURCE NAME="Row_0_Output_3_Drive_3" VALUE="Off" TYPE="ROW_OUTPUT_DRIVE"/>
+					<RESOURCE NAME="SOF" VALUE="" TYPE="USB_SOF"/>
+					<RESOURCE NAME="SampleAndHoldCtl" VALUE="Enable" TYPE="ANALOG_SAMPLE_AND_HOLD"/>
+					<RESOURCE NAME="SleepInterrupt" VALUE="" TYPE="SLEEP_INTERRUPT"/>
+					<RESOURCE NAME="SysClk*2_Global_Drive" VALUE="DriveOff" TYPE="GLOBAL_BUS_OSCILLATOR_DRIVE"/>
+					<RESOURCE NAME="SysClk_Global_Drive" VALUE="DriveOff" TYPE="GLOBAL_BUS_OSCILLATOR_DRIVE"/>
+					<RESOURCE NAME="VC1_Global_Drive" VALUE="DriveOff" TYPE="GLOBAL_BUS_OSCILLATOR_DRIVE"/>
+					<RESOURCE NAME="VC2_Global_Drive" VALUE="DriveOff" TYPE="GLOBAL_BUS_OSCILLATOR_DRIVE"/>
+					<RESOURCE NAME="VC3Interrupt" VALUE="" TYPE="DIVIDER_INTERRUPT"/>
+					<RESOURCE NAME="VC3_Global_Drive" VALUE="DriveOff" TYPE="GLOBAL_BUS_OSCILLATOR_DRIVE"/>
+					<RESOURCE NAME="VT" VALUE="" TYPE="TEMPERATURE_VOLTAGE"/>
+					<RESOURCE NAME="WakeUp" VALUE="" TYPE="USB_WAKEUP"/>
+				</RESERVED_RESOURCE_LIST>
+				<GLOBAL_REGISTER_LIST>
+					<REGISTER NAME="AnalogClockSelect1" VALUE="0" ADDR="161" DATASHEET_NAME="CLK_CR1"/>
+					<REGISTER NAME="AnalogClockSelect2" VALUE="0" ADDR="169" DATASHEET_NAME="CLK_CR2"/>
+					<REGISTER NAME="AnalogColumnClockSelect" VALUE="0" ADDR="160" DATASHEET_NAME="CLK_CR0"/>
+					<REGISTER NAME="AnalogColumnInputSelect" VALUE="9" ADDR="60" DATASHEET_NAME="AMX_IN"/>
+					<REGISTER NAME="AnalogComparatorControl1" VALUE="0" ADDR="66" DATASHEET_NAME="CMP_CR1"/>
+					<REGISTER NAME="AnalogIOControl_0" VALUE="0" ADDR="162" DATASHEET_NAME="ABF_CR0"/>
+					<REGISTER NAME="AnalogLUTControl0" VALUE="33" ADDR="167" DATASHEET_NAME="ALT_CR0"/>
+					<REGISTER NAME="AnalogLUTControl1" VALUE="0" ADDR="168" DATASHEET_NAME="ALT_CR1"/>
+					<REGISTER NAME="AnalogModulatorControl_0" VALUE="0" ADDR="163" DATASHEET_NAME="AMD_CR0"/>
+					<REGISTER NAME="AnalogModulatorControl_1" VALUE="0" ADDR="166" DATASHEET_NAME="AMD_CR1"/>
+					<REGISTER NAME="AnalogMuxBusConfig" VALUE="0" ADDR="61" DATASHEET_NAME="AMUXCFG"/>
+					<REGISTER NAME="AnalogReferenceControl" VALUE="5" ADDR="63" DATASHEET_NAME="ARF_CR"/>
+					<REGISTER NAME="AnalogSyncControl" VALUE="0" ADDR="65" DATASHEET_NAME="ASY_CR"/>
+					<REGISTER NAME="ComparatorGlobalOutEn" VALUE="0" ADDR="164" DATASHEET_NAME="CMP_GO_EN"/>
+					<REGISTER NAME="ComparatorGlobalOutEn1" VALUE="0" ADDR="165" DATASHEET_NAME="CMP_GO_EN1"/>
+					<REGISTER NAME="DAC_Control" VALUE="80" ADDR="1fd" DATASHEET_NAME="DAC_CR"/>
+					<REGISTER NAME="DecimatorControl_0" VALUE="0" ADDR="e6" DATASHEET_NAME="DEC_CR0"/>
+					<REGISTER NAME="DecimatorControl_1" VALUE="0" ADDR="e7" DATASHEET_NAME="DEC_CR1"/>
+					<REGISTER NAME="Endpoint0Control" VALUE="0" ADDR="56" DATASHEET_NAME="EP0_CR"/>
+					<REGISTER NAME="Endpoint0Count" VALUE="0" ADDR="57" DATASHEET_NAME="EP0_CNT"/>
+					<REGISTER NAME="Endpoint0Data0" VALUE="0" ADDR="58" DATASHEET_NAME="EP0_DR0"/>
+					<REGISTER NAME="Endpoint0Data1" VALUE="0" ADDR="59" DATASHEET_NAME="EP0_DR1"/>
+					<REGISTER NAME="Endpoint0Data2" VALUE="0" ADDR="5a" DATASHEET_NAME="EP0_DR2"/>
+					<REGISTER NAME="Endpoint0Data3" VALUE="0" ADDR="5b" DATASHEET_NAME="EP0_DR3"/>
+					<REGISTER NAME="Endpoint0Data4" VALUE="0" ADDR="5c" DATASHEET_NAME="EP0_DR4"/>
+					<REGISTER NAME="Endpoint0Data5" VALUE="0" ADDR="5d" DATASHEET_NAME="EP0_DR5"/>
+					<REGISTER NAME="Endpoint0Data6" VALUE="0" ADDR="5e" DATASHEET_NAME="EP0_DR6"/>
+					<REGISTER NAME="Endpoint0Data7" VALUE="0" ADDR="5f" DATASHEET_NAME="EP0_DR7"/>
+					<REGISTER NAME="Endpoint1Control" VALUE="0" ADDR="1c4" DATASHEET_NAME="EP1_CR"/>
+					<REGISTER NAME="Endpoint1Count0" VALUE="0" ADDR="4f" DATASHEET_NAME="EP1_CNT"/>
+					<REGISTER NAME="Endpoint1Count1" VALUE="0" ADDR="4e" DATASHEET_NAME="EP1_CNT1"/>
+					<REGISTER NAME="Endpoint2Control" VALUE="0" ADDR="1c5" DATASHEET_NAME="EP2_CR"/>
+					<REGISTER NAME="Endpoint2Count0" VALUE="0" ADDR="51" DATASHEET_NAME="EP2_CNT"/>
+					<REGISTER NAME="Endpoint2Count1" VALUE="0" ADDR="50" DATASHEET_NAME="EP2_CNT1"/>
+					<REGISTER NAME="Endpoint3Control" VALUE="0" ADDR="1c6" DATASHEET_NAME="EP3_CR"/>
+					<REGISTER NAME="Endpoint3Count0" VALUE="0" ADDR="53" DATASHEET_NAME="EP3_CNT"/>
+					<REGISTER NAME="Endpoint3Count1" VALUE="0" ADDR="52" DATASHEET_NAME="EP3_CNT1"/>
+					<REGISTER NAME="Endpoint4Control" VALUE="0" ADDR="1c7" DATASHEET_NAME="EP4_CR"/>
+					<REGISTER NAME="Endpoint4Count0" VALUE="0" ADDR="55" DATASHEET_NAME="EP4_CNT"/>
+					<REGISTER NAME="Endpoint4Count1" VALUE="0" ADDR="54" DATASHEET_NAME="EP4_CNT1"/>
+					<REGISTER NAME="GlobalDigitalInterconnect_Drive_Even_Input" VALUE="0" ADDR="1d1" DATASHEET_NAME="GDI_E_IN"/>
+					<REGISTER NAME="GlobalDigitalInterconnect_Drive_Even_Output" VALUE="0" ADDR="1d3" DATASHEET_NAME="GDI_E_OU"/>
+					<REGISTER NAME="GlobalDigitalInterconnect_Drive_Odd_Input" VALUE="0" ADDR="1d0" DATASHEET_NAME="GDI_O_IN"/>
+					<REGISTER NAME="GlobalDigitalInterconnect_Drive_Odd_Output" VALUE="0" ADDR="1d2" DATASHEET_NAME="GDI_O_OU"/>
+					<REGISTER NAME="I2CConfig" VALUE="0" ADDR="d6" DATASHEET_NAME="I2CCFG"/>
+					<REGISTER NAME="OscillatorControl_1" VALUE="113" ADDR="1e1" DATASHEET_NAME="OSC_CR1"/>
+					<REGISTER NAME="OscillatorControl_2" VALUE="0" ADDR="1e2" DATASHEET_NAME="OSC_CR2"/>
+					<REGISTER NAME="OscillatorControl_3" VALUE="126" ADDR="1df" DATASHEET_NAME="OSC_CR3"/>
+					<REGISTER NAME="OscillatorControl_4" VALUE="2" ADDR="1de" DATASHEET_NAME="OSC_CR4"/>
+					<REGISTER NAME="OscillatorGlobalBusEnableControl" VALUE="0" ADDR="1dd" DATASHEET_NAME="OSC_GO_EN"/>
+					<REGISTER NAME="Port_0_Data" VALUE="0" ADDR="0" DATASHEET_NAME="PRT0DR"/>
+					<REGISTER NAME="Port_0_DriveMode_0" VALUE="2" ADDR="100" DATASHEET_NAME="PRT0DM0"/>
+					<REGISTER NAME="Port_0_DriveMode_1" VALUE="fd" ADDR="101" DATASHEET_NAME="PRT0DM1"/>
+					<REGISTER NAME="Port_0_DriveMode_2" VALUE="fc" ADDR="3" DATASHEET_NAME="PRT0DM2"/>
+					<REGISTER NAME="Port_0_GlobalSelect" VALUE="3" ADDR="2" DATASHEET_NAME="PRT0GS"/>
+					<REGISTER NAME="Port_0_IntCtrl_0" VALUE="0" ADDR="102" DATASHEET_NAME="PRT0IC0"/>
+					<REGISTER NAME="Port_0_IntCtrl_1" VALUE="0" ADDR="103" DATASHEET_NAME="PRT0IC1"/>
+					<REGISTER NAME="Port_0_IntEn" VALUE="0" ADDR="1" DATASHEET_NAME="PRT0IE"/>
+					<REGISTER NAME="Port_0_MUXBusCtrl" VALUE="0" ADDR="1d8" DATASHEET_NAME="MUX_CR0"/>
+					<REGISTER NAME="Port_1_Data" VALUE="0" ADDR="4" DATASHEET_NAME="PRT1DR"/>
+					<REGISTER NAME="Port_1_DriveMode_0" VALUE="0" ADDR="104" DATASHEET_NAME="PRT1DM0"/>
+					<REGISTER NAME="Port_1_DriveMode_1" VALUE="ff" ADDR="105" DATASHEET_NAME="PRT1DM1"/>
+					<REGISTER NAME="Port_1_DriveMode_2" VALUE="ff" ADDR="7" DATASHEET_NAME="PRT1DM2"/>
+					<REGISTER NAME="Port_1_GlobalSelect" VALUE="0" ADDR="6" DATASHEET_NAME="PRT1GS"/>
+					<REGISTER NAME="Port_1_IntCtrl_0" VALUE="0" ADDR="106" DATASHEET_NAME="PRT1IC0"/>
+					<REGISTER NAME="Port_1_IntCtrl_1" VALUE="0" ADDR="107" DATASHEET_NAME="PRT1IC1"/>
+					<REGISTER NAME="Port_1_IntEn" VALUE="0" ADDR="5" DATASHEET_NAME="PRT1IE"/>
+					<REGISTER NAME="Port_1_MUXBusCtrl" VALUE="0" ADDR="1d9" DATASHEET_NAME="MUX_CR1"/>
+					<REGISTER NAME="Port_2_Data" VALUE="0" ADDR="8" DATASHEET_NAME="PRT2DR"/>
+					<REGISTER NAME="Port_2_DriveMode_0" VALUE="0" ADDR="108" DATASHEET_NAME="PRT2DM0"/>
+					<REGISTER NAME="Port_2_DriveMode_1" VALUE="3f" ADDR="109" DATASHEET_NAME="PRT2DM1"/>
+					<REGISTER NAME="Port_2_DriveMode_2" VALUE="3f" ADDR="b" DATASHEET_NAME="PRT2DM2"/>
+					<REGISTER NAME="Port_2_GlobalSelect" VALUE="0" ADDR="a" DATASHEET_NAME="PRT2GS"/>
+					<REGISTER NAME="Port_2_IntCtrl_0" VALUE="0" ADDR="10a" DATASHEET_NAME="PRT2IC0"/>
+					<REGISTER NAME="Port_2_IntCtrl_1" VALUE="0" ADDR="10b" DATASHEET_NAME="PRT2IC1"/>
+					<REGISTER NAME="Port_2_IntEn" VALUE="0" ADDR="9" DATASHEET_NAME="PRT2IE"/>
+					<REGISTER NAME="Port_2_MUXBusCtrl" VALUE="0" ADDR="1da" DATASHEET_NAME="MUX_CR2"/>
+					<REGISTER NAME="Port_3_Data" VALUE="0" ADDR="c" DATASHEET_NAME="PRT3DR"/>
+					<REGISTER NAME="Port_3_DriveMode_0" VALUE="0" ADDR="10c" DATASHEET_NAME="PRT3DM0"/>
+					<REGISTER NAME="Port_3_DriveMode_1" VALUE="0" ADDR="10d" DATASHEET_NAME="PRT3DM1"/>
+					<REGISTER NAME="Port_3_DriveMode_2" VALUE="0" ADDR="f" DATASHEET_NAME="PRT3DM2"/>
+					<REGISTER NAME="Port_3_GlobalSelect" VALUE="0" ADDR="e" DATASHEET_NAME="PRT3GS"/>
+					<REGISTER NAME="Port_3_IntCtrl_0" VALUE="0" ADDR="10e" DATASHEET_NAME="PRT3IC0"/>
+					<REGISTER NAME="Port_3_IntCtrl_1" VALUE="0" ADDR="10f" DATASHEET_NAME="PRT3IC1"/>
+					<REGISTER NAME="Port_3_IntEn" VALUE="0" ADDR="d" DATASHEET_NAME="PRT3IE"/>
+					<REGISTER NAME="Port_3_MUXBusCtrl" VALUE="0" ADDR="1db" DATASHEET_NAME="MUX_CR3"/>
+					<REGISTER NAME="Port_4_Data" VALUE="0" ADDR="10" DATASHEET_NAME="PRT4DR"/>
+					<REGISTER NAME="Port_4_DriveMode_0" VALUE="0" ADDR="110" DATASHEET_NAME="PRT4DM0"/>
+					<REGISTER NAME="Port_4_DriveMode_1" VALUE="0" ADDR="111" DATASHEET_NAME="PRT4DM1"/>
+					<REGISTER NAME="Port_4_DriveMode_2" VALUE="0" ADDR="13" DATASHEET_NAME="PRT4DM2"/>
+					<REGISTER NAME="Port_4_GlobalSelect" VALUE="0" ADDR="12" DATASHEET_NAME="PRT4GS"/>
+					<REGISTER NAME="Port_4_IntCtrl_0" VALUE="0" ADDR="112" DATASHEET_NAME="PRT4IC0"/>
+					<REGISTER NAME="Port_4_IntCtrl_1" VALUE="0" ADDR="113" DATASHEET_NAME="PRT4IC1"/>
+					<REGISTER NAME="Port_4_IntEn" VALUE="0" ADDR="11" DATASHEET_NAME="PRT4IE"/>
+					<REGISTER NAME="Port_4_MUXBusCtrl" VALUE="0" ADDR="1ec" DATASHEET_NAME="MUX_CR4"/>
+					<REGISTER NAME="Port_5_Data" VALUE="0" ADDR="14" DATASHEET_NAME="PRT5DR"/>
+					<REGISTER NAME="Port_5_DriveMode_0" VALUE="0" ADDR="114" DATASHEET_NAME="PRT5DM0"/>
+					<REGISTER NAME="Port_5_DriveMode_1" VALUE="0" ADDR="115" DATASHEET_NAME="PRT5DM1"/>
+					<REGISTER NAME="Port_5_DriveMode_2" VALUE="0" ADDR="17" DATASHEET_NAME="PRT5DM2"/>
+					<REGISTER NAME="Port_5_GlobalSelect" VALUE="0" ADDR="16" DATASHEET_NAME="PRT5GS"/>
+					<REGISTER NAME="Port_5_IntCtrl_0" VALUE="0" ADDR="116" DATASHEET_NAME="PRT5IC0"/>
+					<REGISTER NAME="Port_5_IntCtrl_1" VALUE="0" ADDR="117" DATASHEET_NAME="PRT5IC1"/>
+					<REGISTER NAME="Port_5_IntEn" VALUE="0" ADDR="15" DATASHEET_NAME="PRT5IE"/>
+					<REGISTER NAME="Port_5_MUXBusCtrl" VALUE="0" ADDR="1ed" DATASHEET_NAME="MUX_CR5"/>
+					<REGISTER NAME="Port_7_Data" VALUE="0" ADDR="1c" DATASHEET_NAME="PRT7DR"/>
+					<REGISTER NAME="Port_7_DriveMode_0" VALUE="0" ADDR="11c" DATASHEET_NAME="PRT7DM0"/>
+					<REGISTER NAME="Port_7_DriveMode_1" VALUE="0" ADDR="11d" DATASHEET_NAME="PRT7DM1"/>
+					<REGISTER NAME="Port_7_DriveMode_2" VALUE="0" ADDR="1f" DATASHEET_NAME="PRT7DM2"/>
+					<REGISTER NAME="Port_7_GlobalSelect" VALUE="0" ADDR="1e" DATASHEET_NAME="PRT7GS"/>
+					<REGISTER NAME="Port_7_IntCtrl_0" VALUE="0" ADDR="11e" DATASHEET_NAME="PRT7IC0"/>
+					<REGISTER NAME="Port_7_IntCtrl_1" VALUE="0" ADDR="11f" DATASHEET_NAME="PRT7IC1"/>
+					<REGISTER NAME="Port_7_IntEn" VALUE="0" ADDR="1d" DATASHEET_NAME="PRT7IE"/>
+					<REGISTER NAME="Row_0_InputMux" VALUE="0" ADDR="b0" DATASHEET_NAME="RDI0RI"/>
+					<REGISTER NAME="Row_0_InputSync" VALUE="0" ADDR="b1" DATASHEET_NAME="RDI0SYN"/>
+					<REGISTER NAME="Row_0_LogicInputAMux" VALUE="0" ADDR="b2" DATASHEET_NAME="RDI0IS"/>
+					<REGISTER NAME="Row_0_LogicSelect_0" VALUE="33" ADDR="b3" DATASHEET_NAME="RDI0LT0"/>
+					<REGISTER NAME="Row_0_LogicSelect_1" VALUE="33" ADDR="b4" DATASHEET_NAME="RDI0LT1"/>
+					<REGISTER NAME="Row_0_OutputDrive_0" VALUE="10" ADDR="b5" DATASHEET_NAME="RDI0SRO0"/>
+					<REGISTER NAME="Row_0_OutputDrive_1" VALUE="0" ADDR="b6" DATASHEET_NAME="RDI0SRO1"/>
+					<REGISTER NAME="Type2Decimator_Control" VALUE="0" ADDR="1e7" DATASHEET_NAME="DEC_CR2"/>
+					<REGISTER NAME="USBControl_0" VALUE="0" ADDR="4a" DATASHEET_NAME="USB_CR0"/>
+					<REGISTER NAME="USBControl_1" VALUE="0" ADDR="1c1" DATASHEET_NAME="USB_CR1"/>
+					<REGISTER NAME="USBIOControl_0" VALUE="0" ADDR="4b" DATASHEET_NAME="USBIO_CR0"/>
+					<REGISTER NAME="USBIOControl_1" VALUE="0" ADDR="4c" DATASHEET_NAME="USBIO_CR1"/>
+				</GLOBAL_REGISTER_LIST>
+				<PIN_DESC_LIST>
+					<PIN_DESC PIN_NUMBER="1" PIN_LABEL="VSS" PIN_SELECT="" PIN_DRIVE="" PIN_DATA="" PIN_CUSTOM_NAME="" PIN_INTERRUPT=""/>
+					<PIN_DESC PIN_NUMBER="2" PIN_LABEL="P0[7]" PIN_SELECT="StdCPU" PIN_DRIVE="High Z Analog" PIN_DATA="" PIN_CUSTOM_NAME="Port_0_7" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="3" PIN_LABEL="P0[5]" PIN_SELECT="StdCPU" PIN_DRIVE="High Z Analog" PIN_DATA="" PIN_CUSTOM_NAME="Port_0_5" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="4" PIN_LABEL="P0[3]" PIN_SELECT="StdCPU" PIN_DRIVE="High Z Analog" PIN_DATA="" PIN_CUSTOM_NAME="Port_0_3" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="5" PIN_LABEL="P0[1]" PIN_SELECT="GlobalOutEven_1" PIN_DRIVE="Strong" PIN_DATA="" PIN_CUSTOM_NAME="Port_0_1" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="6" PIN_LABEL="P2[5]" PIN_SELECT="StdCPU" PIN_DRIVE="High Z Analog" PIN_DATA="" PIN_CUSTOM_NAME="Port_2_5" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="7" PIN_LABEL="P2[3]" PIN_SELECT="StdCPU" PIN_DRIVE="High Z Analog" PIN_DATA="" PIN_CUSTOM_NAME="Port_2_3" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="8" PIN_LABEL="P2[1]" PIN_SELECT="StdCPU" PIN_DRIVE="High Z Analog" PIN_DATA="" PIN_CUSTOM_NAME="Port_2_1" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="9" PIN_LABEL="P1[7]" PIN_SELECT="StdCPU" PIN_DRIVE="High Z Analog" PIN_DATA="" PIN_CUSTOM_NAME="Port_1_7" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="10" PIN_LABEL="P1[5]" PIN_SELECT="StdCPU" PIN_DRIVE="High Z Analog" PIN_DATA="" PIN_CUSTOM_NAME="Port_1_5" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="11" PIN_LABEL="P1[3]" PIN_SELECT="StdCPU" PIN_DRIVE="High Z Analog" PIN_DATA="" PIN_CUSTOM_NAME="Port_1_3" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="12" PIN_LABEL="P1[1]" PIN_SELECT="StdCPU" PIN_DRIVE="High Z Analog" PIN_DATA="" PIN_CUSTOM_NAME="Port_1_1" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="13" PIN_LABEL="VSS" PIN_SELECT="" PIN_DRIVE="" PIN_DATA="" PIN_CUSTOM_NAME="" PIN_INTERRUPT=""/>
+					<PIN_DESC PIN_NUMBER="14" PIN_LABEL="D+" PIN_SELECT="" PIN_DRIVE="" PIN_DATA="" PIN_CUSTOM_NAME="" PIN_INTERRUPT=""/>
+					<PIN_DESC PIN_NUMBER="15" PIN_LABEL="D-" PIN_SELECT="" PIN_DRIVE="" PIN_DATA="" PIN_CUSTOM_NAME="" PIN_INTERRUPT=""/>
+					<PIN_DESC PIN_NUMBER="16" PIN_LABEL="VDD" PIN_SELECT="" PIN_DRIVE="" PIN_DATA="" PIN_CUSTOM_NAME="" PIN_INTERRUPT=""/>
+					<PIN_DESC PIN_NUMBER="17" PIN_LABEL="P1[0]" PIN_SELECT="StdCPU" PIN_DRIVE="High Z Analog" PIN_DATA="" PIN_CUSTOM_NAME="Port_1_0" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="18" PIN_LABEL="P1[2]" PIN_SELECT="StdCPU" PIN_DRIVE="High Z Analog" PIN_DATA="" PIN_CUSTOM_NAME="Port_1_2" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="19" PIN_LABEL="P1[4]" PIN_SELECT="StdCPU" PIN_DRIVE="High Z Analog" PIN_DATA="" PIN_CUSTOM_NAME="Port_1_4" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="20" PIN_LABEL="P1[6]" PIN_SELECT="StdCPU" PIN_DRIVE="High Z Analog" PIN_DATA="" PIN_CUSTOM_NAME="Port_1_6" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="21" PIN_LABEL="P2[0]" PIN_SELECT="StdCPU" PIN_DRIVE="High Z Analog" PIN_DATA="" PIN_CUSTOM_NAME="Port_2_0" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="22" PIN_LABEL="P2[2]" PIN_SELECT="StdCPU" PIN_DRIVE="High Z Analog" PIN_DATA="" PIN_CUSTOM_NAME="Port_2_2" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="23" PIN_LABEL="P2[4]" PIN_SELECT="StdCPU" PIN_DRIVE="High Z Analog" PIN_DATA="" PIN_CUSTOM_NAME="Port_2_4" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="24" PIN_LABEL="P0[0]" PIN_SELECT="GlobalInEven_0" PIN_DRIVE="High Z" PIN_DATA="" PIN_CUSTOM_NAME="Port_0_0" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="25" PIN_LABEL="P0[2]" PIN_SELECT="StdCPU" PIN_DRIVE="High Z Analog" PIN_DATA="" PIN_CUSTOM_NAME="Port_0_2" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="26" PIN_LABEL="P0[4]" PIN_SELECT="StdCPU" PIN_DRIVE="High Z Analog" PIN_DATA="" PIN_CUSTOM_NAME="Port_0_4" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="27" PIN_LABEL="P0[6]" PIN_SELECT="StdCPU" PIN_DRIVE="High Z Analog" PIN_DATA="" PIN_CUSTOM_NAME="Port_0_6" PIN_INTERRUPT="DisableInt"/>
+					<PIN_DESC PIN_NUMBER="28" PIN_LABEL="VDD" PIN_SELECT="" PIN_DRIVE="" PIN_DATA="" PIN_CUSTOM_NAME="" PIN_INTERRUPT=""/>
+				</PIN_DESC_LIST>
+			</DEVICE_DATA>
+			<CONFIG_PREFERENCES>
+				<SELECTED_USER_MODULE_LIST/>
+			</CONFIG_PREFERENCES>
+		</PSOC_CONFIG>
+	</PSOC_CONFIG_LIST>
+</PSOC_DEVICE_DB>
